@@ -37,7 +37,7 @@ const GlobalStyled = createGlobalStyle`
   }
 
   body{
-    font-family: 'SUIT-Regular';
+    font-family: 'SUITE-Regular';
     font-weight: 400;
   }
 

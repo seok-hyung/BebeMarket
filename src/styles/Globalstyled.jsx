@@ -37,12 +37,13 @@ const GlobalStyled = createGlobalStyle`
   }
 
   body{
-    font-family: 'SUIT-Regular'; 
+    font-family: 'SUIT-Regular';
     font-weight: 400;
   }
 
   button{
     background: inherit;
+    padding: 0;
     border:none;
     box-shadow:none;
     overflow:visible;

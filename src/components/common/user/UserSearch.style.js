@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SmallFollowButton } from '../button/button.style';
+import { SmallFollowButton } from '../button/Button.style';
 
 export const UserBox = styled.div`
   display: flex;

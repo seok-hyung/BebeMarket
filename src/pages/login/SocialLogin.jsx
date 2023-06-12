@@ -1,9 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as S from '../login/SocialLogin.style';
-
 import SymbolLogo from '../../assets/images/symbol-logo-gray.svg';
 
 export const SocialLogin = () => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = (path) => {
+    navigate(path);
+  };
+
   return (
     <div>
       <S.SocialLoginContainer>
@@ -27,7 +33,10 @@ export const SocialLogin = () => {
             </li>
           </S.SocialLoginAccount>
           <S.LoginSigninContainer>
-            <S.LoginSigninButton className="login-email">
+            <S.LoginSigninButton
+              className="login-email"
+              onClick={() => handleButtonClick('/login')}
+            >
               이메일로 로그인
             </S.LoginSigninButton>
             <S.LoginSigninButton className="sign-in">
@@ -39,3 +48,5 @@ export const SocialLogin = () => {
     </div>
   );
 };
+
+export default SocialLogin;

@@ -8,6 +8,11 @@ export const UploadButton = styled.button`
   border-radius: 32px;
   color: #ffffff;
   cursor: pointer;
+
+  &.disabled {
+    background: var(--main-disabled-color);
+    cursor: default;
+  }
 `;
 
 export const Nav = styled.nav`

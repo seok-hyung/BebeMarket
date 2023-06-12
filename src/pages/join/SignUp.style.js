@@ -4,7 +4,6 @@ import { NextButton } from '../../components/common/button/Button.style';
 export const JoinWrapper = styled.div`
   width: 320px;
   margin: 50px auto;
-  /* box-shadow: inset 0 0 0 5px red; */
 `;
 export const JoinForm = styled.form``;
 

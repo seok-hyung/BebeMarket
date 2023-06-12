@@ -5,7 +5,6 @@ export const LoginMain = styled.main`
   flex-direction: column;
   align-items: center;
   margin: 100px auto;
-}
 `;
 
 export const Title = styled.h1`

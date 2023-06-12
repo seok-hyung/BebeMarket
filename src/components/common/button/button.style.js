@@ -32,7 +32,7 @@ export const MediumFollowButton = styled.button`
   font-size: 14px;
   font-weight: 500;
   line-height: 19px;
-  width: 120px
+  width: 120px;
   height: 34px;
 `;
 

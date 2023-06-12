@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './DeleteModal.style';
 
-function DeleteAlert(props) {
+function DeleteModal(props) {
   return (
     <S.ModalOverlay>
       <S.ModalContainer>
@@ -15,4 +15,4 @@ function DeleteAlert(props) {
   );
 }
 
-export default DeleteAlert;
+export default DeleteModal;

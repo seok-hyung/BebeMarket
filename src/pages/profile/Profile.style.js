@@ -1,8 +1,19 @@
 import styled from 'styled-components';
+import MessageCircleIcon from '../../assets/icon/icon-message-circle-1.svg';
+import ShareIcon from '../../assets/icon/icon-share.svg';
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background-color: #f2f2f2;
+`;
+
+//====프로필====
 export const ProfileContainer = styled.div`
   height: auto;
   width: 100%;
+  background-color: #fff;
 `;
 
 // 프로필 header
@@ -11,7 +22,7 @@ export const ProfileHeader = styled.div`
   align-items: center;
   justify-content: center;
   gap: 41px;
-  margin-top: 30px;
+  padding-top: 30px;
   margin-bottom: 14px;
 `;
 
@@ -62,14 +73,14 @@ export const ProfileFooter = styled.div`
   justify-content: center;
   gap: 10px;
   margin-top: 24px;
-  margin-bottom: 26px;
+  padding-bottom: 26px;
 
   // DM 메시지 버튼
   .dm-btn {
     border: 1px solid #dbdbdb;
     border-radius: 30px;
-    background: url(../../../assets/icon/icon-message-circle-1.svg) no-repeat;
-    background-size: 15px 15px;
+    background: url(${MessageCircleIcon}) no-repeat;
+    background-position: center center;
     width: 34px;
     height: 34px;
   }
@@ -78,25 +89,28 @@ export const ProfileFooter = styled.div`
   .share-btn {
     border: 1px solid #dbdbdb;
     border-radius: 30px;
-    background: url(../assets/icon/icon-share.svg);
+    background: url(${ShareIcon}) no-repeat;
+    background-position: center center;
     width: 34px;
     height: 34px;
   }
 `;
 
-// 상품 product
+// ====상품 product====
 export const ProductContainer = styled.div`
+  width: 100%;
   margin-top: 6px;
   margin: auto;
-  width: 390px;
+  background-color: #fff;
 
   h2 {
     padding: 18px 0 0 21px;
   }
 `;
 
-// post container
+// ====post container====
 export const PostContainer = styled.div`
+  background-color: #fff;
   height: 553px;
 `;
 
@@ -109,16 +123,17 @@ export const ViewOptions = styled.div`
   border-bottom: 1px solid #dbdbdb;
   margin: auto;
   padding-right: 12.25px;
-  width: 390px;
   height: 44px;
 `;
 
+// 피드 목록형
 export const PostListOn = styled.img`
   cursor: pointer;
   width: 26px;
   height: 26px;
 `;
 
+// 피드 앨범형
 export const PostAlbumOff = styled.img`
   cursor: pointer;
   width: 26px;

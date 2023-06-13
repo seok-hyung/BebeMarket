@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import * as S from './TextActiveInput.style.js';
+import React, { useEffect, useState } from 'react';
+import * as S from './EmailInput.style';
 
-function TextActiveInput(props) {
+function EmailInput({ onValidation, placeholder }) {
   const [email, setEmail] = useState('');
-  const [isValidEmail, setIsValidEmail] = useState(null);
-  const [isFocusedOut, setIsFocusedOut] = useState(false);
+  const [isValidEmail, setIsValidEmail] = useState(false);
 
-  const isEmailValid = (email) => {
+  const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(email);
   };
@@ -16,14 +15,16 @@ function TextActiveInput(props) {
   };
 
   const handleEmailBlur = () => {
-    // setIsValidEmail(isEmailValid(email));
-    setIsFocusedOut(true);
     if (email === '') {
       setIsValidEmail(null);
     } else {
-      setIsValidEmail(isEmailValid(email));
+      setIsValidEmail(validateEmail(email));
     }
   };
+  useEffect(() => {
+    const isValidEmail = validateEmail(email);
+    onValidation(isValidEmail);
+  }, [email, onValidation]);
 
   return (
     <S.InputBox>
@@ -35,9 +36,10 @@ function TextActiveInput(props) {
         onChange={handleEmailChange}
         onBlur={handleEmailBlur}
         isValid={isValidEmail}
+        placeholder={placeholder || ''}
       />
       {isValidEmail === false && (
-        <S.ErrorMessage email show={isValidEmail === false}>
+        <S.ErrorMessage valid={isValidEmail}>
           *올바르지 않은 이메일 형식입니다.
         </S.ErrorMessage>
       )}
@@ -45,4 +47,4 @@ function TextActiveInput(props) {
   );
 }
 
-export default TextActiveInput;
+export default EmailInput;

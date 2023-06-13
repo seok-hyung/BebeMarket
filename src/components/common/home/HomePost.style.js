@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import userImage from '../../../assets/images/Ellipse-1.png';
-import moreButton from '../../../assets/icon/icon-more-vertical.svg';
+import userImage from '../../../assets/images/basic-profile.svg';
+import moreButton from '../../../assets/icon/s-icon-more-vertical.svg';
 import contentImages from '../../../assets/images/post-img-example.png';
 import likeIcon from '../../../assets/icon/icon-heart.svg';
 import commentIcon from '../../../assets/icon/icon-message-circle-1.svg';
 
 export const Wrapper = styled.section`
   max-width: 400px;
-  padding: 16px;
+  /* padding: 16px; */
   margin: auto;
 `;
 

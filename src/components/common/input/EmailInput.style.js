@@ -3,6 +3,10 @@ import styled, { css } from 'styled-components';
 export const InputBox = styled.div`
   width: 322px;
   height: 48px;
+  margin-bottom: 16px;
+  .mb-30 {
+    margin-bottom: 30px;
+  }
 `;
 
 export const Label = styled.label`
@@ -11,13 +15,14 @@ export const Label = styled.label`
   font-size: 12px;
   line-height: 16px;
   display: block;
-  margin-bottom: 10px;
 `;
 
 export const Input = styled.input`
+  width: 100%;
   font-weight: 400;
   font-size: 14px;
   line-height: 14px;
+  padding: 10px 0 8px;
   border: none;
   outline: none;
   border-bottom: 1px solid #d9d9d9;
@@ -39,7 +44,7 @@ export const ErrorMessage = styled.p`
   color: #eb5757;
   margin-top: 6px;
   ${(props) =>
-    props.show &&
+    props.valid === false &&
     css`
       display: block;
       color: red;

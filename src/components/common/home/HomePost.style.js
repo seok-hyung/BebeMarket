@@ -7,7 +7,7 @@ import commentIcon from '../../../assets/icon/icon-message-circle-1.svg';
 
 export const Wrapper = styled.section`
   max-width: 400px;
-  padding: 16px;
+  /* padding: 16px; */
   margin: auto;
 `;
 

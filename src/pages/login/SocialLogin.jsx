@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from '../login/SocialLogin.style';
-import SymbolLogo from '../../assets/images/symbol-logo-gray.svg';
+import SymbolLogo from '../../assets/images/symbol-logo.svg';
 
 export const SocialLogin = () => {
   const navigate = useNavigate();

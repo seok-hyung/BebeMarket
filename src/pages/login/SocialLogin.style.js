@@ -15,6 +15,7 @@ export const SymbolLogoImage = styled.img`
   margin: auto;
   width: 144px;
   height: 144px;
+  object-fit: contain;
 `;
 
 export const LoginAccountContainer = styled.div`

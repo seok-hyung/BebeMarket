@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import userImage from '../../../assets/images/Ellipse-1.png';
+import userImage from '../../../assets/images/basic-profile.svg';
 import moreButton from '../../../assets/icon/s-icon-more-vertical.svg';
 import contentImages from '../../../assets/images/post-img-example.png';
 import likeIcon from '../../../assets/icon/icon-heart.svg';

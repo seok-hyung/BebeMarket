@@ -14,10 +14,8 @@ export default function PostComment() {
           <img src={moreIcon} />
         </S.MoreButton>
       </S.Container>
-      <S.CommentContent>
-        안녕하세요. 사진이 너무 멋있어요. 한라봉 언제 먹을 수 있나요? 기다리기
-        지쳤어요 땡뻘땡뻘...어쩌구 저쩌구 눈이 침침해지네요 엉엉
-      </S.CommentContent>
+      <S.CommentContent>요것도 테스트!</S.CommentContent>
+      <div>이건 테스트</div>
     </div>
   );
 }

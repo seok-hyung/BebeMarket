@@ -57,20 +57,21 @@ export default function MyProfile() {
           <h2>판매 중인 상품</h2>
           <Product />
         </S.ProductContainer>
-        <S.ViewOptions>
-          <S.PostListOn
-            src={postListOn}
-            alt="피드 목록형으로 보기"
-            onClick={() => setIsListMode(true)}
-          ></S.PostListOn>
-          <S.PostAlbumOff
-            src={postAlbumOff}
-            alt="피드 앨범형으로 보기"
-            onClick={() => setIsListMode(false)}
-          ></S.PostAlbumOff>
-        </S.ViewOptions>
-        {isListMode ? <HomePost /> : <HomeAlbum />}
-        <S.PostContainer />
+        <S.PostContainer>
+          <S.ViewOptions>
+            <S.PostListOn
+              src={postListOn}
+              alt="피드 목록형으로 보기"
+              onClick={() => setIsListMode(true)}
+            ></S.PostListOn>
+            <S.PostAlbumOff
+              src={postAlbumOff}
+              alt="피드 앨범형으로 보기"
+              onClick={() => setIsListMode(false)}
+            ></S.PostAlbumOff>
+          </S.ViewOptions>
+          {isListMode ? <HomePost /> : <HomeAlbum />}
+        </S.PostContainer>
       </S.ProfileWrapper>
       <TabMenu />
     </div>

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 // 공통 컴포넌트
 import TopBasicNav from '../../components/common/topNav/TopBasicNav';
-import { MediumFollowButton } from '../../components/common/button/button';
+import { MediumFollowButton } from '../../components/common/button/Button.style';
 import Product from '../../components/common/product/Product';
 import HomePost from '../../components/common/home/HomePost';
-import HomeAlbum from '../home/HomeAlbum';
+import HomeAlbum from '../../components/common/home/HomeAlbum';
 import TabMenu from '../../components/common/tab/TabMenu';
 
 // 스타일
@@ -21,7 +21,7 @@ export default function Profile() {
   return (
     <div>
       <TopBasicNav />
-      <S.Container>
+      <S.ProfileContainer>
         <S.ProfileContainer>
           <S.ProfileHeader>
             <S.Followers>
@@ -64,7 +64,7 @@ export default function Profile() {
           </S.ViewOptions>
           {isListMode ? <HomePost /> : <HomeAlbum />}
         </S.PostContainer>
-      </S.Container>
+      </S.ProfileContainer>
       <TabMenu />
     </div>
   );

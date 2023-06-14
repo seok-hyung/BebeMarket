@@ -4,9 +4,14 @@ import * as S from './Comment.style';
 
 function Comment(props) {
   const [comment, setComment] = useState('');
-
+  const [disabled, setDisabled] = useState(true);
   const handleChange = (event) => {
     setComment(event.target.value);
+    if (event.target.value.length > 0) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
   };
   const handleSubmit = () => {};
   return (
@@ -21,7 +26,9 @@ function Comment(props) {
         value={comment}
         onChange={handleChange}
       />
-      <S.PostButton onClick={handleSubmit}>게시</S.PostButton>
+      <S.PostButton onClick={handleSubmit} disabled={disabled}>
+        게시
+      </S.PostButton>
     </S.CommentBox>
   );
 }

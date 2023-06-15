@@ -10,9 +10,7 @@ export default function PostDetail() {
       <TopBasicNav />
       <HomePost />
       <S.Line />
-      <S.CommentBox>
-        <PostComment />
-      </S.CommentBox>
+      <PostComment />
       <CommentInput />
     </S.Container>
   );

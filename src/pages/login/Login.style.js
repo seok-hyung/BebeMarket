@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NextButton } from '../../components/common/button/button.style';
+import { NextButton } from '../../components/common/button/Button.style';
 
 export const LoginMain = styled.div`
   width: 320px;

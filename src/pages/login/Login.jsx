@@ -111,7 +111,7 @@ function Login() {
         </S.LoginForm>
         {
           <S.CustomNextButton onClick={handleLogin} active={isButtonDisabled}>
-            다음
+            로그인
           </S.CustomNextButton>
         }
 

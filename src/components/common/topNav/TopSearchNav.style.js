@@ -18,6 +18,9 @@ export const Input = styled.input`
   height: 32px;
   padding: 7px 16px;
   font-size: 14px;
+  &::placeholder {
+    color: #c4c4c4;
+  }
 `;
 export const Button = styled.button`
   width: 22px;

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 // 공통 컴포넌트
 import TopBasicNav from '../../components/common/topNav/TopBasicNav';
-import { MediumFollowButton } from '../../components/common/button/button';
 import Product from '../../components/common/product/Product';
 import HomePost from '../../components/common/home/HomePost';
-import HomeAlbum from '../home/HomeAlbum';
+import HomeAlbum from '../../components/common/home/HomeAlbum';
 import TabMenu from '../../components/common/tab/TabMenu';
 
 // 스타일
@@ -21,7 +20,7 @@ export default function Profile() {
   return (
     <div>
       <TopBasicNav />
-      <S.ProfileContainer>
+      <S.ProfileWrapper>
         <S.ProfileContainer>
           <S.ProfileHeader>
             <S.Followers>
@@ -40,31 +39,29 @@ export default function Profile() {
             <p>애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장</p>
           </S.ProfileMain>
           <S.ProfileFooter>
-            <button className="dm-btn"></button>
-            <MediumFollowButton />
-            <button className="share-btn"></button>
+            <S.EditProfileButton>프로필 수정</S.EditProfileButton>
+            <S.UploadProductButton>상품 등록</S.UploadProductButton>
           </S.ProfileFooter>
         </S.ProfileContainer>
         <S.ProductContainer>
           <h2>판매 중인 상품</h2>
           <Product />
         </S.ProductContainer>
-        <S.PostContainer>
-          <S.ViewOptions>
-            <S.PostListOn
-              src={postListOn}
-              alt="피드 목록형으로 보기"
-              onClick={() => setIsListMode(true)}
-            ></S.PostListOn>
-            <S.PostAlbumOff
-              src={postAlbumOff}
-              alt="피드 앨범형으로 보기"
-              onClick={() => setIsListMode(false)}
-            ></S.PostAlbumOff>
-          </S.ViewOptions>
-          {isListMode ? <HomePost /> : <HomeAlbum />}
-        </S.PostContainer>
-      </S.ProfileContainer>
+        <S.PostContainer />
+        <S.ViewOptions>
+          <S.PostListOn
+            src={postListOn}
+            alt="피드 목록형으로 보기"
+            onClick={() => setIsListMode(true)}
+          ></S.PostListOn>
+          <S.PostAlbumOff
+            src={postAlbumOff}
+            alt="피드 앨범형으로 보기"
+            onClick={() => setIsListMode(false)}
+          ></S.PostAlbumOff>
+        </S.ViewOptions>
+        {isListMode ? <HomePost /> : <HomeAlbum />}
+      </S.ProfileWrapper>
       <TabMenu />
     </div>
   );

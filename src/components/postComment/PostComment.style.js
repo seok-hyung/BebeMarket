@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 import userImage from '../../assets/images/basic-profile.svg';
+
+export const Wrapper = styled.div`
+  max-width: 390px;
+  margin: 0 auto;
+`;
 export const Container = styled.div`
   display: flex;
   padding: 20px 16px 0 16px;
@@ -52,7 +57,7 @@ export const CommentContent = styled.p`
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
-  padding-left: 60px;
+  padding-left: 64px;
   padding-right: 16px;
   color: var(--main-text-color);
 `;

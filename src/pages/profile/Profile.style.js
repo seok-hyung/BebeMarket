@@ -1,8 +1,16 @@
 import styled from 'styled-components';
 
+export const ProfileWrapper = styled.div`
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
 export const ProfileContainer = styled.div`
   height: auto;
   width: 100%;
+  background-color: #fff;
 `;
 
 // 프로필 header
@@ -84,11 +92,30 @@ export const ProfileFooter = styled.div`
   }
 `;
 
+// MyProfile.jsx 프로필 버튼 - 시작
+export const EditProfileButton = styled.button`
+  border: 1px solid #dbdbdb;
+  border-radius: 30px;
+  color: var(--sub-text-color);
+  width: 120px;
+  height: 34px;
+`;
+
+export const UploadProductButton = styled.button`
+  border: 1px solid #dbdbdb;
+  border-radius: 30px;
+  color: var(--sub-text-color);
+  width: 100px;
+  height: 34px;
+`;
+// MyProfile.jsx 프로필 버튼 - 끝
+
 // 상품 product
 export const ProductContainer = styled.div`
   margin-top: 6px;
   margin: auto;
-  width: 390px;
+  width: 100%;
+  background-color: #fff;
 
   h2 {
     padding: 18px 0 0 21px;
@@ -97,7 +124,7 @@ export const ProductContainer = styled.div`
 
 // post container
 export const PostContainer = styled.div`
-  height: 553px;
+  background-color: #fff;
 `;
 
 // 피드 정렬
@@ -109,8 +136,9 @@ export const ViewOptions = styled.div`
   border-bottom: 1px solid #dbdbdb;
   margin: auto;
   padding-right: 12.25px;
-  width: 390px;
+  width: 100%;
   height: 44px;
+  background-color: #fff;
 `;
 
 export const PostListOn = styled.img`

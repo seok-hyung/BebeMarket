@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Login.style';
 import InputBox from '../../components/common/input/InputBox';
-import { emailLoginAPI } from '../../api/mandarinAPI';
+import { emailLoginAPI } from '../../api/API';
 
 function Login() {
   const navigate = useNavigate();
@@ -64,17 +64,20 @@ function Login() {
     if (!isButtonDisabled) {
       const data = await emailLoginAPI(email, password);
 
-      if (data.message === '*이메일 또는 비밀번호가 일치하지 않습니다.') {
+      // 네트워크 관련 오류 처리 추가
+      if (data.code === 'ERR_NETWORK') {
+        console.error(
+          '네트워크 에러가 발생했습니다. 인터넷 연결을 확인해주세요.',
+        );
+        return;
+      }
+
+      if (!data || !data.user || !data.user.token) {
         setIsPasswordRed(true);
         setPasswordError('*이메일 또는 비밀번호가 일치하지 않습니다.');
       } else {
         localStorage.setItem('token', data.user.token);
-        navigate('/home', {
-          state: {
-            email,
-            password,
-          },
-        });
+        navigate('/home');
       }
     }
   };

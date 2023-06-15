@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TopUploadNav from '../../components/common/topNav/TopUploadNav';
 import * as S from './ProfileEdit.style';
 import ProfileImage from '../../assets/images/full-logo.svg';
+import EditProfileImage from '../../assets/images/img-button.svg';
 
 export default function ProfileEdit() {
   //인풋 입력 상태 저장
@@ -30,7 +31,10 @@ export default function ProfileEdit() {
         )}
       </TopUploadNav>
       <S.ProfileEdit>
-        <S.ProfileImage src={ProfileImage} />
+        <S.ImageContainer>
+          <S.ProfileImage src={ProfileImage} />
+          <S.EditProfileImage src={EditProfileImage} />
+        </S.ImageContainer>
         <S.InputWrapper>
           <p>사용자 이름</p>
           <input

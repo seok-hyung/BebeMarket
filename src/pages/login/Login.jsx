@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Login.style';
 import InputBox from '../../components/common/input/InputBox';
-import { emailLoginAPI } from '../../api/API';
+import { emailLoginAPI } from '../../api/user/emailLoginAPI';
 
 function Login() {
   const navigate = useNavigate();

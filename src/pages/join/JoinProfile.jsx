@@ -1,17 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import * as S from './JoinProfile.style';
-
-import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CustomNextButton } from './SignUp.style';
 
 import InputBox from '../../components/common/input/InputBox';
-import JoinProfileIamge from '../../assets/images/basic-profile-img.svg';
 import DefaultProfileImage from '../../assets/images/basic-profile-img.svg';
 
 // API
 import { accountnameValidAPI, joinAPI } from '../../api/API';
-import { useEffect } from 'react';
 
 function JoinProfile(props) {
   const navigate = useNavigate();
@@ -32,7 +28,9 @@ function JoinProfile(props) {
 
   // 이미지 업로드
   const uploadImage = (e) => {
-    console.log(e.target.value);
+    const profileIamgeRef = useRef();
+    console.log(profileIamgeRef);
+    console.log(e.target.files[0]);
   };
   // username 유효성 검사
   const handleUserNameValid = (e) => {
@@ -83,6 +81,11 @@ function JoinProfile(props) {
     }
   };
 
+  // handle introduction
+  const handleUserIntroduction = (e) => {
+    setIntroduction(e.target.value);
+  };
+
   // 버튼 활성화
   useEffect(() => {
     if (username.length > 0 && isUserIdValid) {
@@ -111,17 +114,14 @@ function JoinProfile(props) {
       <S.JoinDescription>나중에 언제든지 변경할 수 있습니다.</S.JoinDescription>
       <form onSubmit={handleJoin}>
         <S.JoinDiv>
-          <S.ProfileImage
-            html
-            src={JoinProfileIamge}
-            alt="회원가입 유저 프로필 이미지"
-          />
+          <S.ProfileImage src={image} alt="회원가입 유저 프로필 이미지" />
           <S.UploadInputLabel htmlFor="uploadInput" />
           <S.UploadInput
             type="file"
             id="uploadInput"
             alt="회원가입 프로필 업로드 이미지"
-            onInput={uploadImage}
+            accept="image/"
+            onChange={uploadImage}
           />
         </S.JoinDiv>
 
@@ -153,6 +153,7 @@ function JoinProfile(props) {
           label="소개"
           id="userIntroduction"
           placeholder="자신과 판매할 상품에 대해 소개해 주세요!"
+          onChange={handleUserIntroduction}
         />
         <CustomNextButton type="submit" active={isButtonActive}>
           베베마켓 시작하기

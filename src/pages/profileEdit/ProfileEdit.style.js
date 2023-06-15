@@ -1,14 +1,22 @@
 import styled from 'styled-components';
 import { DisabledSaveButton } from '../../components/common/button/Button.style';
+import { SaveButton } from '../../components/common/button/Button.style';
 
 export const CustomDisabledSaveButton = styled(DisabledSaveButton)`
   width: 90px;
   height: 32px;
-  background-color: var(--main-disabled-color);
-  color: #fff;
   font-weight: 500;
   line-height: 19px;
 `;
+
+// 입력 값이 다 채워지면 저장 버튼 활성화
+export const CustomSaveButton = styled(SaveButton)`
+  width: 90px;
+  height: 32px;
+  font-weight: 500;
+  line-height: 19px;
+`;
+//
 
 export const ProfileImage = styled.img`
   margin: 30px 0;

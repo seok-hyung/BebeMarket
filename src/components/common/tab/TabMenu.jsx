@@ -26,8 +26,6 @@ export default function TabMenu() {
         return false;
       } //else{return true} 일수도
     }
-
-    return true;
   };
 
   const UseColoredChatIcon = () => {

@@ -7,6 +7,8 @@ id : input의 id값입니다.
 type : input의 type입니다.
 placeholder : placeholder로 쓰일 텍스트입니다.
 value : input의 value입니다.
+min : input의 최소 길이입니다.
+max : input의 최대 길이입니다.
 onChange : input의 value가 변경된 후 포커스가 해제될 때의 이벤트를 입력해 주세요.
 onBlur : input에서 포커스가 해제될 때의 이벤트를 입력해 주세요.
 onInput : input의 value가 변경될 때의 이벤트를 입력해 주세요.
@@ -23,6 +25,8 @@ const InputBox = ({
   type,
   placeholder,
   value,
+  min,
+  max,
   borderBottomColor,
   show,
   errorMessage,
@@ -43,6 +47,8 @@ const InputBox = ({
           onInput={onInput}
           value={value}
           borderBottomColor={borderBottomColor}
+          minLength={min}
+          maxLength={max}
         />
       </S.Box>
       <S.ErrorMessage show={show}>{errorMessage}</S.ErrorMessage>

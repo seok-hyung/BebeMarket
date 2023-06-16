@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './JoinProfile.style';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CustomNextButton } from './SignUp.style';
@@ -7,7 +7,8 @@ import InputBox from '../../components/common/input/InputBox';
 import DefaultProfileImage from '../../assets/images/basic-profile-img.svg';
 
 // API
-import { accountnameValidAPI, joinAPI } from '../../api/API';
+import { accountnameValidAPI } from '../../api/user/accountnameValidAPI';
+import { joinAPI } from '../../api/user/joinAPI';
 
 function JoinProfile(props) {
   const navigate = useNavigate();
@@ -24,14 +25,15 @@ function JoinProfile(props) {
   const [isUserIdValid, setIsUserIdValid] = useState('');
   const [userIdErrorMessage, setUserIdErrorMessage] = useState('');
   const [usernameErrorMessage, setUsernameErrorMessage] = useState('');
-  const [show, setShow] = useState(false);
 
   // 이미지 업로드
   const uploadImage = (e) => {
-    const profileIamgeRef = useRef();
-    console.log(profileIamgeRef);
-    console.log(e.target.files[0]);
+    if (e.target.files && e.target.files[0]) {
+      const image = e.target.files[0];
+      setIamge(URL?.createObjectURL(image));
+    }
   };
+
   // username 유효성 검사
   const handleUserNameValid = (e) => {
     const currentUsername = e.target.value;
@@ -56,10 +58,8 @@ function JoinProfile(props) {
     const regex = /^[_A-Za-z0-9.]*$/;
     if (currentUserId === '') {
       setIsUserIdValid(false);
-      // setUserIdErrorMessage('* 계정ID를 입력해주세요');
     } else if (regex.test(currentUserId)) {
       setIsUserIdValid(true);
-      // setUserId(currentUserId);
       setUserIdErrorMessage('');
     } else {
       setIsUserIdValid(false);
@@ -76,7 +76,6 @@ function JoinProfile(props) {
       setIsUserIdValid(false);
       setUserIdErrorMessage('* 이미 사용 중인 ID입니다.');
     } else {
-      setShow(false);
       setIsUserIdValid(true);
     }
   };
@@ -98,7 +97,7 @@ function JoinProfile(props) {
   // 회원가입
   const handleJoin = async (e) => {
     e.preventDefault();
-    const a = await joinAPI(
+    const joinData = await joinAPI(
       username,
       userEmail,
       userPassword,
@@ -106,7 +105,8 @@ function JoinProfile(props) {
       introduction,
       image,
     );
-    console.log(a);
+
+    navigate('/socialLogin');
   };
   return (
     <S.JoinContainer>

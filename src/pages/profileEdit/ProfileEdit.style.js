@@ -8,6 +8,7 @@ export const CustomDisabledSaveButton = styled(DisabledSaveButton)`
   height: 32px;
   font-weight: 500;
   line-height: 19px;
+  cursor: default;
 `;
 
 // 입력 값이 다 채워진 후 활성화된 버튼
@@ -65,7 +66,16 @@ export const ProfileEdit = styled.div`
   }
 `;
 
+export const ErrorText = styled.p`
+  position: absolute;
+  top: calc(100% + 5px); // border-bottom 아래에 텍스트를 위치
+  left: 0;
+  color: red;
+  font-size: 12px;
+`;
+
 export const InputWrapper = styled.div`
+  position: relative;
   margin: auto;
   text-align: left;
   width: 322px;
@@ -74,5 +84,9 @@ export const InputWrapper = styled.div`
 
   input:focus {
     outline: none;
+  }
+
+  ${ErrorText} {
+    color: red;
   }
 `;

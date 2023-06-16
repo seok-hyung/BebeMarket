@@ -75,7 +75,7 @@ export const ErrorText = styled.p`
 `;
 
 export const InputWrapper = styled.div`
-  position: relative; // 추가
+  position: relative;
   margin: auto;
   text-align: left;
   width: 322px;

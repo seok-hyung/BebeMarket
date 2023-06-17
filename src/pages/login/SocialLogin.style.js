@@ -35,7 +35,6 @@ export const SocialLoginAccount = styled.ul`
 `;
 
 export const AccountButton = styled.button`
-  padding: 13px 87px 13px 87px;
   width: 322px;
   height: 44px;
   border-radius: 44px;

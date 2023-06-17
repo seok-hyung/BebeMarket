@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import * as S from './JoinProfile.style';
 import { useLocation, useNavigate } from 'react-router-dom';
+import * as S from './JoinProfile.style';
 import { CustomNextButton } from './SignUp.style';
 
 import InputBox from '../../components/common/input/InputBox';
@@ -10,19 +10,21 @@ import DefaultProfileImage from '../../assets/images/basic-profile-img.svg';
 import { accountnameValidAPI } from '../../api/user/accountnameValidAPI';
 import { joinAPI } from '../../api/user/joinAPI';
 
-function JoinProfile(props) {
+function JoinProfile() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [image, setIamge] = useState(DefaultProfileImage);
-  const [username, setUsername] = useState('');
-  const [isUsernameValid, setIsUsernameValid] = useState(true);
-  const [userId, setUserId] = useState('');
-  const [introduction, setIntroduction] = useState('');
   const userEmail = location.state?.email;
   const userPassword = location.state?.password;
-  const [isButtonActive, setIsButtonActive] = useState('');
 
-  const [isUserIdValid, setIsUserIdValid] = useState('');
+  const [image, setIamge] = useState(DefaultProfileImage);
+  const [username, setUsername] = useState('');
+  const [userId, setUserId] = useState('');
+  const [introduction, setIntroduction] = useState('');
+
+  const [isUsernameValid, setIsUsernameValid] = useState(false);
+  const [isUserIdValid, setIsUserIdValid] = useState(false);
+  const [isButtonActive, setIsButtonActive] = useState(false);
+
   const [userIdErrorMessage, setUserIdErrorMessage] = useState('');
   const [usernameErrorMessage, setUsernameErrorMessage] = useState('');
 
@@ -97,7 +99,7 @@ function JoinProfile(props) {
   // 회원가입
   const handleJoin = async (e) => {
     e.preventDefault();
-    const joinData = await joinAPI(
+    await joinAPI(
       username,
       userEmail,
       userPassword,
@@ -105,8 +107,7 @@ function JoinProfile(props) {
       introduction,
       image,
     );
-
-    navigate('/socialLogin');
+    navigate('/sociallogin');
   };
   return (
     <S.JoinContainer>
@@ -153,6 +154,7 @@ function JoinProfile(props) {
           label="소개"
           id="userIntroduction"
           placeholder="자신과 판매할 상품에 대해 소개해 주세요!"
+          value={introduction}
           onChange={handleUserIntroduction}
         />
         <CustomNextButton type="submit" active={isButtonActive}>

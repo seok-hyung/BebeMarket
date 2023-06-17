@@ -19,7 +19,8 @@ import ChatRoom from './chat/ChatRoom';
 import Error from './error/Error';
 import Splash from './splash/Splash';
 import ProductEdit from './productEdit/ProductEdit';
-
+import { useRecoilValue } from 'recoil';
+import { isLoginState } from '../atoms/Atoms';
 //만약 from 뒤에 빨간색 에러가뜬다면 vs코드 껏다가 다시켜보기.
 
 function Pages() {
@@ -38,8 +39,12 @@ function Pages() {
 }
 
 function MainPages() {
+  const isLogin = useRecoilValue(isLoginState);
+
   return (
     <Routes>
+      <Route path="/" element={isLogin ? <Home /> : <SocialLogin />} />
+      <Route path="/sociallogin" element={<SocialLogin />} />
       <Route path="/login" element={<Login />} />
       <Route path="/join/signup" element={<SignUp />} />
       <Route path="/join/profile" element={<JoinProfile />} />
@@ -63,6 +68,3 @@ function MainPages() {
 }
 
 export default Pages;
-
-// function MainPages() 리턴에 원래처음에 <Route path="/" element={isLogin() ? <Home /> : <SocialLogin />}/>
-//이거 추가되어야하는데, isLogin을 지금추가하면 파일이 업스니오류뜰까봐 안넣는게좋을듯.

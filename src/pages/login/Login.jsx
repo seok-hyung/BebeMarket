@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Login.style';
+
 import InputBox from '../../components/common/input/InputBox';
 import { emailLoginAPI } from '../../api/user/emailLoginAPI';
+import {
+  userTokenState,
+  isLoginState,
+  accountNameState,
+} from '../../atoms/Atoms';
+import { useSetRecoilState } from 'recoil';
 
 function Login() {
   const navigate = useNavigate();
@@ -16,7 +23,11 @@ function Login() {
   const [isPasswordRed, setIsPasswordRed] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  // 이메일 유효성 검사
+  const setUserToken = useSetRecoilState(userTokenState); // 로그인 성공시 토큰 저장
+  const setIsLoginState = useSetRecoilState(isLoginState); // 로그인 상태 관리
+  const setAccountNameData = useSetRecoilState(accountNameState); // 로그인 성공시 계정ID 저장
+
+  // 이메일 입력 시 유효성 검사
   const handleEmailChange = (e) => {
     const emailValue = e.target.value;
     setEmail(emailValue);
@@ -34,7 +45,7 @@ function Login() {
     }
   };
 
-  // 비밀번호 유효성 검사
+  // 비밀번호 입력 시 유효성 검사
   const handlePasswordChange = (e) => {
     const passwordValue = e.target.value;
     setPassword(passwordValue);
@@ -49,7 +60,7 @@ function Login() {
     }
   };
 
-  // 로그인 버튼 활성화
+  // 이메일,비밀번호 유효성이 확인됐을 때 로그인 버튼 활성화
   useEffect(() => {
     if (emailValid && passwordValid) {
       setIsButtonDisabled(false);
@@ -58,25 +69,21 @@ function Login() {
     }
   }, [emailValid, passwordValid]);
 
+  // 로그인 버튼 클릭 시 서버에 로그인 요청
   const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!isButtonDisabled) {
       const data = await emailLoginAPI(email, password);
 
-      // 네트워크 관련 오류 처리 추가
-      if (data.code === 'ERR_NETWORK') {
-        console.error(
-          '네트워크 에러가 발생했습니다. 인터넷 연결을 확인해주세요.',
-        );
-        return;
-      }
-
+      // 로그인 성공 시 토큰 및 사용자 정보 저장
       if (!data || !data.user || !data.user.token) {
         setIsPasswordRed(true);
         setPasswordError('*이메일 또는 비밀번호가 일치하지 않습니다.');
       } else {
-        localStorage.setItem('token', data.user.token);
+        setIsLoginState(true);
+        setUserToken(data.user.token);
+        setAccountNameData(data.user.accountname);
         navigate('/home');
       }
     }

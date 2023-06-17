@@ -6,7 +6,7 @@ export const joinAPI = async (
   email,
   password,
   accountname,
-  introduction,
+  intro,
   image,
 ) => {
   try {
@@ -16,7 +16,7 @@ export const joinAPI = async (
         email,
         password,
         accountname,
-        introduction,
+        intro,
         image,
       },
     });

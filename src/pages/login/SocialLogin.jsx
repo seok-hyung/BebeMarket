@@ -39,7 +39,10 @@ export const SocialLogin = () => {
             >
               이메일로 로그인
             </S.LoginSigninButton>
-            <S.LoginSigninButton className="sign-in">
+            <S.LoginSigninButton
+              className="sign-in"
+              onClick={() => handleButtonClick('/join/signup')}
+            >
               회원가입
             </S.LoginSigninButton>
           </S.LoginSigninContainer>

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 // 공통 컴포넌트
 import TopBasicNav from '../../components/common/topNav/TopBasicNav';
-import { MediumFollowButton } from '../../components/common/button/Button';
+import {
+  MediumFollowButton,
+  UnfollowButton,
+} from '../../components/common/button/Button';
 import Product from '../../components/common/product/Product';
 import HomePost from '../../components/common/home/HomePost';
 import HomeAlbum from '../../components/common/home/HomeAlbum';
@@ -17,6 +20,11 @@ import postAlbumOff from '../../assets/icon/icon-post-album-off.svg';
 
 export default function Profile() {
   const [isListMode, setIsListMode] = useState(true);
+  const [isFollowed, setIsFollowed] = useState(false);
+
+  const toggleFollow = () => {
+    setIsFollowed((prevIsFollowed) => !prevIsFollowed);
+  };
 
   return (
     <div>
@@ -41,7 +49,11 @@ export default function Profile() {
           </S.ProfileMain>
           <S.ProfileFooter>
             <button className="dm-btn"></button>
-            <MediumFollowButton />
+            {isFollowed ? (
+              <UnfollowButton onClick={toggleFollow} />
+            ) : (
+              <MediumFollowButton onClick={toggleFollow} />
+            )}
             <button className="share-btn"></button>
           </S.ProfileFooter>
         </S.ProfileContainer>

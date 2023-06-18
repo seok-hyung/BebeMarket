@@ -8,6 +8,7 @@ import DefaultProfileImage from '../../assets/images/basic-profile-img.svg';
 
 // API
 import { accountnameValidAPI } from '../../api/user/accountnameValidAPI';
+import { uploadImageAPI } from '../../api/uploadImg/uploadImageAPI';
 import { joinAPI } from '../../api/user/joinAPI';
 
 function JoinProfile() {
@@ -16,7 +17,7 @@ function JoinProfile() {
   const userEmail = location.state?.email;
   const userPassword = location.state?.password;
 
-  const [image, setIamge] = useState(DefaultProfileImage);
+  const [image, setImage] = useState(DefaultProfileImage);
   const [username, setUsername] = useState('');
   const [userId, setUserId] = useState('');
   const [introduction, setIntroduction] = useState('');
@@ -32,7 +33,9 @@ function JoinProfile() {
   const uploadImage = (e) => {
     if (e.target.files && e.target.files[0]) {
       const image = e.target.files[0];
-      setIamge(URL?.createObjectURL(image));
+      uploadImageAPI(image).then((img) => {
+        setImage(img);
+      });
     }
   };
 

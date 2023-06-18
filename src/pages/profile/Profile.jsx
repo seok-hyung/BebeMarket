@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 // 공통 컴포넌트
 import TopBasicNav from '../../components/common/topNav/TopBasicNav';
-import { MediumFollowButton } from '../../components/common/button/Button.style';
+import {
+  MediumFollowButton,
+  UnfollowButton,
+} from '../../components/common/button/Button';
 import Product from '../../components/common/product/Product';
 import HomePost from '../../components/common/home/HomePost';
 import HomeAlbum from '../../components/common/home/HomeAlbum';
@@ -17,34 +20,41 @@ import postAlbumOff from '../../assets/icon/icon-post-album-off.svg';
 
 export default function Profile() {
   const [isListMode, setIsListMode] = useState(true);
+  const [isFollowing, setIsFollowing] = useState(false);
+
+  const handleToggle = () => {
+    setIsFollowing(!isFollowing);
+  };
 
   return (
     <div>
       <TopBasicNav />
       <S.ProfileContainer>
-        <S.ProfileContainer>
-          <S.ProfileHeader>
-            <S.Followers>
-              <span>2950</span>
-              <span>followers</span>
-            </S.Followers>
-            <S.ProfileImage src={basicProfileImage} alt="프로필 사진" />
-            <S.Followings>
-              <span>128</span>
-              <span>followings</span>
-            </S.Followings>
-          </S.ProfileHeader>
-          <S.ProfileMain>
-            <p>애월읍 위니브 감귤농장</p>
-            <p>@ weniv_Mandarin</p>
-            <p>애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장</p>
-          </S.ProfileMain>
-          <S.ProfileFooter>
-            <button className="dm-btn"></button>
-            <MediumFollowButton />
-            <button className="share-btn"></button>
-          </S.ProfileFooter>
-        </S.ProfileContainer>
+        <S.ProfileHeader>
+          <S.Followers>
+            <span>2950</span>
+            <span>followers</span>
+          </S.Followers>
+          <S.ProfileImage src={basicProfileImage} alt="프로필 사진" />
+          <S.Followings>
+            <span>128</span>
+            <span>followings</span>
+          </S.Followings>
+        </S.ProfileHeader>
+        <S.ProfileMain>
+          <p>애월읍 위니브 감귤농장</p>
+          <p>@ weniv_Mandarin</p>
+          <p>애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장</p>
+        </S.ProfileMain>
+        <S.ProfileFooter>
+          <button className="dm-btn"></button>
+          {isFollowing ? (
+            <UnfollowButton onClick={handleToggle}></UnfollowButton>
+          ) : (
+            <MediumFollowButton onClick={handleToggle}></MediumFollowButton>
+          )}
+          <button className="share-btn"></button>
+        </S.ProfileFooter>
         <S.ProductContainer>
           <h2>판매 중인 상품</h2>
           <Product />

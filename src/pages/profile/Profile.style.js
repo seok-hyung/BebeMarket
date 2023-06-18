@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import dmButton from '../../assets/icon/icon-message-circle-1.svg';
+import shareButton from '../../assets/icon/icon-share.svg';
 
 export const ProfileWrapper = styled.div`
   background-color: #f2f2f2;
@@ -76,7 +78,7 @@ export const ProfileFooter = styled.div`
   .dm-btn {
     border: 1px solid #dbdbdb;
     border-radius: 30px;
-    background: url(../../../assets/icon/icon-message-circle-1.svg) no-repeat;
+    background: url(${dmButton}) no-repeat center;
     background-size: 15px 15px;
     width: 34px;
     height: 34px;
@@ -86,13 +88,13 @@ export const ProfileFooter = styled.div`
   .share-btn {
     border: 1px solid #dbdbdb;
     border-radius: 30px;
-    background: url(../assets/icon/icon-share.svg);
+    background: url(${shareButton}) no-repeat center;
     width: 34px;
     height: 34px;
   }
 `;
 
-// MyProfile.jsx 프로필 버튼 - 시작
+// ===MyProfile.jsx 프로필 버튼===
 export const EditProfileButton = styled.button`
   border: 1px solid #dbdbdb;
   border-radius: 30px;
@@ -108,7 +110,7 @@ export const UploadProductButton = styled.button`
   width: 100px;
   height: 34px;
 `;
-// MyProfile.jsx 프로필 버튼 - 끝
+// ===MyProfile.jsx 프로필 버튼===
 
 // 상품 product
 export const ProductContainer = styled.div`

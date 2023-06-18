@@ -2,7 +2,7 @@ import React from 'react';
 import arrowLeft from '../../../assets/icon/icon-arrow-left.svg';
 import { useNavigate } from 'react-router-dom';
 import * as S from './TopUploadNav.style.js';
-export default function TopUploadNav({ disabled, children }) {
+export default function TopUploadNav({ disabled, children, handleUpload }) {
   const navigate = useNavigate();
   return (
     <S.Nav>
@@ -20,7 +20,11 @@ export default function TopUploadNav({ disabled, children }) {
       {children ? (
         children
       ) : (
-        <S.UploadButton type="button" className={disabled ? 'disabled' : ''}>
+        <S.UploadButton
+          type="button"
+          className={disabled ? 'disabled' : ''}
+          onClick={handleUpload}
+        >
           업로드
         </S.UploadButton>
       )}

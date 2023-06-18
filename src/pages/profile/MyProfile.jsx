@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // 공통 컴포넌트
 import TopBasicNav from '../../components/common/topNav/TopBasicNav';
@@ -18,13 +18,17 @@ import postListOn from '../../assets/icon/icon-post-list-on.svg';
 import postAlbumOff from '../../assets/icon/icon-post-album-off.svg';
 
 export default function MyProfile() {
-  // const navigate = useNavigate();
-
-  // const handleUploadProductButtonClick = () => {
-  //   navigate('/product');
-  // };
-
   const [isListMode, setIsListMode] = useState(true);
+
+  const navigate = useNavigate();
+
+  const handleEditProfile = () => {
+    navigate('/profile/accountname/edit');
+  };
+
+  const handleUploadProduct = () => {
+    navigate('/product');
+  };
 
   return (
     <div>
@@ -48,8 +52,12 @@ export default function MyProfile() {
             <p>애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장</p>
           </S.ProfileMain>
           <S.ProfileFooter>
-            <EditProfileButton>프로필 수정</EditProfileButton>
-            <UploadProductButton>상품 등록</UploadProductButton>
+            <EditProfileButton onClick={handleEditProfile}>
+              프로필 수정
+            </EditProfileButton>
+            <UploadProductButton onClick={handleUploadProduct}>
+              상품 등록
+            </UploadProductButton>
           </S.ProfileFooter>
         </S.ProfileContainer>
         <S.ProductContainer>

@@ -14,6 +14,8 @@ export const ImgProfile = styled.img`
   width: 42px;
   height: 42px;
   margin-right: 13px;
+  border-radius: 70%;
+  overflow: hidden;
 `;
 
 export const Article = styled.article`
@@ -26,6 +28,7 @@ export const TextArea = styled.textarea`
   outline: none;
   font-family: 'SUITE-Regular';
   font-size: 14px;
+  margin-top: 14px;
 `;
 
 export const TextLengthWrap = styled.div`

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import MessageCircleIcon from '../../assets/icon/icon-message-circle-1.svg';
 import ShareIcon from '../../assets/icon/icon-share.svg';
 
-export const Container = styled.div`
+export const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -124,6 +124,7 @@ export const ViewOptions = styled.div`
   margin: auto;
   padding-right: 12.25px;
   height: 44px;
+  background-color: #fff;
 `;
 
 // 피드 목록형

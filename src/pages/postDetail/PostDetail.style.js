@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  position: relative;
+`;
 
 // export const CommentBox = styled.div`
 //   max-width: 390px;
@@ -11,4 +13,7 @@ export const Line = styled.hr`
   background-color: #dbdbdb;
   height: 1px;
   border: 0;
+`;
+export const PostCommentWrapper = styled.div`
+  margin-bottom: 120px;
 `;

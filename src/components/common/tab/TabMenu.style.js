@@ -8,6 +8,9 @@ export const Img = styled.img`
 
 export const P = styled.p`
   font-size: 10px;
+  /* color: ${({ active }) =>
+    active ? 'var(--main-color)' : 'var(--main-text-color)'}; */
+  color: ${({ active }) => (active ? '#55BDB3' : 'black')};
 `;
 
 export const Ul = styled.ul`
@@ -18,11 +21,6 @@ export const Ul = styled.ul`
   text-align: center;
 `;
 
-// export const Li = styled.li`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-// `;
 export const Nav = styled.nav`
   bottom: 0;
   position: fixed;

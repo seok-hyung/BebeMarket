@@ -9,16 +9,16 @@ export function DisabledNextButton() {
   return <S.DisabledNextButton>다음</S.DisabledNextButton>;
 }
 
-export function MediumFollowButton() {
-  return <S.MediumFollowButton>팔로우</S.MediumFollowButton>;
+export function MediumFollowButton({ onClick }) {
+  return <S.MediumFollowButton onClick={onClick}>팔로우</S.MediumFollowButton>;
 }
 
 export function DisabledFollowButton() {
   return <S.DisabledFollowButton>팔로우</S.DisabledFollowButton>;
 }
 
-export function UnfollowButton() {
-  return <S.UnfollowButton>언팔로우</S.UnfollowButton>;
+export function UnfollowButton({ onClick }) {
+  return <S.UnfollowButton onClick={onClick}>언팔로우</S.UnfollowButton>;
 }
 
 export function SaveButton() {

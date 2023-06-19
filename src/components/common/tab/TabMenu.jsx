@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './TabMenu.style.js';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -9,65 +9,50 @@ import userIcon from '../../../assets/icon/icon-user.svg';
 import coloredHomeIcon from '../../../assets/icon/icon-home-fill.svg';
 import coloredChatIcon from '../../../assets/icon/icon-message-circle-fill.svg';
 import coloredUserIcon from '../../../assets/icon/icon-user-fill.svg';
+import { accountNameState } from '../../../atoms/Atoms.js';
+import { useRecoilValue } from 'recoil';
 
 export default function TabMenu() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [activeTab, setActiveTab] = useState(0);
+  const myAccountname = useRecoilValue(accountNameState);
 
-  const UseColoredHomeIcon = () => {
-    const { pathname } = location;
-    if (pathname === '/home' || pathname === '/search') {
-      return true;
+  useEffect(() => {
+    if (location.pathname === '/home') {
+      setActiveTab(0);
+    } else if (location.pathname === '/chat') {
+      setActiveTab(1);
+    } else if (location.pathname === `/profile/${myAccountname}`) {
+      setActiveTab(2);
     }
-    if (pathname.includes('/profile/')) {
-      const accountname = pathname.split('/')[2]; // '/profile/abc'.split('/')[2] ==>abc
-      const MyAccountname = '내accountname'; // localstorage.getItem으로 가져와야할듯?
-      if (accountname === MyAccountname) {
-        return false;
-      } //else{return true} 일수도
-    }
-  };
-
-  const UseColoredChatIcon = () => {
-    const { pathname } = location; //이거 걍 const location밑에 써도되는지 나중에확인하기
-    if (pathname === '/chat') {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  const UseColoredUserIcon = () => {
-    const { pathname } = location; //이거 걍 const location밑에 써도되는지 나중에확인하기
-    if (pathname === '/profile/${Myaccountname}') {
-      return true;
-    } else {
-      return false;
-    }
-  };
+  }, [location.pathname]);
 
   return (
     <S.Nav>
       <S.Ul>
-        <li onClick={() => navigate('/home')}>
-          <S.Img src={UseColoredHomeIcon() ? coloredHomeIcon : homeIcon} />
-          <S.P>홈</S.P>
+        <li
+          onClick={() => {
+            setActiveTab(0);
+            navigate('/home');
+          }}
+        >
+          <S.Img src={activeTab === 0 ? coloredHomeIcon : homeIcon} />
+          <S.P active={activeTab === 0}>홈</S.P>
         </li>
         <li onClick={() => navigate('/chat')}>
-          <S.Img src={UseColoredChatIcon() ? coloredChatIcon : chatIcon} />
-          <S.P>채팅</S.P>
+          <S.Img src={activeTab === 1 ? coloredChatIcon : chatIcon} />
+          <S.P active={activeTab === 1}>채팅</S.P>
         </li>
         <li onClick={() => navigate('/uploadpost')}>
           <S.Img src={editIcon} />
           <S.P>게시물 작성</S.P>
         </li>
-        <li onClick={() => navigate('/profile/${Myaccountname}')}>
-          <S.Img src={UseColoredUserIcon() ? coloredUserIcon : userIcon} />
-          <S.P>프로필</S.P>
+        <li onClick={() => navigate(`/profile/${myAccountname}`)}>
+          <S.Img src={activeTab === 2 ? coloredUserIcon : userIcon} />
+          <S.P active={activeTab === 2}>프로필</S.P>
         </li>
       </S.Ul>
     </S.Nav>
   );
 }
-
-//<li onClick={() => navigate('/profile/${Myaccountname}')}> 이거 백틱으로 사용해야하나?

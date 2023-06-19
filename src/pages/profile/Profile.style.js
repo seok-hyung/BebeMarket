@@ -1,14 +1,15 @@
 import styled from 'styled-components';
-import dmButton from '../../assets/icon/icon-message-circle-1.svg';
-import shareButton from '../../assets/icon/icon-share.svg';
+import MessageCircleIcon from '../../assets/icon/icon-message-circle-1.svg';
+import ShareIcon from '../../assets/icon/icon-share.svg';
 
 export const ProfileWrapper = styled.div`
-  background-color: #f2f2f2;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  background-color: #f2f2f2;
 `;
 
+//====프로필====
 export const ProfileContainer = styled.div`
   height: auto;
   width: 100%;
@@ -21,7 +22,7 @@ export const ProfileHeader = styled.div`
   align-items: center;
   justify-content: center;
   gap: 41px;
-  margin-top: 30px;
+  padding-top: 30px;
   margin-bottom: 14px;
 `;
 
@@ -72,14 +73,14 @@ export const ProfileFooter = styled.div`
   justify-content: center;
   gap: 10px;
   margin-top: 24px;
-  margin-bottom: 26px;
+  padding-bottom: 26px;
 
   // DM 메시지 버튼
   .dm-btn {
     border: 1px solid #dbdbdb;
     border-radius: 30px;
-    background: url(${dmButton}) no-repeat center;
-    background-size: 15px 15px;
+    background: url(${MessageCircleIcon}) no-repeat;
+    background-position: center center;
     width: 34px;
     height: 34px;
   }
@@ -88,35 +89,18 @@ export const ProfileFooter = styled.div`
   .share-btn {
     border: 1px solid #dbdbdb;
     border-radius: 30px;
-    background: url(${shareButton}) no-repeat center;
+    background: url(${ShareIcon}) no-repeat;
+    background-position: center center;
     width: 34px;
     height: 34px;
   }
 `;
 
-// ===MyProfile.jsx 프로필 버튼===
-export const EditProfileButton = styled.button`
-  border: 1px solid #dbdbdb;
-  border-radius: 30px;
-  color: var(--sub-text-color);
-  width: 120px;
-  height: 34px;
-`;
-
-export const UploadProductButton = styled.button`
-  border: 1px solid #dbdbdb;
-  border-radius: 30px;
-  color: var(--sub-text-color);
-  width: 100px;
-  height: 34px;
-`;
-// ===MyProfile.jsx 프로필 버튼===
-
-// 상품 product
+// ====상품 product====
 export const ProductContainer = styled.div`
+  width: 100%;
   margin-top: 6px;
   margin: auto;
-  width: 100%;
   background-color: #fff;
 
   h2 {
@@ -124,9 +108,10 @@ export const ProductContainer = styled.div`
   }
 `;
 
-// post container
+// ====post container====
 export const PostContainer = styled.div`
   background-color: #fff;
+  height: 553px;
 `;
 
 // 피드 정렬
@@ -138,17 +123,18 @@ export const ViewOptions = styled.div`
   border-bottom: 1px solid #dbdbdb;
   margin: auto;
   padding-right: 12.25px;
-  width: 100%;
   height: 44px;
   background-color: #fff;
 `;
 
+// 피드 목록형
 export const PostListOn = styled.img`
   cursor: pointer;
   width: 26px;
   height: 26px;
 `;
 
+// 피드 앨범형
 export const PostAlbumOff = styled.img`
   cursor: pointer;
   width: 26px;

@@ -3,6 +3,7 @@ import TopUploadNav from '../../components/common/topNav/TopUploadNav';
 import * as S from './ProfileEdit.style';
 import ProfileImage from '../../assets/images/full-logo.svg';
 import EditProfileImage from '../../assets/images/img-button.svg';
+import InputBox from '../../components/common/input/InputBox';
 
 export default function ProfileEdit() {
   //인풋 입력 상태 저장
@@ -59,14 +60,14 @@ export default function ProfileEdit() {
     }
   };
 
-  // 모든 input 값이 유효한지 확인
+  // 사용자 이름, 계정 ID input 값이 유효한지 확인
   useEffect(() => {
-    if (isUsernameValid && isAccountIdValid && introduction) {
+    if (isUsernameValid && isAccountIdValid && username && accountId) {
       setIsInputFilled(true);
     } else {
       setIsInputFilled(false);
     }
-  }, [isUsernameValid, isAccountIdValid, introduction]);
+  }, [isUsernameValid, isAccountIdValid, username, accountId]);
 
   return (
     <div>
@@ -83,39 +84,41 @@ export default function ProfileEdit() {
           <S.ProfileImage src={ProfileImage} />
           <S.EditProfileImage src={EditProfileImage} />
         </S.ImageContainer>
-        <S.InputWrapper>
-          <p>사용자 이름</p>
-          <input
-            type="text"
-            placeholder="2~10자 이내여야 합니다."
-            value={username}
-            onChange={handleUserNameValid}
-          />
-          {!isUsernameValid && (
-            <S.ErrorText>{usernameErrorMessage}</S.ErrorText>
-          )}
-        </S.InputWrapper>
-        <S.InputWrapper>
-          <p>계정 ID</p>
-          <input
-            type="text"
-            placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
-            value={accountId}
-            onChange={handleAccountIdValid}
-          />
-          {!isAccountIdValid && (
-            <S.ErrorText>{accountIdErrorMessage}</S.ErrorText>
-          )}
-        </S.InputWrapper>
-        <S.InputWrapper>
-          <p>소개</p>
-          <input
-            type=" "
-            placeholder="자신과 판매할 상품에 대해 소개해 주세요!"
-            value={introduction}
-            onChange={(e) => setIntroduction(e.target.value)}
-          />
-        </S.InputWrapper>
+        <InputBox
+          label="사용자 이름"
+          id="username"
+          type="text"
+          placeholder="2~10자 이내여야 합니다."
+          value={username}
+          min={2}
+          max={10}
+          borderBottomColor={isUsernameValid ? null : 'on'}
+          errorMessage={usernameErrorMessage}
+          show={!isUsernameValid ? 'on' : null}
+          onChange={handleUserNameValid}
+        />
+        <InputBox
+          label="계정 ID"
+          id="accountId"
+          type="text"
+          placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
+          value={accountId}
+          borderBottomColor={isAccountIdValid ? null : 'on'}
+          errorMessage={accountIdErrorMessage}
+          show={!isAccountIdValid ? 'on' : null}
+          onChange={handleAccountIdValid}
+        />
+        <InputBox
+          label="소개"
+          id="introduction"
+          type="text"
+          placeholder="자신과 판매할 상품에 대해 소개해 주세요!"
+          value={introduction}
+          borderBottomColor={null}
+          errorMessage={null}
+          show={null}
+          onChange={(e) => setIntroduction(e.target.value)}
+        />
       </S.ProfileEdit>
     </div>
   );

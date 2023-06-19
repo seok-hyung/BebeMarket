@@ -44,49 +44,8 @@ export const EditProfileImage = styled.img`
 
 // 이름, 계정, 소개말
 export const ProfileEdit = styled.div`
-  text-align: center;
-
-  p {
-    color: var(--sub-text-color);
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 16px;
-  }
-
-  input {
-    font-size: 14px;
-    color: #000;
-    border: none;
-    padding-bottom: 8px;
-    padding-top: 10px;
-
-    &::placeholder {
-      color: #dbdbdb;
-    }
-  }
-`;
-
-export const ErrorText = styled.p`
-  position: absolute;
-  top: calc(100% + 5px); // border-bottom 아래에 텍스트를 위치
-  left: 0;
-  color: red;
-  font-size: 12px;
-`;
-
-export const InputWrapper = styled.div`
-  position: relative;
-  margin: auto;
-  text-align: left;
-  width: 322px;
-  border-bottom: 1px solid #dbdbdb;
-  margin-bottom: 15px;
-
-  input:focus {
-    outline: none;
-  }
-
-  ${ErrorText} {
-    color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   }
 `;

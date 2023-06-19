@@ -1,3 +1,8 @@
+import { useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { userTokenState } from '../../atoms/Atoms';
+import { editProfileAPI } from '../../api/profile/editProfileAPI';
+
 import React, { useState, useEffect } from 'react';
 import TopUploadNav from '../../components/common/topNav/TopUploadNav';
 import * as S from './ProfileEdit.style';
@@ -6,6 +11,9 @@ import EditProfileImage from '../../assets/images/img-button.svg';
 import InputBox from '../../components/common/input/InputBox';
 
 export default function ProfileEdit() {
+  const { accountname } = useParams(); // accountname 가져오기
+  const [token] = useRecoilState(userTokenState); // Recoil로 사용자 토큰 상태 가져오기
+
   //인풋 입력 상태 저장
   const [username, setUsername] = useState(''); //사용자 이름 값
   const [accountId, setAccountId] = useState(''); // 계정 ID 값
@@ -20,6 +28,25 @@ export default function ProfileEdit() {
   // 유효성 검사 통과 실패 시 에러 메시지
   const [usernameErrorMessage, setUsernameErrorMessage] = useState('');
   const [accountIdErrorMessage, setAccountIdErrorMessage] = useState('');
+
+  const handleEditProfile = async () => {
+    if (isInputFilled) {
+      const result = await editProfileAPI(
+        accountname,
+        token,
+        username,
+        accountId,
+        introduction,
+      );
+
+      if (result) {
+        console.log('프로필 수정이 완료되었습니다.', result);
+        // 정상적으로 수정되었을 때 페이지 이동, 모달 창 닫기 등 알맞은 동작 추가
+      } else {
+        console.log('프로필 수정에 실패했습니다.');
+      }
+    }
+  };
 
   // 사용자 이름 유효성 검사 및 에러 메시지 설정
   const handleUserNameValid = (e) => {
@@ -74,7 +101,9 @@ export default function ProfileEdit() {
       <TopUploadNav>
         {/* input 값이 모두 채워지면 저장 버튼 활성화 */}
         {isInputFilled ? (
-          <S.CustomSaveButton>저장</S.CustomSaveButton>
+          <S.CustomSaveButton onClick={handleEditProfile}>
+            저장
+          </S.CustomSaveButton>
         ) : (
           <S.CustomDisabledSaveButton>저장</S.CustomDisabledSaveButton>
         )}

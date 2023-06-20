@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TopUploadNav from '../../components/common/topNav/TopUploadNav';
-import * as S from './UploadProduct.style';
+import { uploadImageAPI } from '../../api/uploadImg/uploadImageAPI';
+import { addProductAPI } from '../../api/product/addProductAPI';
 
+import { useRecoilState } from 'recoil';
+import { accountNameState, userTokenState } from '../../atoms/Atoms';
+
+import * as S from './UploadProduct.style';
 import InputBox from '../../components/common/input/InputBox';
-import EditProfileImage from '../../assets/images/img-button.svg';
+import uploadFileIcon from '../../assets/images/upload-file.svg';
+import uploadFileImage from '../../assets/images/img-upload-preview.svg';
 
 export default function UploadProduct() {
   const navigate = useNavigate();
@@ -25,6 +31,11 @@ export default function UploadProduct() {
   const [isPriceRed, setIsPriceRed] = useState(false);
   const [isSalesLinkRed, setIsSalesLinkRed] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  const [productImage, setProductImage] = useState(uploadFileImage);
+
+  const [userToken, setUserToken] = useRecoilState(userTokenState);
+  const [accountName, setAccountName] = useRecoilState(accountNameState);
 
   // 상품명 유효성 검사
   const handleProductChange = (e) => {
@@ -100,29 +111,89 @@ export default function UploadProduct() {
 
   // 버튼 활성화
   useEffect(() => {
-    if (isProductValid && isPriceValid && isSalesLinkValid) {
+    if (
+      isProductValid &&
+      isPriceValid &&
+      isSalesLinkValid &&
+      productImage !== uploadFileImage
+    ) {
       setIsButtonDisabled(true);
     } else {
       setIsButtonDisabled(false);
-      // navigate('/profile/:accountname');
     }
-  }, [isProductValid, isPriceValid, isSalesLinkValid]);
+  }, [isProductValid, isPriceValid, isSalesLinkValid, productImage]);
+
+  // 이미지 업로드
+  const uploadImage = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const image = e.target.files[0];
+      uploadImageAPI(image).then((img) => {
+        setProductImage(img);
+      });
+    }
+  };
+
+  const handleIconClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    document.getElementById('product').click();
+  };
+
+  // 새로운 이벤트를 추가할 함수를 추가합니다.
+  const suppressEvent = (e) => {
+    e.stopPropagation();
+  };
+
+  const sendData = {
+    product: {
+      itemName: product,
+      price: Number(price.replaceAll(',', '')),
+      link: salesLink,
+      itemImage: productImage,
+    },
+  };
+
+  // 상품 등록 데이터 전송
+  const addProduct = (e) => {
+    e.preventDefault();
+
+    if (isButtonDisabled) {
+      try {
+        addProductAPI(sendData, userToken).then((data) =>
+          navigate(`/profile/${accountName}`),
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   return (
     <div>
       <TopUploadNav>
         {
-          <S.CustomSaveButton active={isButtonDisabled}>
+          <S.CustomSaveButton active={isButtonDisabled} onClick={addProduct}>
             저장
           </S.CustomSaveButton>
         }
       </TopUploadNav>
       <S.Product>
-        <form>
+        <form onSubmit={addProduct}>
           <S.CustomBoxLabel>이미지 업로드</S.CustomBoxLabel>
           <S.ImageContainer>
             <S.ProductThumbnail>
-              <S.ProductImage src={EditProfileImage} />
+              <S.uploadFileIcon
+                src={uploadFileIcon}
+                onClick={handleIconClick}
+              />
+              <input
+                type="file"
+                id="product"
+                accept="image/*"
+                onChange={uploadImage}
+                style={{ display: 'none' }}
+              />
+              <S.ProductImage src={productImage} alt="uploaded product" />
             </S.ProductThumbnail>
           </S.ImageContainer>
 

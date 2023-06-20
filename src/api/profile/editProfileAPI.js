@@ -12,11 +12,11 @@ export const editProfileAPI = async (
 
   try {
     const response = await axios.put(
-      `${apiURL}/profiles/${accountname}`,
+      `${apiURL}/user/:${accountname}`,
       {
-        userName: username,
-        accountName: accountId,
-        introduction: introduction,
+        username: username,
+        accountname: accountId,
+        intro: introduction,
       },
       {
         headers: { Authorization: accessToken },

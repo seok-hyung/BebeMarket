@@ -5,7 +5,7 @@ export const getProfileAPI = async (accountname, token) => {
   const accessToken = `Bearer ${token}`;
 
   try {
-    const response = await axios.get(`${apiURL}/profile/${accountname}`, {
+    const response = await axios.get(`${apiURL}profile/${accountname}`, {
       headers: {
         Authorization: accessToken,
         'Content-type': 'application/json',

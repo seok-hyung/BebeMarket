@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { userTokenState } from '../../atoms/Atoms';
 import { editProfileAPI } from '../../api/profile/editProfileAPI';
+import { useNavigate } from 'react-router-dom';
 
 import React, { useState, useEffect } from 'react';
 import TopUploadNav from '../../components/common/topNav/TopUploadNav';
@@ -29,6 +30,8 @@ export default function ProfileEdit() {
   const [usernameErrorMessage, setUsernameErrorMessage] = useState('');
   const [accountIdErrorMessage, setAccountIdErrorMessage] = useState('');
 
+  const navigate = useNavigate();
+
   const handleEditProfile = async () => {
     if (isInputFilled) {
       const result = await editProfileAPI(
@@ -41,7 +44,7 @@ export default function ProfileEdit() {
 
       if (result) {
         console.log('프로필 수정이 완료되었습니다.', result);
-        // 정상적으로 수정되었을 때 페이지 이동, 모달 창 닫기 등 알맞은 동작 추가
+        navigate(`/user/${accountname}`);
       } else {
         console.log('프로필 수정에 실패했습니다.');
       }

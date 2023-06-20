@@ -6,14 +6,26 @@ import {
   CancelButton,
   DeleteButton,
 } from '../styled';
+import { deleteCommentAPI } from '../../../api/comment/deleteCommentAPI';
+import { useRecoilValue } from 'recoil';
+import { userTokenState } from '../../../atoms/Atoms';
 
-export default function CommentAlert({ setIsAlertOpen, content }) {
+export default function CommentAlert({
+  setIsAlertOpen,
+  content,
+  commentId,
+  postId,
+}) {
+  const token = useRecoilValue(userTokenState);
   const deleteComment = () => {
-    console.log('댓글삭제기능구현하셈');
+    console.log('삭제');
+    deleteCommentAPI(postId, token, commentId).then((data) =>
+      console.log(data),
+    );
   };
   return (
     <AlertContainer>
-      <DeleteConfirm>삭제하시겠어요?</DeleteConfirm>
+      <DeleteConfirm>{content}하시겠어요?</DeleteConfirm>
       <ButtonDiv>
         <CancelButton
           onClick={() => {
@@ -22,7 +34,7 @@ export default function CommentAlert({ setIsAlertOpen, content }) {
         >
           취소
         </CancelButton>
-        <DeleteButton onClick={() => deleteComment()}>삭제</DeleteButton>
+        <DeleteButton onClick={deleteComment}>{content}</DeleteButton>
       </ButtonDiv>
     </AlertContainer>
   );

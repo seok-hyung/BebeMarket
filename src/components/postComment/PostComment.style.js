@@ -19,15 +19,16 @@ export const FlexBox = styled.div`
   justify-content: space-between;
 `;
 
-export const UserImage = styled.div`
-  background-image: url(${userImage});
+export const UserImage = styled.img`
+  /* background-image: url(${userImage});
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: contain;
+  background-size: contain; */
   object-fit: cover;
   width: 36px;
   height: 36px;
   margin-right: 12px;
+  border-radius: 50%;
   cursor: pointer;
   display: inline-block;
   vertical-align: middle;

@@ -86,7 +86,7 @@ export default function UploadPost() {
     });
   };
 
-  // 업로드 버튼
+  // 업로드 버튼 //오류나면 e.preventDefalt어쩌구
   const handleUpload = () => {
     uploadPostAPI(sendData, token).then((data) => console.log(data));
     navigate(`/profile/${accountname}`);

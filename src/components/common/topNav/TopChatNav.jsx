@@ -17,7 +17,7 @@ export default function TopChatNav() {
           <S.arrowButton onClick={() => navigate(-1)}>
             <img src={arrowLeft} alt="뒤로가기" />
           </S.arrowButton>
-          <S.P>애월읍 위니브 감귤농장</S.P>
+          <S.P>제임스</S.P>
         </S.LeftDiv>
 
         <S.verticalButton onClick={showModal}>

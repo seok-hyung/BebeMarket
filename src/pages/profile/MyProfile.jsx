@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { accountNameState } from '../../atoms/Atoms';
+import { useRecoilValue } from 'recoil';
 
 // 공통 컴포넌트
 import TopBasicNav from '../../components/common/topNav/TopBasicNav';
@@ -22,8 +24,9 @@ export default function MyProfile() {
 
   const navigate = useNavigate();
 
+  const myAccountname = useRecoilValue(accountNameState);
   const handleEditProfile = () => {
-    navigate('/profile/accountname/edit');
+    navigate(`/profile/${myAccountname}/edit`);
   };
 
   const handleUploadProduct = () => {

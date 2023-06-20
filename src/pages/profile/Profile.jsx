@@ -1,4 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { useRecoilValue } from 'recoil';
+import { accountNameState, userTokenState } from '../../atoms/Atoms';
+import { EditProfileButton, UploadProductButton } from './MyProfile.style';
+import { getMyInfoAPI } from '../../api/user/getMyInfoAPI';
+import { getProductListAPI } from '../../api/product/getProductListAPI';
+import { getProfilePostAPI } from '../../api/post/getProfilePostAPI';
+import { getProfileAPI } from '../../api/profile/getProfileAPI';
+
 // 공통 컴포넌트
 import TopBasicNav from '../../components/common/topNav/TopBasicNav';
 import {
@@ -21,10 +30,79 @@ import postAlbumOff from '../../assets/icon/icon-post-album-off.svg';
 export default function Profile() {
   const [isListMode, setIsListMode] = useState(true);
   const [isFollowed, setIsFollowed] = useState(false);
+  const [profile, setProfile] = useState(null);
+  const [products, setProducts] = useState([]);
+  // const [posts, setPosts] = useState([]);
+  const token = useRecoilValue(userTokenState);
+  const myAccountname = useRecoilValue(accountNameState);
+  const [isMyProfile, setIsMyProfile] = useState(false);
+  const [myPost, setMyPost] = useState([]);
+  const { accountname } = useParams();
+  const myPostArray = myPost.post;
+
+  useEffect(() => {
+    setIsMyProfile(accountname === myAccountname);
+  }, [accountname, myAccountname]);
+
+  useEffect(() => {
+    getProductListAPI(accountname, token).then((data) => {
+      console.log(data);
+    });
+    getProfilePostAPI(accountname, token).then((data) => {
+      console.log(data);
+      setMyPost(data);
+    });
+  }, [accountname]);
+  console.log(isMyProfile);
+
+  // useEffect(() => {
+  //   getMyInfoAPI(token).then((data) => {
+  //     setProfile(data.user);
+  //     console.log(accountname + 'hi');
+  //   });
+
+  //   getProfileAPI(accountname,token).then((data)=>{
+  //     setProfile(data.user);
+  //   })
+  // }, [token, accountname]);
+
+  useEffect(() => {
+    if (!isMyProfile) {
+      getProfileAPI(accountname, token)
+        .then((data) => {
+          setProfile(data.profile);
+        })
+        .catch((error) => {
+          console.error('프로필 데이터를 불러오지 못했습니다.', error);
+        });
+    } else {
+      getMyInfoAPI(token)
+        .then((data) => {
+          setProfile(data.user);
+          console.log(accountname + 'hi');
+        })
+        .catch((error) => {
+          console.error('프로필 데이터를 불러오지 못했습니다.', error);
+        });
+    }
+  }, [isMyProfile, accountname, token]);
 
   const toggleFollow = () => {
     setIsFollowed((prevIsFollowed) => !prevIsFollowed);
   };
+
+  const handleEditProfile = () => {
+    console.log('프로필 수정');
+  };
+
+  const handleUploadProduct = () => {
+    console.log('상품 등록');
+  };
+
+  console.log('myAccountname:', myAccountname);
+  console.log('isMyProfile:', isMyProfile);
+  // console.log(myPost);
+  console.log(myPostArray);
 
   return (
     <div>
@@ -32,34 +110,55 @@ export default function Profile() {
       <S.ProfileWrapper>
         <S.ProfileContainer>
           <S.ProfileHeader>
+            {/* 프로필 팔로워수 처리 변경 */}
             <S.Followers>
-              <span>2950</span>
+              <span>{profile && profile.followerCount}</span>
+              {/* <span>{profile ? profile.followerCount : 'Loading...'}</span> */}
               <span>followers</span>
             </S.Followers>
-            <S.ProfileImage src={basicProfileImage} alt="프로필 사진" />
+            {/* 프로필 이미지 처리 변경 */}
+            <S.ProfileImage
+              src={profile ? profile.image : basicProfileImage}
+              alt="프로필 사진"
+            />
+            {/* 프로필 팔로잉수 처리 변경 */}
             <S.Followings>
-              <span>128</span>
+              <span>{profile ? profile.followingCount : 'Loading...'}</span>
               <span>followings</span>
             </S.Followings>
           </S.ProfileHeader>
           <S.ProfileMain>
-            <p>애월읍 위니브 감귤농장</p>
-            <p>@ weniv_Mandarin</p>
-            <p>애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장</p>
+            {/* 프로필 정보 표시 변경 (사용자 이름, 계정명, 설명 등) */}
+            <p>{profile ? profile.username : 'Loading...'}</p>
+            <p>@{profile ? profile.accountname : 'Loading...'}</p>
+            <p>{profile ? profile.description : 'Loading...'}</p>
           </S.ProfileMain>
           <S.ProfileFooter>
-            <button className="dm-btn"></button>
-            {isFollowed ? (
-              <UnfollowButton onClick={toggleFollow} />
+            {isMyProfile ? (
+              <>
+                <EditProfileButton onClick={handleEditProfile}>
+                  프로필 수정
+                </EditProfileButton>
+                <UploadProductButton onClick={handleUploadProduct}>
+                  상품 등록
+                </UploadProductButton>
+              </>
             ) : (
-              <MediumFollowButton onClick={toggleFollow} />
+              <>
+                <button className="dm-btn"></button>
+                {isFollowed ? (
+                  <UnfollowButton onClick={toggleFollow} />
+                ) : (
+                  <MediumFollowButton onClick={toggleFollow} />
+                )}
+                <button className="share-btn"></button>
+              </>
             )}
-            <button className="share-btn"></button>
           </S.ProfileFooter>
         </S.ProfileContainer>
         <S.ProductContainer>
           <h2>판매 중인 상품</h2>
-          <Product />
+          {/* <Product key={products.id} productData={products} /> */}
         </S.ProductContainer>
         <S.PostContainer>
           <S.ViewOptions>
@@ -74,10 +173,65 @@ export default function Profile() {
               onClick={() => setIsListMode(false)}
             ></S.PostAlbumOff>
           </S.ViewOptions>
-          {isListMode ? <HomePost /> : <HomeAlbum />}
+          {isListMode &&
+            myPostArray &&
+            myPostArray.map((post, index) => (
+              <HomePost post={post} key={index} />
+            ))}
+          {!isListMode && <HomeAlbum />}
         </S.PostContainer>
       </S.ProfileWrapper>
       <TabMenu />
     </div>
   );
+}
+
+// const fetchData = () => {
+//   getMyInfoAPI(token)
+//     .then((data) => {
+//       if (data) {
+//         setProfile(data.user);
+//         console.log(data);
+//       } else {
+//         console.error('프로필 데이터를 불러오지 못했습니다.');
+//       }
+//     })
+//     .catch((error) => console.error('프로필 로딩 중 에러 발생:', error));
+
+// 상품 목록 API 호출
+// getProductListAPI(myAccountname, token)
+//   .then((data) => {
+//     if (data) {
+//       //setProducts(data.product);
+//       console.log(data);
+//     } else {
+//       console.error('상품 목록 데이터를 불러오지 못했습니다.');
+//     }
+//   })
+//   .catch((error) => console.error('상품 목록 로딩 중 에러 발생:', error));
+
+// 게시물 상세 API 호출
+// getPostDetailAPI(id, token)
+//   .then((data) => {
+//     if (data) {
+//       setProducts(data.posts);
+//       console.log(data);
+//     } else {
+//       console.error('게시물 상세를 불러오지 못했습니다.');
+//     }
+//   })
+//   .catch((error) =>
+//     console.error('게시물 상세 로딩 중 에러 발생:', error),
+//   );
+
+// fetchData();
+
+{
+  /* {isListMode ? (
+            posts
+              .filter((post) => post.id !== undefined)
+              .map((post) => <HomePost key={post.id} postId={post.id} />)
+          ) : (
+            <HomeAlbum />
+          )} */
 }

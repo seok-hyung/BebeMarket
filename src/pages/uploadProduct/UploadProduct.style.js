@@ -7,7 +7,7 @@ export const CustomSaveButton = styled(SaveButton)`
   height: 32px;
   font-weight: 500;
   line-height: 19px;
-  cursor: default;
+  cursor: pointer;
 
   background-color: ${(props) =>
     props.active === true ? '#55BDB3' : '#D9D9D9'};
@@ -17,7 +17,6 @@ export const Product = styled.div`
   max-width: 322px;
   width: 100%;
   margin: auto;
-  }
 `;
 
 export const CustomBoxLabel = styled(BoxLabel)`
@@ -29,17 +28,16 @@ export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
   margin-bottom: 30px;
+  overflow: hidden;
+  border-radius: 10px;
 `;
 
 export const ProductThumbnail = styled.div`
   width: 322px;
   height: 204px;
-  background-color: #f2f2f2;
-  border-radius: 10px;
-  border: 0.5px solid #dbdbdb;
 `;
 
-export const ProductImage = styled.img`
+export const uploadFileIcon = styled.img`
   position: absolute;
   bottom: 5.08%;
   right: 3.73%;
@@ -47,3 +45,15 @@ export const ProductImage = styled.img`
   height: 36px;
   cursor: pointer;
 `;
+
+export const ImgUploadInp = styled.input`
+  /* ir */
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+`;
+
+export const ProductImage = styled.img``;

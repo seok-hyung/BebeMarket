@@ -9,10 +9,13 @@ export const CommentBox = styled.div`
   padding: 13px 16px;
   position: fixed;
   bottom: 0;
+  background-color: #ffffff;
 `;
 
 export const CommentProfile = styled.img`
   width: 36px;
+  height: 36px;
+  border-radius: 50%;
   margin-right: 18px;
 `;
 

@@ -22,6 +22,7 @@ export const Ul = styled.ul`
 `;
 
 export const Nav = styled.nav`
+  background-color: white;
   bottom: 0;
   position: fixed;
   width: 100%;

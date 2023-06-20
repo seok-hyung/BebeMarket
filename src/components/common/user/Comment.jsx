@@ -2,9 +2,20 @@ import React, { useState } from 'react';
 import ProfileImage from '../../../assets/images/basic-profile.svg';
 import * as S from './Comment.style';
 
-function Comment({ myProfileImg }) {
+import { postCommentAPI } from '../../../api/comment/postCommentAPI';
+import { useRecoilValue } from 'recoil';
+import { userTokenState } from '../../../atoms/Atoms';
+
+function Comment({ myProfileImg, postId }) {
   const [comment, setComment] = useState('');
   const [disabled, setDisabled] = useState(true);
+
+  const token = useRecoilValue(userTokenState);
+  const commentContent = {
+    comment: {
+      content: comment,
+    },
+  };
   const handleChange = (event) => {
     setComment(event.target.value);
     if (event.target.value.length > 0) {
@@ -13,7 +24,11 @@ function Comment({ myProfileImg }) {
       setDisabled(true);
     }
   };
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    postCommentAPI(postId, commentContent, token).then((data) => {
+      console.log(data); //피그마에 사진 올려둠.
+    });
+  };
   return (
     <S.CommentBox>
       <S.CommentProfile

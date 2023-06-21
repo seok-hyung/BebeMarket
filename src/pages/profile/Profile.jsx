@@ -5,7 +5,9 @@ import { accountNameState, userTokenState } from '../../atoms/Atoms';
 import { getMyInfoAPI } from '../../api/user/getMyInfoAPI';
 import { getProductListAPI } from '../../api/product/getProductListAPI';
 import { getProfilePostAPI } from '../../api/post/getProfilePostAPI';
+import { followAPI } from '../../api/profile/followAPI';
 import { useNavigate } from 'react-router-dom';
+import { getProfileAPI } from '../../api/profile/getProfileAPI';
 
 // 공통 컴포넌트
 import TopBasicNav from '../../components/common/topNav/TopBasicNav';
@@ -31,6 +33,7 @@ import postAlbumOff from '../../assets/icon/icon-post-album-off.svg';
 export default function Profile() {
   const [isListMode, setIsListMode] = useState(true);
   const [isFollowed, setIsFollowed] = useState(false);
+  const [followingCount, setFollowingCount] = useState(0);
   const [profile, setProfile] = useState(null);
   const [products, setProducts] = useState([]);
   // const [posts, setPosts] = useState([]);
@@ -47,26 +50,62 @@ export default function Profile() {
   }, [accountname, myAccountname]);
 
   useEffect(() => {
-    getProductListAPI(myAccountname, token).then((data) => {
+    getProductListAPI(accountname, token).then((data) => {
       console.log(data);
     });
-    getProfilePostAPI(myAccountname, token).then((data) => {
+    getProfilePostAPI(accountname, token).then((data) => {
       console.log(data);
       setMyPost(data);
     });
-  }, [myAccountname]);
+  }, [accountname]);
+  console.log(isMyProfile);
+
+  // useEffect(() => {
+  //   getMyInfoAPI(token).then((data) => {
+  //     setProfile(data.user);
+  //     console.log(accountname + 'hi');
+  //   });
+
+  //   getProfileAPI(accountname,token).then((data)=>{
+  //     setProfile(data.user);
+  //   })
+  // }, [token, accountname]);
 
   useEffect(() => {
-    getMyInfoAPI(token).then((data) => {
-      setProfile(data.user);
-      console.log(accountname + 'hi');
-    });
-  }, [token, accountname]);
+    if (!isMyProfile) {
+      getProfileAPI(accountname, token)
+        .then((data) => {
+          setProfile(data.profile);
+        })
+        .catch((error) => {
+          console.error('프로필 데이터를 불러오지 못했습니다.', error);
+        });
+    } else {
+      getMyInfoAPI(token)
+        .then((data) => {
+          setProfile(data.user);
+          console.log(accountname + 'hi');
+        })
+        .catch((error) => {
+          console.error('프로필 데이터를 불러오지 못했습니다.', error);
+        });
+    }
+  }, [isMyProfile, accountname, token]);
+
+  // const toggleFollow = () => {
+  //   setIsFollowed((prevIsFollowed) => !prevIsFollowed);
+  // }; 아무 기능도 수행하지 않는 함수
 
   const toggleFollow = () => {
-    setIsFollowed((prevIsFollowed) => !prevIsFollowed);
+    console.log(accountname);
   };
 
+  const handleFollow = () => {
+    console.log(accountname);
+    followAPI(accountname, token).then((data) => {
+      console.log(data);
+    });
+  };
   const handleEditProfile = () => {
     navigate(`/profile/${myAccountname}/edit`);
     console.log('프로필 수정');
@@ -124,9 +163,19 @@ export default function Profile() {
               <>
                 <button className="dm-btn"></button>
                 {isFollowed ? (
-                  <UnfollowButton onClick={toggleFollow} />
+                  <UnfollowButton
+                    onClick={() => {
+                      toggleFollow();
+                      handleFollow();
+                    }}
+                  />
                 ) : (
-                  <MediumFollowButton onClick={toggleFollow} />
+                  <MediumFollowButton
+                    onClick={() => {
+                      toggleFollow();
+                      handleFollow();
+                    }}
+                  />
                 )}
                 <button className="share-btn"></button>
               </>
@@ -202,13 +251,3 @@ export default function Profile() {
 //   );
 
 // fetchData();
-
-{
-  /* {isListMode ? (
-            posts
-              .filter((post) => post.id !== undefined)
-              .map((post) => <HomePost key={post.id} postId={post.id} />)
-          ) : (
-            <HomeAlbum />
-          )} */
-}

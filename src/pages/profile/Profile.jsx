@@ -6,6 +6,7 @@ import { EditProfileButton, UploadProductButton } from './MyProfile.style';
 import { getMyInfoAPI } from '../../api/user/getMyInfoAPI';
 import { getProductListAPI } from '../../api/product/getProductListAPI';
 import { getProfilePostAPI } from '../../api/post/getProfilePostAPI';
+import { useNavigate } from 'react-router-dom';
 
 // 공통 컴포넌트
 import TopBasicNav from '../../components/common/topNav/TopBasicNav';
@@ -38,6 +39,7 @@ export default function Profile() {
   const [myPost, setMyPost] = useState([]);
   const { accountname } = useParams();
   const myPostArray = myPost.post;
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsMyProfile(accountname === myAccountname);
@@ -65,6 +67,7 @@ export default function Profile() {
   };
 
   const handleEditProfile = () => {
+    navigate(`/profile/${myAccountname}/edit`);
     console.log('프로필 수정');
   };
 
@@ -148,7 +151,7 @@ export default function Profile() {
           {isListMode &&
             myPostArray &&
             myPostArray.map((post, index) => (
-              <HomePost post={post} key={index} postId={post.postId} />
+              <HomePost post={post} key={index} postId={post.id} />
             ))}
           {!isListMode && <HomeAlbum profileArray={myPostArray} />}
         </S.PostContainer>

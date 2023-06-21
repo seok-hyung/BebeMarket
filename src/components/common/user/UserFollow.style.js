@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { SmallFollowButton } from '../button/Button.style';
 
 export const UserBox = styled.div`
   display: flex;
@@ -13,9 +14,6 @@ export const ProfileImage = styled.img`
 export const RightBox = styled.div`
   padding: 6px 0;
 `;
-export const Span = styled.span`
-  color: var(--main-color);
-`;
 export const UserTitle = styled.h2`
   font-weight: 500;
   font-size: 14px;
@@ -27,4 +25,9 @@ export const UserAddress = styled.p`
   font-size: 12px;
   line-height: 15px;
   color: var(--sub-text-color);
+`;
+
+export const CustomFollowButton = styled(SmallFollowButton)`
+  padding: 7px 10px;
+  margin: 10px 0px 10px 113px;
 `;

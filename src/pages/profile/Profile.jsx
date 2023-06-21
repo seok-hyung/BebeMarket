@@ -6,7 +6,6 @@ import { EditProfileButton, UploadProductButton } from './MyProfile.style';
 import { getMyInfoAPI } from '../../api/user/getMyInfoAPI';
 import { getProductListAPI } from '../../api/product/getProductListAPI';
 import { getProfilePostAPI } from '../../api/post/getProfilePostAPI';
-import { getProfileAPI } from '../../api/profile/getProfileAPI';
 
 // 공통 컴포넌트
 import TopBasicNav from '../../components/common/topNav/TopBasicNav';
@@ -45,47 +44,21 @@ export default function Profile() {
   }, [accountname, myAccountname]);
 
   useEffect(() => {
-    getProductListAPI(accountname, token).then((data) => {
+    getProductListAPI(myAccountname, token).then((data) => {
       console.log(data);
     });
-    getProfilePostAPI(accountname, token).then((data) => {
+    getProfilePostAPI(myAccountname, token).then((data) => {
       console.log(data);
       setMyPost(data);
     });
-  }, [accountname]);
-  console.log(isMyProfile);
-
-  // useEffect(() => {
-  //   getMyInfoAPI(token).then((data) => {
-  //     setProfile(data.user);
-  //     console.log(accountname + 'hi');
-  //   });
-
-  //   getProfileAPI(accountname,token).then((data)=>{
-  //     setProfile(data.user);
-  //   })
-  // }, [token, accountname]);
+  }, [myAccountname]);
 
   useEffect(() => {
-    if (!isMyProfile) {
-      getProfileAPI(accountname, token)
-        .then((data) => {
-          setProfile(data.profile);
-        })
-        .catch((error) => {
-          console.error('프로필 데이터를 불러오지 못했습니다.', error);
-        });
-    } else {
-      getMyInfoAPI(token)
-        .then((data) => {
-          setProfile(data.user);
-          console.log(accountname + 'hi');
-        })
-        .catch((error) => {
-          console.error('프로필 데이터를 불러오지 못했습니다.', error);
-        });
-    }
-  }, [isMyProfile, accountname, token]);
+    getMyInfoAPI(token).then((data) => {
+      setProfile(data.user);
+      console.log(accountname + 'hi');
+    });
+  }, [token, accountname]);
 
   const toggleFollow = () => {
     setIsFollowed((prevIsFollowed) => !prevIsFollowed);
@@ -112,8 +85,7 @@ export default function Profile() {
           <S.ProfileHeader>
             {/* 프로필 팔로워수 처리 변경 */}
             <S.Followers>
-              <span>{profile && profile.followerCount}</span>
-              {/* <span>{profile ? profile.followerCount : 'Loading...'}</span> */}
+              <span>{profile ? profile.followerCount : 'Loading...'}</span>
               <span>followers</span>
             </S.Followers>
             {/* 프로필 이미지 처리 변경 */}
@@ -176,9 +148,9 @@ export default function Profile() {
           {isListMode &&
             myPostArray &&
             myPostArray.map((post, index) => (
-              <HomePost post={post} key={index} />
+              <HomePost post={post} key={index} postId={post.postId} />
             ))}
-          {!isListMode && <HomeAlbum />}
+          {!isListMode && <HomeAlbum profileArray={myPostArray} />}
         </S.PostContainer>
       </S.ProfileWrapper>
       <TabMenu />

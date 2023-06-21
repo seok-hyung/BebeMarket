@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useRecoilValue } from 'recoil';
 import { accountNameState, userTokenState } from '../../atoms/Atoms';
-import { EditProfileButton, UploadProductButton } from './MyProfile.style';
 import { getMyInfoAPI } from '../../api/user/getMyInfoAPI';
 import { getProductListAPI } from '../../api/product/getProductListAPI';
 import { getProfilePostAPI } from '../../api/post/getProfilePostAPI';
@@ -72,6 +71,7 @@ export default function Profile() {
   };
 
   const handleUploadProduct = () => {
+    navigate('/product');
     console.log('상품 등록');
   };
 
@@ -111,12 +111,12 @@ export default function Profile() {
           <S.ProfileFooter>
             {isMyProfile ? (
               <>
-                <EditProfileButton onClick={handleEditProfile}>
+                <S.EditProfileButton onClick={handleEditProfile}>
                   프로필 수정
-                </EditProfileButton>
-                <UploadProductButton onClick={handleUploadProduct}>
+                </S.EditProfileButton>
+                <S.UploadProductButton onClick={handleUploadProduct}>
                   상품 등록
-                </UploadProductButton>
+                </S.UploadProductButton>
               </>
             ) : (
               <>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useRecoilValue } from 'recoil';
 import { accountNameState, userTokenState } from '../../atoms/Atoms';
-import { EditProfileButton, UploadProductButton } from './MyProfile.style';
 import { getMyInfoAPI } from '../../api/user/getMyInfoAPI';
 import { getProductListAPI } from '../../api/product/getProductListAPI';
 import { getProfilePostAPI } from '../../api/post/getProfilePostAPI';

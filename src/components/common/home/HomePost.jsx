@@ -3,8 +3,10 @@ import * as S from './HomePost.style';
 import PostModal from '../../modal/PostModal/PostModal';
 import { useRecoilValue } from 'recoil';
 import { accountNameState } from '../../../atoms/Atoms';
+import { useNavigate } from 'react-router-dom';
 
-function HomePost({ post }) {
+function HomePost({ post, postId }) {
+  const navigate = useNavigate();
   const [isModalOpen, setisModalOpen] = useState(false);
   const [isMyPost, setIsMyPost] = useState(false);
   const showModal = () => {
@@ -18,11 +20,21 @@ function HomePost({ post }) {
     }
   }, [post.author.accountname, accountname]);
 
+  //작성된 날짜 계산하기
+  const createdAt = post.createdAt;
+  const date = new Date(createdAt); //한국시간으로바꿔줌
+  const year = date.getFullYear();
+  const month = ('0' + (date.getMonth() + 1)).slice(-2);
+  const day = ('0' + date.getDate()).slice(-2);
+  const createdDate = year + '년 ' + month + '월 ' + day + '일';
   return (
     <>
       <S.Wrapper>
         <S.Article>
-          <S.UserImage src={post.author.image} />
+          <S.UserImage
+            src={post.author.image}
+            onClick={() => navigate(`/profile/${post.author.accountname}`)}
+          />
           <S.PostWapper>
             <S.PostHeader>
               <S.Title>
@@ -32,18 +44,28 @@ function HomePost({ post }) {
               <S.MoreButton onClick={showModal}></S.MoreButton>
             </S.PostHeader>
             <S.PostDetail>
-              <S.Content>{post.content}</S.Content>
-              {post.image.split(',').length === 1 ? (
-                <S.ContentImage src={post.image.split(',')[0]} />
-              ) : (
-                <S.MultipleImgUl>
-                  {post.image.split(',').map((image, index) => (
-                    <S.ContentImageWrapper key={index}>
-                      <S.ContentImage src={image} alt="포스트 이미지" />
-                    </S.ContentImageWrapper>
-                  ))}
-                </S.MultipleImgUl>
-              )}
+              <S.Content onClick={() => navigate(`/post/${postId}`)}>
+                {post.content}
+              </S.Content>
+              {post.image ? (
+                post.image.split(',').length === 1 ? (
+                  <S.ContentImage
+                    onClick={() => navigate(`/post/${postId}`)}
+                    src={post.image.split(',')[0]}
+                  />
+                ) : (
+                  <S.MultipleImgUl>
+                    {post.image.split(',').map((image, index) => (
+                      <S.ContentImageWrapper
+                        onClick={() => navigate(`/post/${postId}`)}
+                        key={index}
+                      >
+                        <S.ContentImage src={image} alt="포스트 이미지" />
+                      </S.ContentImageWrapper>
+                    ))}
+                  </S.MultipleImgUl>
+                )
+              ) : null}
             </S.PostDetail>
             <S.PostIconWrapper>
               <S.Like>
@@ -51,16 +73,22 @@ function HomePost({ post }) {
                 <S.LikeCount>{post.heartCount}</S.LikeCount>
               </S.Like>
               <S.Comment>
-                <S.CommentIcon></S.CommentIcon>
+                <S.CommentIcon
+                  onClick={() => navigate(`/post/${postId}`)}
+                ></S.CommentIcon>
                 <S.CommentCount>{post.commentCount}</S.CommentCount>
               </S.Comment>
             </S.PostIconWrapper>
-            <S.PostDate>{post.createdAt}</S.PostDate>
+            <S.PostDate>{createdDate}</S.PostDate>
           </S.PostWapper>
         </S.Article>
       </S.Wrapper>
       {isModalOpen ? (
-        <PostModal setisModalOpen={setisModalOpen} isMyPost={isMyPost} />
+        <PostModal
+          setisModalOpen={setisModalOpen}
+          isMyPost={isMyPost}
+          postId={postId}
+        />
       ) : null}
     </>
   );
@@ -83,3 +111,15 @@ export default HomePost;
 // if (post.author.accountname === accountname) {
 //   setIsMyPost(true);
 // } 라고 했을때는 isMyPost가 재렌더링 되어서 무한루프가 일어난다.
+
+// {post.image.split(',').length === 1 ? (
+//   <S.ContentImage src={post.image.split(',')[0]} />
+// ) : (
+//   <S.MultipleImgUl>
+//     {post.image.split(',').map((image, index) => (
+//       <S.ContentImageWrapper key={index}>
+//         <S.ContentImage src={image} alt="포스트 이미지" />
+//       </S.ContentImageWrapper>
+//     ))}
+//   </S.MultipleImgUl>
+// )}

@@ -7,10 +7,22 @@ import {
   DeleteButton,
 } from '../styled';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import {
+  isLoginState,
+  userTokenState,
+  accountNameState,
+} from '../../../atoms/Atoms';
 
 export default function ProfileAlert({ setIsAlertOpen }) {
   const navigate = useNavigate();
-  const goSocialLogin = () => {
+  const setIsLogin = useSetRecoilState(isLoginState);
+  const setUserToken = useSetRecoilState(userTokenState);
+  const setAccountName = useSetRecoilState(accountNameState);
+  const handleLogout = () => {
+    setIsLogin(false);
+    setUserToken('');
+    setAccountName('');
     navigate('/socialLogin');
     //이거 추후에 변경될듯. 로그아웃되게끔 토큰 뺏어와야할듯?
   };
@@ -26,7 +38,7 @@ export default function ProfileAlert({ setIsAlertOpen }) {
         >
           취소
         </CancelButton>
-        <DeleteButton onClick={goSocialLogin}>로그아웃</DeleteButton>
+        <DeleteButton onClick={handleLogout}>로그아웃</DeleteButton>
       </ButtonDiv>
     </AlertContainer>
   );

@@ -6,8 +6,33 @@ import {
   CancelButton,
   DeleteButton,
 } from '../styled';
-export default function PostAlert({ setIsAlertOpen }) {
-  const deletePost = () => {};
+import { deletePostAPI } from '../../../api/post/deletePostAPI';
+import { useRecoilValue } from 'recoil';
+import { userTokenState } from '../../../atoms/Atoms';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { accountNameState } from '../../../atoms/Atoms';
+export default function PostAlert({ setIsAlertOpen, postId }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const token = useRecoilValue(userTokenState);
+  const accountname = useRecoilValue(accountNameState);
+  const deletePost = () => {
+    //console.log('삭제');
+
+    if (location.pathname === `/profile/${accountname}`) {
+      deletePostAPI(postId, token).then((data) => {
+        console.log(data);
+        window.location.reload();
+      });
+    } else {
+      deletePostAPI(postId, token).then((data) => {
+        console.log(data);
+      });
+      navigate(`/profile/${accountname}`);
+    }
+    console.log(location.pathname);
+  };
+
   return (
     <AlertContainer>
       <DeleteConfirm>삭제하시겠어요?</DeleteConfirm>
@@ -24,3 +49,7 @@ export default function PostAlert({ setIsAlertOpen }) {
     </AlertContainer>
   );
 }
+
+// if (location.pathname === '/post/:postId') {
+//   navigate(`/profile/${accountname}`);
+// }

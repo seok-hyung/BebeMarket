@@ -17,8 +17,8 @@ import { useParams } from 'react-router-dom';
 //<Route path="/post/:postId" element={<PostDetail />} />
 
 export default function PostDetail() {
-  //const { postId } = useParams(); 이걸로바뀌어야함.
-  const postId = '648eff03b2cb20566339b578'; //글을 업로드하면 id가 자체적으로생김. 디스코드참고
+  const { postId } = useParams();
+  // const postId = '648eff03b2cb20566339b578'; //글을 업로드하면 id가 자체적으로생김. 디스코드참고
 
   const token = useRecoilValue(userTokenState);
   const accountname = useRecoilValue(accountNameState);
@@ -46,7 +46,7 @@ export default function PostDetail() {
   return (
     <S.Container>
       <TopBasicNav />
-      {post && <HomePost post={post} />}
+      {post && <HomePost post={post} postId={postId} />}
       <S.Line />
       <S.PostCommentWrapper>
         {commentData &&

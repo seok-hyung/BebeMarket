@@ -28,6 +28,7 @@ function Comment({ myProfileImg, postId }) {
     postCommentAPI(postId, commentContent, token).then((data) => {
       console.log(data); //피그마에 사진 올려둠.
     });
+    //window.location.reload();
   };
   return (
     <S.CommentBox>

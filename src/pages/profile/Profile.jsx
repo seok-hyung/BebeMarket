@@ -24,6 +24,8 @@ import * as S from './Profile.style';
 // 이미지
 import basicProfileImage from '../../assets/images/basic-profile-img.svg';
 import postListOn from '../../assets/icon/icon-post-list-on.svg';
+import postListOff from '../../assets/icon/icon-post-list-off.svg';
+import postAlbumOn from '../../assets/icon/icon-post-album-on.svg';
 import postAlbumOff from '../../assets/icon/icon-post-album-off.svg';
 
 export default function Profile() {
@@ -137,16 +139,16 @@ export default function Profile() {
         </S.ProductContainer>
         <S.PostContainer>
           <S.ViewOptions>
-            <S.PostListOn
-              src={postListOn}
+            <S.PostListButton
+              src={isListMode ? postListOn : postListOff}
               alt="피드 목록형으로 보기"
               onClick={() => setIsListMode(true)}
-            ></S.PostListOn>
-            <S.PostAlbumOff
-              src={postAlbumOff}
+            ></S.PostListButton>
+            <S.PostAlbumButton
+              src={isListMode ? postAlbumOff : postAlbumOn}
               alt="피드 앨범형으로 보기"
               onClick={() => setIsListMode(false)}
-            ></S.PostAlbumOff>
+            ></S.PostAlbumButton>
           </S.ViewOptions>
           {isListMode &&
             myPostArray &&

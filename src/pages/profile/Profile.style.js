@@ -35,6 +35,7 @@ export const Followers = styled.div`
 export const ProfileImage = styled.img`
   width: 110px;
   height: 110px;
+  object-fit: contain;
 `;
 
 export const Followings = styled.div`
@@ -143,15 +144,15 @@ export const ViewOptions = styled.div`
   background-color: #fff;
 `;
 
-// 피드 목록형
-export const PostListOn = styled.img`
+// 피드 목록형 버튼
+export const PostListButton = styled.img`
   cursor: pointer;
   width: 26px;
   height: 26px;
 `;
 
-// 피드 앨범형
-export const PostAlbumOff = styled.img`
+// 피드 앨범형 버튼
+export const PostAlbumButton = styled.img`
   cursor: pointer;
   width: 26px;
   height: 26px;

@@ -96,6 +96,22 @@ export const ProfileFooter = styled.div`
   }
 `;
 
+export const EditProfileButton = styled.button`
+  width: 120px;
+  height: 34px;
+  border: 1px solid #dbdbdb;
+  border-radius: 38px;
+  color: var(--sub-text-color);
+`;
+
+export const UploadProductButton = styled.button`
+  width: 120px;
+  height: 34px;
+  border: 1px solid #dbdbdb;
+  border-radius: 38px;
+  color: var(--sub-text-color);
+`;
+
 // ====상품 product====
 export const ProductContainer = styled.div`
   width: 100%;

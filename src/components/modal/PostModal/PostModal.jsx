@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Ul, Li, GrayLine, Button } from '../styled';
 import PostAlert from './PostAlert';
 import { useNavigate } from 'react-router-dom';
 
-export default function PostModal({ setisModalOpen, isMyPost }) {
+export default function PostModal({ setisModalOpen, isMyPost, postId }) {
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const navigate = useNavigate();
   const handleToEdit = () => {
-    navigate('/post/edit/${postId}'); //백틱으로 나중에바꿔주기
+    navigate(`/post/edit/${postId}`); //백틱으로 나중에바꿔주기
   };
+
   return (
     <>
       <Container onClick={() => setisModalOpen(false)}></Container>
@@ -29,7 +30,9 @@ export default function PostModal({ setisModalOpen, isMyPost }) {
           </Li>
         )}
       </Ul>
-      {isAlertOpen ? <PostAlert setIsAlertOpen={setIsAlertOpen} /> : null}
+      {isAlertOpen ? (
+        <PostAlert setIsAlertOpen={setIsAlertOpen} postId={postId} />
+      ) : null}
     </>
   );
 }

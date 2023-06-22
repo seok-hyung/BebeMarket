@@ -177,19 +177,20 @@ export default function Profile() {
             )}
           </S.ProfileFooter>
         </S.ProfileContainer>
-        <S.ProductContainer>
-          <h2>판매 중인 상품</h2>
-          <S.ProductListUl>
-            {productList.length > 0 &&
-              productList.map((product, index) => (
+        {productList.length > 0 && (
+          <S.ProductContainer>
+            <h2>판매 중인 상품</h2>
+            <S.ProductListUl>
+              {productList.map((product, index) => (
                 <S.ProductListLi key={index}>
                   <S.ProductItem src={product.itemImage} key={index} />
                   <S.ProductTitle>{product.itemName}</S.ProductTitle>
                   <S.ProductPrice>{product.price}</S.ProductPrice>
                 </S.ProductListLi>
               ))}
-          </S.ProductListUl>
-        </S.ProductContainer>
+            </S.ProductListUl>
+          </S.ProductContainer>
+        )}
         <S.PostContainer>
           <S.ViewOptions>
             <S.PostListButton

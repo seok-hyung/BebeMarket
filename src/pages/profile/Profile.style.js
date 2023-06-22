@@ -120,7 +120,7 @@ export const ProductContainer = styled.div`
   margin-top: 6px;
   margin: auto;
   background-color: #fff;
-  padding: 15px 0 15px 10px;
+  padding: 18px 0 20px 20px;
   h2 {
     margin-bottom: 20px;
   }
@@ -128,9 +128,9 @@ export const ProductContainer = styled.div`
 export const ProductListUl = styled.ul`
   display: flex;
   gap: 8px;
-  // width: calc(100vw - 85px);
-  min-width: 390px;
   overflow-x: scroll;
+  width: 100%;
+  // flex-wrap: nowrap;
   &::-webkit-scrollbar {
     height: 6px;
   }
@@ -141,10 +141,14 @@ export const ProductListUl = styled.ul`
 `;
 export const ProductListLi = styled.li`
   display: flex;
+  position: relative;
   flex-direction: column;
+  width: calc(140px + 8px);
 `;
 export const ProductItem = styled.img`
-  width: 100px;
+  width: 140px;
+  height: 90px;
+  border-radius: 8px;
 `;
 export const ProductTitle = styled.h3`
   font-size: 14px;

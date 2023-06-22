@@ -14,8 +14,6 @@ import { getPostDetailAPI } from '../../api/post/getPostDetailAPI';
 import { getCommentAPI } from '../../api/comment/getCommentAPI';
 import { useParams } from 'react-router-dom';
 
-//<Route path="/post/:postId" element={<PostDetail />} />
-
 export default function PostDetail() {
   const { postId } = useParams();
   // const postId = '648eff03b2cb20566339b578'; //글을 업로드하면 id가 자체적으로생김. 디스코드참고
@@ -27,6 +25,28 @@ export default function PostDetail() {
   const [postData, setPostData] = useState({});
   const post = postData.post;
 
+  const handleCommentSubmit = () => {
+    // 댓글 작성 후 실행되는 로직, 댓글 추가되면 바로 댓글수가 업데이트됨.
+    // 예: 댓글 작성 API 호출 완료 후에 아래 코드를 실행하여 post.commentCount 값을 업데이트합니다.
+    setPostData((prevData) => ({
+      ...prevData,
+      post: {
+        ...prevData.post,
+        commentCount: prevData.post.commentCount + 1,
+      },
+    }));
+  };
+  const handleCommentDelete = () => {
+    // 댓글 삭제 후 실행되는 로직. 댓글 삭제되면 바로 댓글수 업데이트됨.
+    // 예: 댓글 삭제 API 호출 완료 후에 아래 코드를 실행하여 post.commentCount 값을 업데이트합니다.
+    setPostData((prevData) => ({
+      ...prevData,
+      post: {
+        ...prevData.post,
+        commentCount: prevData.post.commentCount - 1,
+      },
+    }));
+  };
   useEffect(() => {
     //console.log(token);
     getMyInfoAPI(token).then((data) => {
@@ -34,7 +54,7 @@ export default function PostDetail() {
     });
 
     getPostDetailAPI(postId, token).then((data) => {
-      setPostData(data);
+      setPostData(data); //postData는 지금 {post: 어쩌구..}, post =postData.post
     });
   }, []);
 
@@ -53,10 +73,19 @@ export default function PostDetail() {
           commentData
             .reverse()
             .map((comment) => (
-              <PostComment comment={comment} key={comment.id} postId={postId} />
+              <PostComment
+                comment={comment}
+                key={comment.id}
+                postId={postId}
+                handleCommentDelete={handleCommentDelete}
+              />
             ))}
       </S.PostCommentWrapper>
-      <CommentInput myProfileImg={myProfileImg} postId={postId} />
+      <CommentInput
+        myProfileImg={myProfileImg}
+        postId={postId}
+        handleCommentSubmit={handleCommentSubmit}
+      />
     </S.Container>
   );
 }

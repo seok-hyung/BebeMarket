@@ -6,7 +6,7 @@ import { postCommentAPI } from '../../../api/comment/postCommentAPI';
 import { useRecoilValue } from 'recoil';
 import { userTokenState } from '../../../atoms/Atoms';
 
-function Comment({ myProfileImg, postId }) {
+function Comment({ myProfileImg, postId, handleCommentSubmit }) {
   const [comment, setComment] = useState('');
   const [disabled, setDisabled] = useState(true);
 
@@ -29,6 +29,7 @@ function Comment({ myProfileImg, postId }) {
       console.log(data); //피그마에 사진 올려둠.
     });
     //window.location.reload();
+    handleCommentSubmit();
   };
   return (
     <S.CommentBox>

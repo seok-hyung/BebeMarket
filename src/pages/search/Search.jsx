@@ -6,23 +6,22 @@ import UserSearch from '../../components/common/user/UserSearch';
 import { useRecoilValue } from 'recoil';
 import { userTokenState } from '../../atoms/Atoms';
 import { searchUserAPI } from '../../api/search/searchUserAPI';
+import { useNavigate } from 'react-router-dom';
 
 export default function Search() {
+  const navigate = useNavigate();
   // 검색어 입력한 value값
   const [searchValue, setSearchValue] = useState('');
   // searchUserAPI
   const [searchUserData, setSearchUserData] = useState([]);
   const userToken = useRecoilValue(userTokenState);
+
   useEffect(() => {
     if (searchValue) {
       const getSearchUserAPIDatas = async () => {
         const searchUserAPIData = await searchUserAPI(userToken, searchValue);
-        const filteredData = searchUserAPIData.filter(
-          (user) =>
-            user.accountname.includes(searchValue) ||
-            (user.username && user.username.includes(searchValue)),
-        );
-        setSearchUserData(filteredData);
+        console.log(searchUserAPIData);
+        setSearchUserData(searchUserAPIData);
       };
       getSearchUserAPIDatas();
     } else {
@@ -33,7 +32,7 @@ export default function Search() {
   const searchInputChange = (value) => {
     setSearchValue(value);
   };
-  // const post = followerData.posts;
+
   return (
     <>
       <TopSearchNav onSearchInputChange={searchInputChange} />

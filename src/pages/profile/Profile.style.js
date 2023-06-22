@@ -131,7 +131,6 @@ export const ProductListUl = styled.ul`
   overflow-x: scroll;
   width: 100%;
   // flex-wrap: nowrap;
-
   &::-webkit-scrollbar {
     height: 6px;
   }

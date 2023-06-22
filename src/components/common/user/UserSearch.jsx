@@ -1,8 +1,11 @@
 import React from 'react';
 import defaultProfileImage from '../../../assets/images/basic-profile.svg';
 import * as S from './UserSearch.style';
+import { useNavigate } from 'react-router-dom';
 
 function UserSearch({ accountname, username, profileImage, searchValue }) {
+  const navigate = useNavigate();
+
   const highlightText = (text, keyword) => {
     if (!keyword) {
       return <>{text}</>;
@@ -22,8 +25,12 @@ function UserSearch({ accountname, username, profileImage, searchValue }) {
     );
   };
 
+  const handleUserClick = () => {
+    navigate(`/profile/${accountname}`);
+  };
+
   return (
-    <S.UserBox>
+    <S.UserBox onClick={handleUserClick}>
       <S.ProfileImage
         src={profileImage ? profileImage : defaultProfileImage}
         alt="프로필 이미지"

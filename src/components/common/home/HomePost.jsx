@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import * as S from './HomePost.style';
 import PostModal from '../../modal/PostModal/PostModal';
 import { useRecoilValue } from 'recoil';
-import { accountNameState } from '../../../atoms/Atoms';
+import { accountNameState, userTokenState } from '../../../atoms/Atoms';
 import { useNavigate } from 'react-router-dom';
-
+import { likeAPI } from '../../../api/likeHeart/likeAPI';
+import { unLikeAPI } from '../../../api/likeHeart/unLikeAPI';
+import basicHeartIcon from '../../../assets/icon/icon-heart.svg';
+import ColorHeartIcon from '../../../assets/icon/icon-heart-fill.svg';
 function HomePost({ post, postId, commentCount }) {
   const navigate = useNavigate();
   const [isModalOpen, setisModalOpen] = useState(false);
@@ -13,7 +16,32 @@ function HomePost({ post, postId, commentCount }) {
     setisModalOpen(true);
   };
   const accountname = useRecoilValue(accountNameState);
+  const token = useRecoilValue(userTokenState);
+  const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(post.heartCount);
+  const handleLikeClick = () => {
+    if (isLiked) {
+      unLike();
+      setIsLiked(false);
+      setLikeCount(likeCount - 1); // Update the like count when unliked
+    } else {
+      like();
+      setIsLiked(true);
+      setLikeCount(likeCount + 1); // Update the like count when liked
+    }
+  };
+  useEffect(() => {
+    setIsLiked(post.hearted);
+  }, [post.hearted]);
+  const like = () => {
+    likeAPI(postId, token).then((data) => console.log(data));
+    console.log('Like');
+  };
 
+  const unLike = () => {
+    unLikeAPI(postId, token).then((data) => console.log(data));
+    console.log('Unlike');
+  };
   useEffect(() => {
     if (post.author.accountname === accountname) {
       setIsMyPost(true);
@@ -69,8 +97,11 @@ function HomePost({ post, postId, commentCount }) {
             </S.PostDetail>
             <S.PostIconWrapper>
               <S.Like>
-                <S.LikeIcon></S.LikeIcon>
-                <S.LikeCount>{post.heartCount}</S.LikeCount>
+                <S.LikeIcon
+                  onClick={handleLikeClick}
+                  src={isLiked ? ColorHeartIcon : basicHeartIcon}
+                />
+                <S.LikeCount>{likeCount}</S.LikeCount>
               </S.Like>
               <S.Comment>
                 <S.CommentIcon

@@ -1,19 +1,17 @@
 import axios from 'axios';
 import { apiURL } from '../apiURL';
 
-const getFollowerAPI = async (token) => {
+export const loadFollowerListAPI = async (accountName, userToken) => {
   try {
-    const response = await axios.get(`${apiURL}post/feed`, {
+    const res = await axios.get(`${apiURL}profile/${accountName}/follower`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${userToken}`,
         'Content-type': 'application/json',
       },
     });
-    return response.data;
-  } catch (error) {
-    console.log('팔로잉 게시글 목록 API 요청 오류', error);
+    return res.data;
+  } catch (err) {
+    console.error(err);
     return null;
   }
 };
-
-export default getFollowerAPI;

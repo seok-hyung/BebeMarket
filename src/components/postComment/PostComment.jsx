@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil';
 import { accountNameState } from '../../atoms/Atoms';
 import { useNavigate } from 'react-router-dom';
 
-export default function PostComment({ comment, postId }) {
+export default function PostComment({ comment, postId, handleCommentDelete }) {
   const navigate = useNavigate();
   const [isModalOpen, setisModalOpen] = useState(false);
   const [isMyComment, setIsMyComment] = useState(false);
@@ -71,6 +71,7 @@ export default function PostComment({ comment, postId }) {
           isMyComment={isMyComment}
           commentId={comment.id}
           postId={postId}
+          handleCommentDelete={handleCommentDelete}
         />
       ) : null}
     </>

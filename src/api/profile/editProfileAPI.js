@@ -1,33 +1,29 @@
 import axios from 'axios';
 import { apiURL } from '../apiURL';
 
-export const editProfileAPI = async (
-  accountname,
-  token,
-  username,
-  accountId,
-  introduction,
-) => {
-  const accessToken = `Bearer ${token}`;
-
+export const editProfileAPI = async (userName, userId, userIntro, userImg) => {
   try {
-    const response = await axios.put(
-      `${apiURL}/user/:${accountname}`,
-      {
-        username: username,
-        accountname: accountId,
-        intro: introduction,
+    const localStorageData = JSON.parse(localStorage.getItem('recoil-persist'));
+    const userTokenState = localStorageData.userTokenState;
+    const data = {
+      user: {
+        username: userName,
+        accountname: userId,
+        intro: userIntro,
+        image: userImg,
       },
-      {
-        headers: { Authorization: accessToken },
-      },
-    );
+    };
 
-    if (response.status === 200) {
-      return response.data;
-    }
+    const res = await axios.put(`${apiURL}user`, data, {
+      headers: {
+        Authorization: `Bearer ${userTokenState}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return res.data;
   } catch (error) {
-    console.error('프로필 수정에 실패했습니다.', error);
+    console.log(error);
     return null;
   }
 };

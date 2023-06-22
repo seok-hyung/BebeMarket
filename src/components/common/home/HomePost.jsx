@@ -5,7 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { accountNameState } from '../../../atoms/Atoms';
 import { useNavigate } from 'react-router-dom';
 
-function HomePost({ post, postId }) {
+function HomePost({ post, postId, commentCount }) {
   const navigate = useNavigate();
   const [isModalOpen, setisModalOpen] = useState(false);
   const [isMyPost, setIsMyPost] = useState(false);
@@ -76,7 +76,9 @@ function HomePost({ post, postId }) {
                 <S.CommentIcon
                   onClick={() => navigate(`/post/${postId}`)}
                 ></S.CommentIcon>
-                <S.CommentCount>{post.commentCount}</S.CommentCount>
+                <S.CommentCount>
+                  {commentCount || post.commentCount}
+                </S.CommentCount>
               </S.Comment>
             </S.PostIconWrapper>
             <S.PostDate>{createdDate}</S.PostDate>

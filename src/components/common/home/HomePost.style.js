@@ -133,11 +133,11 @@ export const Like = styled.div`
   gap: 8px;
 `;
 
-export const LikeIcon = styled.div`
-  background-image: url(${likeIcon});
+export const LikeIcon = styled.img`
+  /* background-image: url(${likeIcon});
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: contain;
+  background-size: contain; */
   object-fit: cover;
   width: 18px;
   height: 18px;

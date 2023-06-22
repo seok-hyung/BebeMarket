@@ -7,7 +7,7 @@ export default function TopUploadNav({ disabled, children, handleUpload }) {
   return (
     <S.Nav>
       <S.ArrowButton onClick={() => navigate(-1)}>
-        <img src={arrowLeft} alt="뒤로가기" />
+        <img src={arrowLeft || ''} alt="뒤로가기" />
       </S.ArrowButton>
 
       {/* 기본 버튼은 업로드 이지만 필요한 경우 

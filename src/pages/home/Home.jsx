@@ -5,10 +5,11 @@ import Image from '../../assets/images/symbol-logo-gray.svg';
 import TopMainNav from '../../components/common/topNav/TopMainNav';
 import TabMenu from '../../components/common/tab/TabMenu';
 import { useNavigate } from 'react-router-dom';
-import getFollowerAPI from '../../api/profile/getFollowerAPI';
+
 import { useRecoilValue } from 'recoil';
 import { userTokenState } from '../../atoms/Atoms';
 import HomePost from '../../components/common/home/HomePost';
+import getPostFeedAPI from '../../api/post/getPostFeedAPI';
 
 function Home() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ function Home() {
   const [followerData, setFollowerData] = useState({});
   useEffect(() => {
     const getFollowerFeedDatas = async () => {
-      const followerFeedDatas = await getFollowerAPI(userToken);
+      const followerFeedDatas = await getPostFeedAPI(userToken);
       setFollowerData(followerFeedDatas);
     };
     getFollowerFeedDatas();

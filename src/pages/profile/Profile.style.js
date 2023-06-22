@@ -35,6 +35,7 @@ export const Followers = styled.div`
 export const ProfileImage = styled.img`
   width: 110px;
   height: 110px;
+  border-radius: 50%;
   object-fit: contain;
 `;
 
@@ -119,16 +120,51 @@ export const ProductContainer = styled.div`
   margin-top: 6px;
   margin: auto;
   background-color: #fff;
-
+  padding: 15px 0 15px 10px;
   h2 {
-    padding: 18px 0 0 21px;
+    margin-bottom: 20px;
   }
+`;
+export const ProductListUl = styled.ul`
+  display: flex;
+  gap: 8px;
+  // width: calc(100vw - 85px);
+  min-width: 390px;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+    border-radius: 6px;
+  }
+`;
+export const ProductListLi = styled.li`
+  display: flex;
+  flex-direction: column;
+`;
+export const ProductItem = styled.img`
+  width: 100px;
+`;
+export const ProductTitle = styled.h3`
+  font-size: 14px;
+  line-height: 18px;
+  padding: 6px 2px 4px;
+  color: var(--main-text-color);
+`;
+export const ProductPrice = styled.span`
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  color: var(--main-color);
+  padding: 0 2px 0;
 `;
 
 // ====post container====
 export const PostContainer = styled.div`
   background-color: #fff;
-  height: 553px;
+  height: auto;
+  margin-bottom: 50px;
 `;
 
 // 피드 정렬

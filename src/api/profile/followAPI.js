@@ -5,6 +5,7 @@ export const followAPI = async (accountname, token) => {
   try {
     const response = await axios.post(
       `${apiURL}profile/${accountname}/follow`,
+      {}, // 이 부분에 요청 본문 데이터가 들어가야 합니다. 여기서는 빈 객체 {}를 사용합니다.
       {
         headers: {
           Authorization: `Bearer ${token}`,

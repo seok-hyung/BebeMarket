@@ -159,9 +159,10 @@ export default function UploadProduct() {
 
     if (isButtonDisabled) {
       try {
-        addProductAPI(sendData, userToken).then((data) =>
-          navigate(`/profile/${accountName}`),
-        );
+        addProductAPI(sendData, userToken).then((data) => {
+          console.log(data);
+          navigate(`/profile/${accountName}`);
+        });
       } catch (error) {
         console.log(error);
       }

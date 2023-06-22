@@ -35,14 +35,13 @@ export default function Profile() {
   const [isFollowed, setIsFollowed] = useState(false);
   const [followingCount, setFollowingCount] = useState(0);
   const [profile, setProfile] = useState(null);
-  const [products, setProducts] = useState([]);
-  // const [posts, setPosts] = useState([]);
   const token = useRecoilValue(userTokenState);
   const myAccountname = useRecoilValue(accountNameState);
   const [isMyProfile, setIsMyProfile] = useState(false);
   const [myPost, setMyPost] = useState([]);
   const { accountname } = useParams();
   const myPostArray = myPost.post;
+  const [productList, setProductList] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,7 +50,8 @@ export default function Profile() {
 
   useEffect(() => {
     getProductListAPI(accountname, token).then((data) => {
-      console.log(data);
+      console.log(data, 'hi');
+      setProductList(data.product);
     });
     getProfilePostAPI(accountname, token).then((data) => {
       console.log(data);
@@ -92,10 +92,6 @@ export default function Profile() {
     }
   }, [isMyProfile, accountname, token]);
 
-  // const toggleFollow = () => {
-  //   setIsFollowed((prevIsFollowed) => !prevIsFollowed);
-  // }; 아무 기능도 수행하지 않는 함수
-
   const toggleFollow = () => {
     console.log(accountname);
   };
@@ -118,7 +114,6 @@ export default function Profile() {
 
   console.log('myAccountname:', myAccountname);
   console.log('isMyProfile:', isMyProfile);
-  // console.log(myPost);
   console.log(myPostArray);
 
   return (
@@ -184,7 +179,16 @@ export default function Profile() {
         </S.ProfileContainer>
         <S.ProductContainer>
           <h2>판매 중인 상품</h2>
-          {/* <Product key={products.id} productData={products} /> */}
+          <S.ProductListUl>
+            {productList.length > 0 &&
+              productList.map((product, index) => (
+                <S.ProductListLi key={index}>
+                  <S.ProductItem src={product.itemImage} key={index} />
+                  <S.ProductTitle>{product.itemName}</S.ProductTitle>
+                  <S.ProductPrice>{product.price}</S.ProductPrice>
+                </S.ProductListLi>
+              ))}
+          </S.ProductListUl>
         </S.ProductContainer>
         <S.PostContainer>
           <S.ViewOptions>

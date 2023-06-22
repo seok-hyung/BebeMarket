@@ -13,17 +13,18 @@ export const Wrapper = styled.ul`
 `;
 
 export const ProductContent = styled.li`
-  flex-shrink: 0;
+  // flex-shrink: 0;
   width: 140px;
 `;
 
-export const ProductImage = styled.div`
+export const ProductImage = styled.img`
   width: 100%;
-  padding-bottom: calc(196 / 304 * 100%);
-  background-image: url(${productImages});
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
+  height: 90px;
+  // padding-bottom: calc(196 / 304 * 100%);
+  // background-image: url(${productImages});
+  // background-repeat: no-repeat;
+  // background-position: center center;
+  // background-size: contain;
   border-radius: 8px;
   object-fit: cover;
 `;

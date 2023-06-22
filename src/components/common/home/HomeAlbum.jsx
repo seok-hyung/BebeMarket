@@ -3,6 +3,14 @@ import { HomeAlbumContainer, HomeAlbumItem } from './HomeAlbum.style';
 import LayerImage from '../../../assets/icon/iccon-img-layers.svg';
 import { useNavigate } from 'react-router-dom';
 
+function isImageFile(filePath) {
+  const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp'];
+  const fileExtension = filePath
+    .substring(filePath.lastIndexOf('.'))
+    .toLowerCase();
+  return imageExtensions.includes(fileExtension);
+}
+
 const HomeAlbum = ({ profileArray }) => {
   console.log(profileArray);
   const navigate = useNavigate();
@@ -11,6 +19,10 @@ const HomeAlbum = ({ profileArray }) => {
     <HomeAlbumContainer>
       {profileArray.map((item, index) => {
         const images = item.image.split(',');
+
+        if (!isImageFile(item.image)) {
+          return null;
+        }
 
         return (
           <HomeAlbumItem key={index}>

@@ -15,6 +15,7 @@ export default function CommentAlert({
   content,
   commentId,
   postId,
+  handleCommentDelete,
 }) {
   const token = useRecoilValue(userTokenState);
   const deleteComment = () => {
@@ -22,6 +23,7 @@ export default function CommentAlert({
     deleteCommentAPI(postId, token, commentId).then((data) =>
       console.log(data),
     );
+    handleCommentDelete();
   };
   return (
     <AlertContainer>
@@ -39,6 +41,3 @@ export default function CommentAlert({
     </AlertContainer>
   );
 }
-//수정해야함
-//<DeleteConfirm>{content} 하시겠어요?</DeleteConfirm>
-//<DeleteButton>{content}</DeleteButton>

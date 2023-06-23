@@ -13,6 +13,7 @@ function Follower() {
   const userToken = useRecoilValue(userTokenState);
 
   const location = useLocation();
+  console.log(location);
 
   const accountname = location.pathname.split('/')[2];
   const loadFollowers = () => {

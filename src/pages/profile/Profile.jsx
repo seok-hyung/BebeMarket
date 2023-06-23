@@ -50,6 +50,8 @@ export default function Profile() {
   const { accountname } = useParams();
   const myPostArray = myPost.post;
   const [productList, setProductList] = useState([]);
+  const [productId, setProductId] = useState('');
+  const [productLink, setProductLink] = useState('');
   const navigate = useNavigate();
   const [isModalOpen, setisModalOpen] = useState(false);
   const showModal = () => {
@@ -74,7 +76,7 @@ export default function Profile() {
       // console.log('myPost : ', data);
       // console.log(data);
     });
-  }, [accountname]);
+  }, [accountname, productList]);
 
   // useEffect(() => {
   //   getMyInfoAPI(token).then((data) => {
@@ -149,10 +151,12 @@ export default function Profile() {
   // console.log('isMyProfile:', isMyProfile);
   // console.log(myPostArray);
 
-  const handleProductClick = (e) => {
+  const handleProductClick = (e, product_Id, product_Link) => {
     if (isMyProfile) {
       e.preventDefault();
       showModal();
+      setProductId(product_Id);
+      setProductLink(product_Link);
     } else {
       e.stopPropagation();
     }
@@ -233,8 +237,10 @@ export default function Profile() {
                 <S.ProductListLi key={index}>
                   <a
                     href={product.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={(e) => {
-                      handleProductClick(e);
+                      handleProductClick(e, product.id, product.link);
                     }}
                   >
                     <S.ProductItem src={product.itemImage} key={index} />
@@ -273,6 +279,8 @@ export default function Profile() {
           setisModalOpen={setisModalOpen}
           isMyProfile={isMyProfile}
           productList={productList}
+          productId={productId}
+          productLink={productLink}
         />
       ) : null}
     </div>

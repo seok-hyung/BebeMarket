@@ -6,8 +6,10 @@ import { getMyInfoAPI } from '../../api/user/getMyInfoAPI';
 import { getProductListAPI } from '../../api/product/getProductListAPI';
 import { getProfilePostAPI } from '../../api/post/getProfilePostAPI';
 import { followAPI } from '../../api/profile/followAPI';
-import { useNavigate } from 'react-router-dom';
+import { unfollowAPI } from '../../api/profile/unFollowAPI';
 import { getProfileAPI } from '../../api/profile/getProfileAPI';
+
+import { useNavigate } from 'react-router-dom';
 
 // 공통 컴포넌트
 import TopBasicNav from '../../components/common/topNav/TopBasicNav';
@@ -15,10 +17,11 @@ import {
   MediumFollowButton,
   UnfollowButton,
 } from '../../components/common/button/Button';
-import Product from '../../components/common/product/Product';
+//import Product from '../../components/common/product/Product';
 import HomePost from '../../components/common/home/HomePost';
 import HomeAlbum from '../../components/common/home/HomeAlbum';
 import TabMenu from '../../components/common/tab/TabMenu';
+import ProductModal from '../../components/modal/ProductModal/ProductModal';
 
 // 스타일
 import * as S from './Profile.style';
@@ -32,9 +35,14 @@ import postAlbumOff from '../../assets/icon/icon-post-album-off.svg';
 
 export default function Profile() {
   const [isListMode, setIsListMode] = useState(true);
+  const [profile, setProfile] = useState({});
   const [isFollowed, setIsFollowed] = useState(false);
-  const [followingCount, setFollowingCount] = useState(0);
-  const [profile, setProfile] = useState(null);
+  const [followersCount, setFollowersCount] = useState(
+    profile?.followerCount || 0,
+  );
+  const [followingCount, setFollowingCount] = useState(
+    profile?.followingCount || 0,
+  );
   const token = useRecoilValue(userTokenState);
   const myAccountname = useRecoilValue(accountNameState);
   const [isMyProfile, setIsMyProfile] = useState(false);
@@ -43,22 +51,30 @@ export default function Profile() {
   const myPostArray = myPost.post;
   const [productList, setProductList] = useState([]);
   const navigate = useNavigate();
+  const [isModalOpen, setisModalOpen] = useState(false);
+  const showModal = () => {
+    setisModalOpen(true);
+  };
 
   useEffect(() => {
     setIsMyProfile(accountname === myAccountname);
   }, [accountname, myAccountname]);
 
   useEffect(() => {
+    setIsFollowed(profile?.isfollow);
+  }, [profile?.isfollow]);
+
+  useEffect(() => {
     getProductListAPI(accountname, token).then((data) => {
-      console.log(data, 'hi');
+      // console.log(data, 'hi');
       setProductList(data.product);
     });
     getProfilePostAPI(accountname, token).then((data) => {
-      console.log(data);
       setMyPost(data);
+      // console.log('myPost : ', data);
+      // console.log(data);
     });
   }, [accountname]);
-  console.log(isMyProfile);
 
   // useEffect(() => {
   //   getMyInfoAPI(token).then((data) => {
@@ -76,6 +92,12 @@ export default function Profile() {
       getProfileAPI(accountname, token)
         .then((data) => {
           setProfile(data.profile);
+          setFollowersCount(data.profile.followerCount);
+          setFollowingCount(data.profile.followingCount);
+          // setFollowersCount(data.profile.followerCount);
+          // setFollowingCount(data.profile.followingCount);
+          console.log('getprofileapi 사용합니다!!');
+          console.log(data);
         })
         .catch((error) => {
           console.error('프로필 데이터를 불러오지 못했습니다.', error);
@@ -84,7 +106,9 @@ export default function Profile() {
       getMyInfoAPI(token)
         .then((data) => {
           setProfile(data.user);
-          console.log(accountname + 'hi');
+          setFollowersCount(data.user.followerCount);
+          setFollowingCount(data.user.followingCount);
+          console.log('getmyinfoapi 사용합니다!!');
         })
         .catch((error) => {
           console.error('프로필 데이터를 불러오지 못했습니다.', error);
@@ -92,15 +116,24 @@ export default function Profile() {
     }
   }, [isMyProfile, accountname, token]);
 
-  const toggleFollow = () => {
-    console.log(accountname);
-  };
-
   const handleFollow = () => {
-    console.log(accountname);
-    followAPI(accountname, token).then((data) => {
-      console.log(data);
-    });
+    if (isFollowed) {
+      // 이미 팔로우한 경우
+      unfollowAPI(accountname, token).then((data) => {
+        console.log(data);
+      });
+      setIsFollowed(false);
+      console.log(isFollowed);
+      setFollowersCount(followersCount - 1);
+    } else {
+      // 아직 팔로우하지 않은 경우
+      followAPI(accountname, token).then((data) => {
+        console.log(data);
+      });
+      setIsFollowed(true);
+      console.log(isFollowed);
+      setFollowersCount(followersCount + 1);
+    }
   };
   const handleEditProfile = () => {
     navigate(`/profile/${myAccountname}/edit`);
@@ -112,9 +145,26 @@ export default function Profile() {
     console.log('상품 등록');
   };
 
-  console.log('myAccountname:', myAccountname);
-  console.log('isMyProfile:', isMyProfile);
-  console.log(myPostArray);
+  // console.log('myAccountname:', myAccountname);
+  // console.log('isMyProfile:', isMyProfile);
+  // console.log(myPostArray);
+
+  const handleProductClick = (e) => {
+    if (isMyProfile) {
+      e.preventDefault();
+      showModal();
+    } else {
+      e.stopPropagation();
+    }
+  };
+
+  const sendAccountnameData = () => {
+    navigate(`/profile/${accountname}/following`, {
+      state: {
+        accountnameData: accountname,
+      },
+    });
+  };
 
   return (
     <div>
@@ -123,8 +173,16 @@ export default function Profile() {
         <S.ProfileContainer>
           <S.ProfileHeader>
             {/* 프로필 팔로워수 처리 변경 */}
-            <S.Followers>
-              <span>{profile ? profile.followerCount : 'Loading...'}</span>
+            <S.Followers
+              onClick={() => {
+                navigate(`/profile/${accountname}/follower`, {
+                  state: {
+                    accountnameData: accountname,
+                  },
+                });
+              }}
+            >
+              <span>{followersCount || 0}</span>
               <span>followers</span>
             </S.Followers>
             {/* 프로필 이미지 처리 변경 */}
@@ -133,8 +191,16 @@ export default function Profile() {
               alt="프로필 사진"
             />
             {/* 프로필 팔로잉수 처리 변경 */}
-            <S.Followings>
-              <span>{profile ? profile.followingCount : 'Loading...'}</span>
+            <S.Followings
+              onClick={() => {
+                navigate(`/profile/${accountname}/following`, {
+                  state: {
+                    accountnameData: accountname,
+                  },
+                });
+              }}
+            >
+              <span>{followingCount || 0}</span>
               <span>followings</span>
             </S.Followings>
           </S.ProfileHeader>
@@ -160,14 +226,12 @@ export default function Profile() {
                 {isFollowed ? (
                   <UnfollowButton
                     onClick={() => {
-                      toggleFollow();
                       handleFollow();
                     }}
                   />
                 ) : (
                   <MediumFollowButton
                     onClick={() => {
-                      toggleFollow();
                       handleFollow();
                     }}
                   />
@@ -183,9 +247,16 @@ export default function Profile() {
             <S.ProductListUl>
               {productList.map((product, index) => (
                 <S.ProductListLi key={index}>
-                  <S.ProductItem src={product.itemImage} key={index} />
-                  <S.ProductTitle>{product.itemName}</S.ProductTitle>
-                  <S.ProductPrice>{product.price}</S.ProductPrice>
+                  <a
+                    href={product.link}
+                    onClick={(e) => {
+                      handleProductClick(e);
+                    }}
+                  >
+                    <S.ProductItem src={product.itemImage} key={index} />
+                    <S.ProductTitle>{product.itemName}</S.ProductTitle>
+                    <S.ProductPrice>{product.price}</S.ProductPrice>
+                  </a>
                 </S.ProductListLi>
               ))}
             </S.ProductListUl>
@@ -213,6 +284,13 @@ export default function Profile() {
         </S.PostContainer>
       </S.ProfileWrapper>
       <TabMenu />
+      {isModalOpen ? (
+        <ProductModal
+          setisModalOpen={setisModalOpen}
+          isMyProfile={isMyProfile}
+          productList={productList}
+        />
+      ) : null}
     </div>
   );
 }

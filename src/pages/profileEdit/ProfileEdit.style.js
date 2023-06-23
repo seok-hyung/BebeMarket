@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { DisabledSaveButton } from '../../components/common/button/Button.style';
 import { SaveButton } from '../../components/common/button/Button.style';
-
+import ProfileInputImage from '../../assets/images/upload-file.svg';
 // 저장 버튼
 export const CustomDisabledSaveButton = styled(DisabledSaveButton)`
   width: 90px;
@@ -28,9 +28,37 @@ export const ImageContainer = styled.div`
   margin-bottom: 30px;
 `;
 
+export const UploadDiv = styled.div`
+  position: relative;
+  width: fit-content;
+  margin: 30px auto;
+`;
+
+export const UploadInputLabel = styled.label`
+  position: absolute;
+  background: url('${ProfileInputImage}') center/cover;
+
+  width: 36px;
+  height: 36px;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  cursor: pointer;
+`;
+
 export const ProfileImage = styled.img`
   width: 110px;
   height: 110px;
+  object-fit: contain;
+`;
+
+export const UploadInput = styled.input`
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 36px;
+  height: 36px;
 `;
 
 export const EditProfileImage = styled.img`
@@ -47,5 +75,4 @@ export const ProfileEdit = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  }
 `;

@@ -17,10 +17,11 @@ import {
   MediumFollowButton,
   UnfollowButton,
 } from '../../components/common/button/Button';
-import Product from '../../components/common/product/Product';
+//import Product from '../../components/common/product/Product';
 import HomePost from '../../components/common/home/HomePost';
 import HomeAlbum from '../../components/common/home/HomeAlbum';
 import TabMenu from '../../components/common/tab/TabMenu';
+import ProductModal from '../../components/modal/ProductModal/ProductModal';
 
 // 스타일
 import * as S from './Profile.style';
@@ -50,6 +51,10 @@ export default function Profile() {
   const myPostArray = myPost.post;
   const [productList, setProductList] = useState([]);
   const navigate = useNavigate();
+  const [isModalOpen, setisModalOpen] = useState(false);
+  const showModal = () => {
+    setisModalOpen(true);
+  };
 
   useEffect(() => {
     setIsMyProfile(accountname === myAccountname);
@@ -144,6 +149,15 @@ export default function Profile() {
   // console.log('isMyProfile:', isMyProfile);
   // console.log(myPostArray);
 
+  const handleProductClick = (e) => {
+    if (isMyProfile) {
+      e.preventDefault();
+      showModal();
+    } else {
+      e.stopPropagation();
+    }
+  };
+
   return (
     <div>
       <TopBasicNav />
@@ -217,9 +231,16 @@ export default function Profile() {
             <S.ProductListUl>
               {productList.map((product, index) => (
                 <S.ProductListLi key={index}>
-                  <S.ProductItem src={product.itemImage} key={index} />
-                  <S.ProductTitle>{product.itemName}</S.ProductTitle>
-                  <S.ProductPrice>{product.price}</S.ProductPrice>
+                  <a
+                    href={product.link}
+                    onClick={(e) => {
+                      handleProductClick(e);
+                    }}
+                  >
+                    <S.ProductItem src={product.itemImage} key={index} />
+                    <S.ProductTitle>{product.itemName}</S.ProductTitle>
+                    <S.ProductPrice>{product.price}</S.ProductPrice>
+                  </a>
                 </S.ProductListLi>
               ))}
             </S.ProductListUl>
@@ -247,6 +268,13 @@ export default function Profile() {
         </S.PostContainer>
       </S.ProfileWrapper>
       <TabMenu />
+      {isModalOpen ? (
+        <ProductModal
+          setisModalOpen={setisModalOpen}
+          isMyProfile={isMyProfile}
+          productList={productList}
+        />
+      ) : null}
     </div>
   );
 }

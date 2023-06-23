@@ -1,25 +1,25 @@
-import { useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { userTokenState } from '../../atoms/Atoms';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { accountNameState, userTokenState } from '../../atoms/Atoms';
 import { editProfileAPI } from '../../api/profile/editProfileAPI';
 import { useNavigate } from 'react-router-dom';
 
 import React, { useState, useEffect } from 'react';
 import TopUploadNav from '../../components/common/topNav/TopUploadNav';
 import * as S from './ProfileEdit.style';
-import ProfileImage from '../../assets/images/full-logo.svg';
-import EditProfileImage from '../../assets/images/img-button.svg';
 import InputBox from '../../components/common/input/InputBox';
+import { getMyInfoAPI } from '../../api/user/getMyInfoAPI';
+import { uploadImageAPI } from '../../api/uploadImg/uploadImageAPI';
 
 export default function ProfileEdit() {
-  const { accountname } = useParams(); // accountname 가져오기
-  const [token] = useRecoilState(userTokenState); // Recoil로 사용자 토큰 상태 가져오기
-
+  const navigate = useNavigate();
+  const userToken = useRecoilValue(userTokenState);
+  const setAccountName = useSetRecoilState(accountNameState);
   //인풋 입력 상태 저장
   const [username, setUsername] = useState(''); //사용자 이름 값
   const [accountId, setAccountId] = useState(''); // 계정 ID 값
   const [introduction, setIntroduction] = useState(''); // 소개 값
 
+  const [image, setImage] = useState('');
   const [isInputFilled, setIsInputFilled] = useState(false);
 
   // 유효성 검사 결과 저장
@@ -30,21 +30,34 @@ export default function ProfileEdit() {
   const [usernameErrorMessage, setUsernameErrorMessage] = useState('');
   const [accountIdErrorMessage, setAccountIdErrorMessage] = useState('');
 
-  const navigate = useNavigate();
+  // 수정페이지 들어갔을떄 수정 전의 내용들을 보여주기
+  useEffect(() => {
+    const getMyInfoFunc = async () => {
+      const myInfoDatas = await getMyInfoAPI(userToken);
+      setImage(myInfoDatas?.user?.image);
+      setUsername(myInfoDatas?.user?.username); //사용자 이름 값
+      setAccountId(myInfoDatas?.user?.accountname); // 계정 ID 값
+      setIntroduction(myInfoDatas?.user?.intro); // 소개 값
+    };
+    getMyInfoFunc();
+  }, []);
 
   const handleEditProfile = async () => {
     if (isInputFilled) {
       const result = await editProfileAPI(
-        accountname,
-        token,
         username,
         accountId,
         introduction,
+        image,
       );
 
       if (result) {
         console.log('프로필 수정이 완료되었습니다.', result);
-        navigate(`/user/${accountname}`);
+        //console.log(result.user.accountname); // 수정된 accountname
+        setAccountName(result.user.accountname);
+        //console.log(accountName); // 수정 전 accountname
+
+        navigate(`/profile/${result.user.accountname}`);
       } else {
         console.log('프로필 수정에 실패했습니다.');
       }
@@ -90,6 +103,10 @@ export default function ProfileEdit() {
     }
   };
 
+  const handleIntro = (e) => {
+    setIntroduction(e.target.value);
+  };
+
   // 사용자 이름, 계정 ID input 값이 유효한지 확인
   useEffect(() => {
     if (isUsernameValid && isAccountIdValid && username && accountId) {
@@ -99,23 +116,34 @@ export default function ProfileEdit() {
     }
   }, [isUsernameValid, isAccountIdValid, username, accountId]);
 
+  // 이미지 업로드
+  const uploadImage = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const image = e.target.files[0];
+      uploadImageAPI(image).then((img) => {
+        setImage(img);
+      });
+    }
+  };
   return (
     <div>
-      <TopUploadNav>
-        {/* input 값이 모두 채워지면 저장 버튼 활성화 */}
-        {isInputFilled ? (
-          <S.CustomSaveButton onClick={handleEditProfile}>
-            저장
-          </S.CustomSaveButton>
-        ) : (
-          <S.CustomDisabledSaveButton>저장</S.CustomDisabledSaveButton>
-        )}
-      </TopUploadNav>
+      <TopUploadNav handleUpload={handleEditProfile} />
       <S.ProfileEdit>
-        <S.ImageContainer>
-          <S.ProfileImage src={ProfileImage} />
+        <S.UploadDiv>
+          <S.ProfileImage src={image} alt="회원가입 유저 프로필 이미지" />
+          <S.UploadInputLabel htmlFor="uploadInput" />
+          <S.UploadInput
+            type="file"
+            id="uploadInput"
+            alt="프로필 수정 업로드 이미지"
+            accept="image/"
+            onChange={uploadImage}
+          />
+        </S.UploadDiv>
+        {/* <S.ImageContainer>
+          <S.ProfileImage src={`${myInfo.user?.image}`} />
           <S.EditProfileImage src={EditProfileImage} />
-        </S.ImageContainer>
+        </S.ImageContainer> */}
         <InputBox
           label="사용자 이름"
           id="username"
@@ -149,7 +177,7 @@ export default function ProfileEdit() {
           borderBottomColor={null}
           errorMessage={null}
           show={null}
-          onChange={(e) => setIntroduction(e.target.value)}
+          onChange={handleIntro}
         />
       </S.ProfileEdit>
     </div>

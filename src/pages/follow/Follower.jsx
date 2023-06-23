@@ -4,16 +4,19 @@ import TabMenu from '../../components/common/tab/TabMenu';
 import UserFollow from '../../components/common/user/UserFollow';
 import { loadFollowerListAPI } from '../../api/profile/getFollowerAPI';
 import { useRecoilValue } from 'recoil';
-import { accountNameState, userTokenState } from '../../atoms/Atoms';
+import { userTokenState } from '../../atoms/Atoms';
 import * as S from './Follower.style';
+import { useLocation } from 'react-router-dom';
 
 function Follower() {
   const [isFollower, setIsFollower] = useState([]);
   const userToken = useRecoilValue(userTokenState);
-  const accountName = useRecoilValue(accountNameState);
 
+  const location = useLocation();
+
+  const accountname = location.pathname.split('/')[2];
   const loadFollowers = () => {
-    loadFollowerListAPI(accountName, userToken)
+    loadFollowerListAPI(accountname, userToken)
       .then((data) => {
         console.log('API response:', data); // API 응답 확인
         if (data) {

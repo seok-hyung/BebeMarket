@@ -6,14 +6,15 @@ import { loadFollowingListAPI } from '../../api/profile/getFollowingAPI';
 import { useRecoilValue } from 'recoil';
 import { accountNameState, userTokenState } from '../../atoms/Atoms';
 import * as S from './Following.style';
+import { useLocation } from 'react-router-dom';
 
 function Following() {
   const [isFollowing, setIsFollowing] = useState([]);
   const userToken = useRecoilValue(userTokenState);
-  const accountName = useRecoilValue(accountNameState);
-
+  const location = useLocation();
+  const accountname = location.pathname.split('/')[2];
   const loadfollowing = () => {
-    loadFollowingListAPI(accountName, userToken)
+    loadFollowingListAPI(accountname, userToken)
       .then((data) => {
         console.log('API response:', data); // API 응답 확인
         if (data) {

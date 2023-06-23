@@ -158,14 +158,6 @@ export default function Profile() {
     }
   };
 
-  const sendAccountnameData = () => {
-    navigate(`/profile/${accountname}/following`, {
-      state: {
-        accountnameData: accountname,
-      },
-    });
-  };
-
   return (
     <div>
       <TopBasicNav />
@@ -175,11 +167,7 @@ export default function Profile() {
             {/* 프로필 팔로워수 처리 변경 */}
             <S.Followers
               onClick={() => {
-                navigate(`/profile/${accountname}/follower`, {
-                  state: {
-                    accountnameData: accountname,
-                  },
-                });
+                navigate(`/profile/${accountname}/follower`);
               }}
             >
               <span>{followersCount || 0}</span>
@@ -193,11 +181,7 @@ export default function Profile() {
             {/* 프로필 팔로잉수 처리 변경 */}
             <S.Followings
               onClick={() => {
-                navigate(`/profile/${accountname}/following`, {
-                  state: {
-                    accountnameData: accountname,
-                  },
-                });
+                navigate(`/profile/${accountname}/following`);
               }}
             >
               <span>{followingCount || 0}</span>

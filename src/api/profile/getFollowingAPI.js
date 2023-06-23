@@ -1,7 +1,12 @@
 import axios from 'axios';
 import { apiURL } from '../apiURL';
 
-export const loadFollowingListAPI = async (accountName, userToken) => {
+export const loadFollowingListAPI = async (
+  accountName,
+  userToken,
+  skip = 0,
+  limit = 10,
+) => {
   try {
     const result = await axios({
       method: 'GET',
@@ -9,6 +14,10 @@ export const loadFollowingListAPI = async (accountName, userToken) => {
       headers: {
         Authorization: `Bearer ${userToken}`,
         'Content-Type': 'application/json',
+      },
+      params: {
+        skip: skip,
+        limit: limit,
       },
     });
     return result.data;

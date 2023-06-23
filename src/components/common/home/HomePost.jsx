@@ -8,6 +8,7 @@ import { likeAPI } from '../../../api/likeHeart/likeAPI';
 import { unLikeAPI } from '../../../api/likeHeart/unLikeAPI';
 import basicHeartIcon from '../../../assets/icon/icon-heart.svg';
 import ColorHeartIcon from '../../../assets/icon/icon-heart-fill.svg';
+
 function HomePost({ post, postId, commentCount }) {
   const navigate = useNavigate();
   const [isModalOpen, setisModalOpen] = useState(false);
@@ -127,32 +128,3 @@ function HomePost({ post, postId, commentCount }) {
   );
 }
 export default HomePost;
-
-// {post.image.split(',').length === 1 ? (
-//   <S.ContentImage src={post.image.split(',')[0]} />
-// ) : (
-//   <S.MultipleImgUl>
-//     <S.ContentImageWrapper>
-//       <S.ContentImage src={post.image.split(',')[0]} />
-//     </S.ContentImageWrapper>
-//     <S.ContentImageWrapper>
-//       <S.ContentImage src={post.image.split(',')[1]} />
-//     </S.ContentImageWrapper>
-//   </S.MultipleImgUl>
-// )}
-
-// if (post.author.accountname === accountname) {
-//   setIsMyPost(true);
-// } 라고 했을때는 isMyPost가 재렌더링 되어서 무한루프가 일어난다.
-
-// {post.image.split(',').length === 1 ? (
-//   <S.ContentImage src={post.image.split(',')[0]} />
-// ) : (
-//   <S.MultipleImgUl>
-//     {post.image.split(',').map((image, index) => (
-//       <S.ContentImageWrapper key={index}>
-//         <S.ContentImage src={image} alt="포스트 이미지" />
-//       </S.ContentImageWrapper>
-//     ))}
-//   </S.MultipleImgUl>
-// )}

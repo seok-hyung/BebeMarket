@@ -14,31 +14,25 @@ import getPostFeedAPI from '../../api/post/getPostFeedAPI';
 function Home() {
   const navigate = useNavigate();
   const userToken = useRecoilValue(userTokenState);
-  const [followerData, setFollowerData] = useState({});
+  const [followerData, setFollowerData] = useState([]);
   useEffect(() => {
-    const getFollowerFeedDatas = async () => {
-      const followerFeedDatas = await getPostFeedAPI(userToken);
-      setFollowerData(followerFeedDatas);
-    };
-    getFollowerFeedDatas();
+    getPostFeedAPI(userToken).then((data) => {
+      setFollowerData(data.posts);
+    });
   }, []);
-  const post = followerData.posts;
+
   return (
     <>
-      {followerData?.length > 0 ? (
-        <>
-          <TopMainNav />
-          <S.HomeWrapper>
-            <HomePost post={post} />
-          </S.HomeWrapper>
-          <TabMenu />
-        </>
-      ) : (
-        <>
-          <TopMainNav />
-          <S.HomeWrapper>
+      <TopMainNav />
+      <S.HomeWrapper>
+        {followerData?.length > 0 ? (
+          followerData.map((post) => (
+            <HomePost key={post.id} post={post} postId={post.id} />
+          ))
+        ) : (
+          <>
             <S.HomeDiv>
-              <S.HomeImage src={Image} alt="홈 피드 내용이 없을때의 이미지" />
+              <S.HomeImage src={Image} alt="홈 피드 내용이 없을 때의 이미지" />
               <S.HomeDescription>
                 유저를 검색해 팔로우 해보세요
               </S.HomeDescription>
@@ -46,10 +40,10 @@ function Home() {
                 검색하기
               </S.SearchButton>
             </S.HomeDiv>
-          </S.HomeWrapper>
-          <TabMenu />
-        </>
-      )}
+          </>
+        )}
+      </S.HomeWrapper>
+      <TabMenu />
     </>
   );
 }

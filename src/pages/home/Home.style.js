@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const HomeWrapper = styled.div`
   min-height: calc(100vh - 108px); // 헤더 + 네브 === 108
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;

@@ -1,26 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import TopSearchNav from '../../components/common/topNav/TopSearchNav';
 import TabMenu from '../../components/common/tab/TabMenu';
 import UserSearch from '../../components/common/user/UserSearch';
 
-import { useRecoilValue } from 'recoil';
-import { userTokenState } from '../../atoms/Atoms';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { searchValueState, userTokenState } from '../../atoms/Atoms';
 import { searchUserAPI } from '../../api/search/searchUserAPI';
-import { useNavigate } from 'react-router-dom';
 
 export default function Search() {
-  const navigate = useNavigate();
   // 검색어 입력한 value값
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useRecoilState(searchValueState);
   // searchUserAPI
   const [searchUserData, setSearchUserData] = useState([]);
   const userToken = useRecoilValue(userTokenState);
+  // const [pageIndex, setPageIndex] = useState(1);
+  // const [loading, setLoading] = useState(false);
+
+  // const handleScroll = useCallback(() => {
+  //   const scrollTop = window.scrollY;
+  //   const clientHeight = document.documentElement.clientHeight;
+  //   const scrollHeight = document.documentElement.scrollHeight;
+
+  //   if (scrollTop + clientHeight >= scrollHeight && !loading) {
+  //     setPageIndex((prevPageIndex) => prevPageIndex + 1);
+  //   }
+  // }, [loading]);
+
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [handleScroll]);
+
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [handleScroll]);
 
   useEffect(() => {
     if (searchValue) {
       const getSearchUserAPIDatas = async () => {
         const searchUserAPIData = await searchUserAPI(userToken, searchValue);
-        console.log(searchUserAPIData);
         setSearchUserData(searchUserAPIData);
       };
       getSearchUserAPIDatas();
@@ -29,20 +52,23 @@ export default function Search() {
     }
   }, [searchValue, userToken]);
 
-  const searchInputChange = (value) => {
-    setSearchValue(value);
+  const searchInputChange = (e) => {
+    setSearchValue(e.target.value);
   };
 
   return (
     <>
-      <TopSearchNav onSearchInputChange={searchInputChange} />
+      <TopSearchNav
+        searchValue={searchValue}
+        onSearchInputChange={searchInputChange}
+      />
       {searchUserData.map((user) => (
         <UserSearch
           key={user.accountname}
           searchValue={searchValue}
           accountname={user.accountname}
           username={user.username}
-          profileImage={user.profileImage}
+          profileImage={user.image}
         />
       ))}
       <TabMenu />

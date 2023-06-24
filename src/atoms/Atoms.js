@@ -21,3 +21,8 @@ export const accountNameState = atom({
   default: '',
   effects_UNSTABLE: [persistAtom],
 });
+
+export const searchValueState = atom({
+  key: 'searchValueState',
+  default: '',
+});

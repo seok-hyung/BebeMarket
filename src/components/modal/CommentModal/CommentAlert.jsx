@@ -9,13 +9,14 @@ import {
 import { deleteCommentAPI } from '../../../api/comment/deleteCommentAPI';
 import { useRecoilValue } from 'recoil';
 import { userTokenState } from '../../../atoms/Atoms';
-import ReportModal from '../ReportModal/ReportModal';
+import ReportCommentAlert from './ReportCommentAlert';
 export default function CommentAlert({
   setIsAlertOpen,
   content,
   commentId,
   postId,
   handleCommentDelete,
+  setisModalOpen,
 }) {
   const token = useRecoilValue(userTokenState);
   const [isReported, setIsReported] = useState(false);
@@ -52,7 +53,9 @@ export default function CommentAlert({
           <DeleteButton onClick={handleButtonClick}>{content}</DeleteButton>
         </ButtonDiv>
       </AlertContainer>
-      {isReported ? <ReportModal setIsAlertOpen={setIsAlertOpen} /> : null}
+      {isReported ? (
+        <ReportCommentAlert setisModalOpen={setisModalOpen} />
+      ) : null}
     </>
   );
 }

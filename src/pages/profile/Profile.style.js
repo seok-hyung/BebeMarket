@@ -36,7 +36,7 @@ export const ProfileImage = styled.img`
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 export const Followings = styled.div`

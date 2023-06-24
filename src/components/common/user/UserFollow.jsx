@@ -63,21 +63,21 @@ function UserFollow({ data }) {
       />
       <S.RightBox>
         <S.UserTitle>
-          <S.Span>{data.username || '애월읍'}</S.Span>
-          {data.userTitle || '위니브 감귤농장'}
+          <S.Span>{data.username}</S.Span>
+          {data.userTitle}
         </S.UserTitle>
-        <S.UserAddress>@{data.accountname || 'weniv_Mandarin'}</S.UserAddress>
+        <S.UserAddress>@{data.accountname}</S.UserAddress>
       </S.RightBox>
       {loginedAccount !== data.accountname &&
         isFollow !== null &&
         (isFollow ? (
-          <SmallFollowButtonStyled isActive onClick={clickFollow}>
-            팔로우
-          </SmallFollowButtonStyled>
-        ) : (
           <CancelButtonStyled isActive={false} onClick={clickFollow}>
             취소
           </CancelButtonStyled>
+        ) : (
+          <SmallFollowButtonStyled isActive onClick={clickFollow}>
+            팔로우
+          </SmallFollowButtonStyled>
         ))}
     </S.UserBox>
   );

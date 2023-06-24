@@ -20,11 +20,15 @@ export default function TabMenu() {
 
   useEffect(() => {
     if (location.pathname === '/home') {
-      setActiveTab(0);
+      setActiveTab(0); //home에서 다른 사람 프로필 들어가면 계속 activeTab이 0이므로 홈에 색깔이 유지됨.
     } else if (location.pathname === '/chat') {
       setActiveTab(1);
-    } else if (location.pathname === `/profile/${myAccountname}`) {
-      setActiveTab(2);
+    } else if (location.pathname.includes('/profile/')) {
+      if (location.pathname === `/profile/${myAccountname}`) {
+        setActiveTab(2);
+      } else {
+        setActiveTab(-1);
+      }
     }
   }, [location.pathname]);
 

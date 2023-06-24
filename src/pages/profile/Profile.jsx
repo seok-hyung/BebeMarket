@@ -162,6 +162,10 @@ export default function Profile() {
     }
   };
 
+  const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
   return (
     <div>
       <TopBasicNav />
@@ -245,7 +249,9 @@ export default function Profile() {
                   >
                     <S.ProductItem src={product.itemImage} key={index} />
                     <S.ProductTitle>{product.itemName}</S.ProductTitle>
-                    <S.ProductPrice>{product.price}</S.ProductPrice>
+                    <S.ProductPrice>
+                      {numberWithCommas(product.price)}원
+                    </S.ProductPrice>
                   </a>
                 </S.ProductListLi>
               ))}

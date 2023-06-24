@@ -6,6 +6,7 @@ export const HomeWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 60px;
 `;
 
 export const HomeDiv = styled.div`

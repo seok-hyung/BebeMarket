@@ -30,6 +30,7 @@ function Comment({ myProfileImg, postId, handleCommentSubmit }) {
     });
     //window.location.reload();
     handleCommentSubmit();
+    setComment('');
   };
   return (
     <S.CommentBox>

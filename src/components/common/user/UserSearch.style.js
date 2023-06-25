@@ -4,6 +4,8 @@ export const UserBox = styled.div`
   display: flex;
   width: 358px;
   height: 50px;
+  padding: 12px;
+  margin-bottom: 10px;
 `;
 export const ProfileImage = styled.img`
   width: 50px;

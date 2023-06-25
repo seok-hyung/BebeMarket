@@ -34,6 +34,7 @@ export default function CommentModal({
           commentId={commentId}
           postId={postId}
           handleCommentDelete={handleCommentDelete}
+          setisModalOpen={setisModalOpen}
         />
       ) : null}
     </>

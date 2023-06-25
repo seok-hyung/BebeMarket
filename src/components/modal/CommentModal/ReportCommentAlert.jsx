@@ -9,7 +9,7 @@ import {
 
 import { useLocation, useNavigate } from 'react-router-dom';
 import { accountNameState } from '../../../atoms/Atoms';
-export default function ReportModal({ setisModalOpen }) {
+export default function ReportCommentAlert({ setisModalOpen }) {
   const navigate = useNavigate();
   const location = useLocation();
 

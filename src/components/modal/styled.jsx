@@ -51,7 +51,26 @@ export const AlertContainer = styled.div`
   background-color: white;
   z-index: 10;
 `;
+export const ReportDone = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 260px;
+  padding: 50px 50px;
 
+  border-radius: 10px;
+  text-align: center;
+  border: 0.5px solid #dbdbdb;
+  background-color: white;
+  z-index: 10;
+`;
+
+export const CancleButton = styled.button`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+`;
 export const DeleteConfirm = styled.p`
   padding: 22px 60px;
   font-weight: 500;
@@ -59,6 +78,7 @@ export const DeleteConfirm = styled.p`
   line-height: 20px;
   border-bottom: 0.5px solid #dbdbdb;
 `;
+
 export const ButtonDiv = styled.div`
   display: flex;
   justify-content: space-around;

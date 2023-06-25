@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
 export const FollowerWrapper = styled.div`
-  margin: 24px auto 80px;
-  padding: 0 16px;
+  min-height: calc(100vh - 108px);
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-bottom: 60px;
+  padding: 24px 0 24px;
 `;
 
 export const FollowerUserList = styled.ul`
-  max-width: 358px;
-  margin: auto;
+  width: 358px;
 `;

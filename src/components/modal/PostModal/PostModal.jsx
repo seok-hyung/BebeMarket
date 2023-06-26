@@ -33,7 +33,11 @@ export default function PostModal({ setisModalOpen, isMyPost, postId }) {
         )}
       </Ul>
       {isAlertOpen ? (
-        <PostAlert setIsAlertOpen={setIsAlertOpen} postId={postId} />
+        <PostAlert
+          setisModalOpen={setisModalOpen}
+          setIsAlertOpen={setIsAlertOpen}
+          postId={postId}
+        />
       ) : null}
       {isReportAlertOpen ? (
         <ReportAlert

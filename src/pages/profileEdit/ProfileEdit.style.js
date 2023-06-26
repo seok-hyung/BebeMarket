@@ -71,8 +71,7 @@ export const EditProfileImage = styled.img`
 `;
 
 // 이름, 계정, 소개말
-export const ProfileEdit = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+export const inputWrapper = styled.div`
+  width: 320px;
+  margin: 80px auto;
 `;

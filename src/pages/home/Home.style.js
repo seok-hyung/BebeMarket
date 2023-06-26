@@ -9,6 +9,13 @@ export const HomeWrapper = styled.div`
   margin-bottom: 60px;
 `;
 
+export const LoadingImage = styled.img`
+  display: flex;
+  width: 100px;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const HomeDiv = styled.div`
   display: flex;
   flex-direction: column;

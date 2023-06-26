@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './Home.style';
 import Image from '../../assets/images/symbol-logo-gray.svg';
+import loadingGif from '../../assets/images/loading.gif';
 
 import TopMainNav from '../../components/common/topNav/TopMainNav';
 import TabMenu from '../../components/common/tab/TabMenu';
@@ -15,9 +16,13 @@ function Home() {
   const navigate = useNavigate();
   const userToken = useRecoilValue(userTokenState);
   const [followerData, setFollowerData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
+    setIsLoading(true);
     getPostFeedAPI(userToken).then((data) => {
       setFollowerData(data.posts);
+      setIsLoading(false);
     });
   }, []);
 
@@ -25,7 +30,10 @@ function Home() {
     <>
       <TopMainNav />
       <S.HomeWrapper>
-        {followerData?.length > 0 ? (
+        {isLoading ? (
+          // 로딩 중일 때 표시할 내용을 조건부 렌더링합니다.
+          <S.LoadingImage src={loadingGif} alt="로딩중일 때 이미지" />
+        ) : followerData?.length > 0 ? (
           followerData.map((post) => (
             <HomePost key={post.id} post={post} postId={post.id} />
           ))

@@ -22,6 +22,7 @@ export default function UploadPost() {
   const navigate = useNavigate();
   const token = useRecoilValue(userTokenState);
   const accountname = useRecoilValue(accountNameState);
+  const [postData, setPostData] = useState('');
   // useEffect(() => {
   //   console.log(selectedImages.join(', '));
   // }, [selectedImages]);
@@ -87,10 +88,22 @@ export default function UploadPost() {
   };
 
   // 업로드 버튼 //오류나면 e.preventDefalt어쩌구
-  const handleUpload = () => {
-    uploadPostAPI(sendData, token).then((data) => console.log(data));
-    navigate(`/profile/${accountname}`);
+  const handleUpload = async () => {
+    try {
+      const data = await uploadPostAPI(sendData, token);
+      setPostData(data.post.id);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  // 이 useEffect 안에서만 변경사항을 확인할 수 있습니다.
+  useEffect(() => {
+    if (postData) {
+      console.log(postData);
+      navigate(`/post/${postData}`);
+    }
+  }, [postData]);
 
   //TopUploadNav 폰트패밀리가 SUITE이 아님.
   return (

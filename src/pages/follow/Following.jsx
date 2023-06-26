@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import TopFollowNav from '../../components/common/topNav/TopFollowNav';
 import TabMenu from '../../components/common/tab/TabMenu';
 import UserFollow from '../../components/common/user/UserFollow';
@@ -9,50 +9,67 @@ import * as S from './Following.style';
 import { useLocation } from 'react-router-dom';
 
 function Following() {
-  const [isFollowing, setIsFollowing] = useState([]);
+  const [following, setFollowing] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
   const userToken = useRecoilValue(userTokenState);
-  const pageSize = 8; // 한 번에 로드할 팔로워 수
-  const [pageNumber, setPageNumber] = useState(0); // 현재 페이지 번호, 초기값은 0으로 설정
+  const pageSize = 8;
+  const [pageNumber, setPageNumber] = useState(0);
   const location = useLocation();
   const accountname = location.pathname.split('/')[2];
   const skip = pageNumber * pageSize;
 
-  const loadfollowing = () => {
-    loadFollowingListAPI(accountname, userToken, skip, pageSize)
-      .then((data) => {
-        console.log('API response:', data); // API 응답 확인
-        if (data) {
-          setIsFollowing((prevState) => [...prevState, ...data]);
-          setPageNumber((prevPageNumber) => prevPageNumber + 1); // 페이지 번호 증가
-        } else {
-          console.error('API returned null or undefined');
+  const loadFollowing = useCallback(
+    async (pageNum) => {
+      if (!hasMore) return;
+
+      const data = await loadFollowingListAPI(
+        accountname,
+        userToken,
+        skip,
+        pageSize,
+      );
+
+      if (data) {
+        setFollowing((prevState) => [...prevState, ...data]);
+        if (data.length < pageSize) {
+          setHasMore(false);
         }
-      })
-      .catch((error) => {
-        console.error('Error loading following:', error);
-      });
-  };
+      } else {
+        console.error('API returned null or undefined');
+      }
+    },
+    [accountname, userToken, skip, pageSize, hasMore],
+  );
 
   useEffect(() => {
-    console.log('Loading following...');
-    loadfollowing();
-  }, []);
+    loadFollowing(pageNumber);
+  }, [loadFollowing, pageNumber]);
 
-  // 이벤트 핸들러
-  const handleLoadMore = () => {
-    loadfollowing();
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+          document.documentElement.offsetHeight ||
+        !hasMore
+      ) {
+        return;
+      }
+      setPageNumber((prevPageNumber) => prevPageNumber + 1);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [hasMore]);
 
   return (
     <div>
-      <TopFollowNav title="Followings" />
+      <TopFollowNav title="Following" />
       <S.FollowingWrapper>
         <S.FollowingUserList>
-          {isFollowing &&
-            isFollowing.map((item, index) => (
+          {following &&
+            following.map((item, index) => (
               <UserFollow key={`${item.accountname}-${index}`} data={item} />
             ))}
-          <button onClick={handleLoadMore}>더 보기</button>
         </S.FollowingUserList>
       </S.FollowingWrapper>
       <TabMenu />

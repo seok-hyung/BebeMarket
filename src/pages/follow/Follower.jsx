@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import TopFollowNav from '../../components/common/topNav/TopFollowNav';
 import TabMenu from '../../components/common/tab/TabMenu';
 import UserFollow from '../../components/common/user/UserFollow';
@@ -9,50 +9,69 @@ import * as S from './Follower.style';
 import { useLocation } from 'react-router-dom';
 
 function Follower() {
-  const [isFollower, setIsFollower] = useState([]);
+  const [followers, setFollowers] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
   const userToken = useRecoilValue(userTokenState);
-  const pageSize = 8; // 한 번에 로드할 팔로워 수
-  const [pageNumber, setPageNumber] = useState(0); // 현재 페이지 번호, 초기값은 0으로 설정
+  const pageSize = 8;
+  const [pageNumber, setPageNumber] = useState(0);
   const location = useLocation();
   const accountname = location.pathname.split('/')[2];
   const skip = pageNumber * pageSize;
 
-  const loadFollowers = () => {
-    loadFollowerListAPI(accountname, userToken, skip, pageSize)
-      .then((data) => {
-        console.log('API response:', data); // API 응답 확인
-        if (data) {
-          setIsFollower((prevState) => [...prevState, ...data]);
-          setPageNumber((prevPageNumber) => prevPageNumber + 1); // 페이지 번호 증가
-        } else {
-          console.error('API returned null or undefined');
-        }
-      })
-      .catch((error) => {
-        console.error('Error loading followers:', error);
-      });
-  };
+  const loadFollowers = useCallback(async () => {
+    if (!hasMore) return;
+
+    const data = await loadFollowerListAPI(
+      accountname,
+      userToken,
+      skip,
+      pageSize,
+    );
+
+    if (data) {
+      console.log(data);
+      setFollowers((prevState) => [...prevState, ...data]);
+      setPageNumber((prevPageNumber) => prevPageNumber + 1);
+      if (data.length < pageSize) {
+        setHasMore(false);
+      }
+    } else {
+      console.error('API returned null or undefined');
+    }
+  }, [accountname, userToken, skip, pageSize, hasMore]);
 
   useEffect(() => {
-    console.log('Loading followers...');
-    loadFollowers();
-  }, []);
+    if (pageNumber === 0) {
+      loadFollowers();
+    }
+  }, [loadFollowers, pageNumber]);
 
-  // 이벤트 핸들러
-  const handleLoadMore = () => {
-    loadFollowers();
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      // 현재 스크롤 위치가 문서의 끝에 아직 도달하지 않았을 때
+      if (
+        window.innerHeight + document.documentElement.scrollTop <
+          document.documentElement.offsetHeight ||
+        !hasMore // 더 이상 가져올 데이터가 없을 때
+      )
+        return;
+
+      loadFollowers();
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [loadFollowers, hasMore]);
 
   return (
     <div>
       <TopFollowNav title="Followers" />
       <S.FollowerWrapper>
         <S.FollowerUserList>
-          {isFollower &&
-            isFollower.map((item, index) => (
+          {followers &&
+            followers.map((item, index) => (
               <UserFollow key={`${item.accountname}-${index}`} data={item} />
             ))}
-          <button onClick={handleLoadMore}>더 보기</button>
         </S.FollowerUserList>
       </S.FollowerWrapper>
       <TabMenu />

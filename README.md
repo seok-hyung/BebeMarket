@@ -1,22 +1,25 @@
-# 🍼 Bebe Market | 육아 커뮤니티 플랫폼
+# 🍼 Bebe Market | 육아 커뮤니티 플랫폼<br>
 <img width="3491" alt="베베마켓" src="https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/c880cfcf-d732-40f4-aa4f-9aa77be506bd">
-
+<br>
 
 > Bebe Market은 육아 중인 부모들을 위한 커뮤니티 플랫폼입니다.<br>
 > 이 플랫폼은 육아에 필요한 정보를 공유하고 교류할 수 있는 장을 제공합니다.<br>
 > `육아 꿀팁` `육아템 추천` `아기용품 거래` `이유식 레시피 공유`<br>
-
+<br>
+<br>
 
 - 배포 URL : `127.0.0.1:8000`
 - Test ID : `127.0.0.1:8000`
 - Test PW : `127.0.0.1:8000`
-
+<br>
+<br>
 [링크]
 💎 [프로젝트 레포지토리](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket)
 📚 [팀 스터디 레포지토리](https://www.notion.so/12c57d2ccab14d1cb045fc9c8477d9f7?pvs=4)
 📝 [팀 워크스페이스](https://www.notion.so/fa26227061e6455eb9ffaa4890b5820b?v=6b0e9d29545a4964874dfb61c3ed7150&pvs=4)
 🎨 [디자인 피그마](https://www.figma.com/file/nJWmlNXio2PaUPKxgFp0nm/%EA%B0%90%EA%B7%A4?type=design&node-id=7088-4332&mode=design&t=NBFWiiIi6UpSdBv5-0)
-
+<br>
+<br>
 
 
 ## 📌목차
@@ -29,7 +32,8 @@
 - [코드 컨벤션](https://www.notion.so/9baf128ad01040488e5aa5a6daa78d50?pvs=21) 
 - [커밋 컨벤션](https://www.notion.so/db10cf69f07448b487795899770d8f23?pvs=21)
 
-
+<br>
+<br>
 
 ## 팀원 소개
 
@@ -39,7 +43,8 @@
 | ![이미지1](이미지1_URL) | ![이미지2](이미지2_URL) | ![이미지3](이미지3_URL) | ![이미지4](이미지4_URL) |
 | [@seok-hyung](https://github.com/seok-hyung) | [@sujung-lim](https://github.com/sujung-lim) | [@LimJeeIn](https://github.com/LimJeeIn) | [@susuje](https://github.com/susuje) |
 
-
+<br>
+<br>
 
 ## 역할 분담
 
@@ -52,9 +57,10 @@
 
 💜  임수정
 - UI
--- 
+-- 버튼 컴포넌트, 마이 프로필 페이지, 사용자 프로필 페이지, 프로필 수정 페이지
 - 기능
---
+-- 사용자 이름, 계정 유효성 검사
+-- 프로필 페이지 (판매 중인 상품 불러오기, 게시글 불러오기) 구현, 프로필 수정 페이지 구현
 
 💚  ️임지인
 - UI
@@ -71,7 +77,8 @@
 -- 
 - 기능
 --
-
+<br>
+<br>
 ## 디렉터리 구조
 
 

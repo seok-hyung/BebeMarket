@@ -24,24 +24,25 @@ export const BoxInput = styled.input`
   padding: 10px 0 8px;
   color: var(--main-text-color);
   border: none;
-  border-bottom: ${(props) =>
-    props.boderBottomColor === 'on'
-      ? '1px solid red'
-      : '1px solid var(--main-disabled-color)'};
-  &::placeholder {
-    color: var(--main-disabled-color);
-  }
   :focus {
     outline: none;
     border-bottom: 1px solid var(--main-color);
   }
+
+  &::placeholder {
+    color: var(--main-disabled-color);
+  }
+
+  border-bottom: ${(props) =>
+    props.borderBottomColor === 'on'
+      ? '1px solid red'
+      : '1px solid var(--main-disabled-color)'};
 `;
 
 export const ErrorMessage = styled.p`
   font-size: 12px;
   color: #eb5757;
   font-weight: 500;
-  height: 20px;
 
   line-height: 14px;
   margin: 10px 0;

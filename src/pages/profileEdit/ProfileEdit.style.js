@@ -49,7 +49,7 @@ export const UploadInputLabel = styled.label`
 export const ProfileImage = styled.img`
   width: 110px;
   height: 110px;
-  object-fit: contain;
+  border-radius: 50%;
 `;
 
 export const UploadInput = styled.input`

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TopSearchNav from '../../components/common/topNav/TopSearchNav';
 import TabMenu from '../../components/common/tab/TabMenu';
 import UserSearch from '../../components/common/user/UserSearch';
@@ -13,42 +13,21 @@ export default function Search() {
   // searchUserAPI
   const [searchUserData, setSearchUserData] = useState([]);
   const userToken = useRecoilValue(userTokenState);
-  // const [pageIndex, setPageIndex] = useState(1);
-  // const [loading, setLoading] = useState(false);
 
-  // const handleScroll = useCallback(() => {
-  //   const scrollTop = window.scrollY;
-  //   const clientHeight = document.documentElement.clientHeight;
-  //   const scrollHeight = document.documentElement.scrollHeight;
-
-  //   if (scrollTop + clientHeight >= scrollHeight && !loading) {
-  //     setPageIndex((prevPageIndex) => prevPageIndex + 1);
-  //   }
-  // }, [loading]);
-
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, [handleScroll]);
-
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, [handleScroll]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (searchValue) {
+      setIsLoading(true);
       const getSearchUserAPIDatas = async () => {
         const searchUserAPIData = await searchUserAPI(userToken, searchValue);
         setSearchUserData(searchUserAPIData);
       };
       getSearchUserAPIDatas();
+      setIsLoading(false);
     } else {
       setSearchUserData([]);
+      setIsLoading(false);
     }
   }, [searchValue, userToken]);
 

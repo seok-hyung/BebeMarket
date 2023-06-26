@@ -300,7 +300,7 @@
 
 | splash | 로그인 | 회원 가입 |
 | ------ | ------ | ------ | 
-| [![이미지1](이미지1_URL)](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/issues/128#issue-1774215004) | [![이미지2](이미지2_URL)](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/issues/129#issue-1774217448) | ![이미지3](이미지3_URL) |
+| https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/issues/128#issue-1774215004 | https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/issues/129#issue-1774217448 | ![이미지3](이미지3_URL) |
 
 | 홈 피드 | 검색 | 
 | ------ | ------ |

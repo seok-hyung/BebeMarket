@@ -2,11 +2,11 @@
 <img width="3491" alt="베베마켓" src="https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/c880cfcf-d732-40f4-aa4f-9aa77be506bd">
 
 
-> Bebe Market은 육아 중인 부모들을 위한 커뮤니티 플랫폼입니다.
-> 이 플랫폼은 육아에 필요한 정보를 공유하고 교류할 수 있는 장을 제공합니다.
-> `육아 꿀팁` `육아템 추천` `아기용품 거래` `이유식 레시피 공유`
-> 육아 고민, 정보를 나누고 소통하는 공간입니다.
-> Bebe Market에서 예비 부모, 양육 중인 부모와 소통해보세요!
+> Bebe Market은 육아 중인 부모들을 위한 커뮤니티 플랫폼입니다.<br>
+> 이 플랫폼은 육아에 필요한 정보를 공유하고 교류할 수 있는 장을 제공합니다.<br>
+> `육아 꿀팁` `육아템 추천` `아기용품 거래` `이유식 레시피 공유`<br>
+> 육아 고민, 정보를 나누고 소통하는 공간입니다.<br>
+> Bebe Market에서 예비 부모, 양육 중인 부모와 소통해보세요!<br>
 
 - 배포 URL : `127.0.0.1:8000`
 - Test ID : `127.0.0.1:8000`
@@ -17,6 +17,7 @@
 📚 [팀 스터디 레포지토리](https://www.notion.so/12c57d2ccab14d1cb045fc9c8477d9f7?pvs=4)
 📝 [팀 워크스페이스](https://www.notion.so/fa26227061e6455eb9ffaa4890b5820b?v=6b0e9d29545a4964874dfb61c3ed7150&pvs=4)
 🎨 [디자인 피그마](https://www.figma.com/file/nJWmlNXio2PaUPKxgFp0nm/%EA%B0%90%EA%B7%A4?type=design&node-id=7088-4332&mode=design&t=NBFWiiIi6UpSdBv5-0)
+
 
 
 ## 📌목차
@@ -38,6 +39,7 @@
 | ------ | ------ | ------ | ------ |
 | ![이미지1](이미지1_URL) | ![이미지2](이미지2_URL) | ![이미지3](이미지3_URL) | ![이미지4](이미지4_URL) |
 | [@seok-hyung](https://github.com/seok-hyung) | [@sujung-lim](https://github.com/sujung-lim) | [@LimJeeIn](https://github.com/LimJeeIn) | [@susuje](https://github.com/susuje) |
+
 
 
 ## 역할 분담

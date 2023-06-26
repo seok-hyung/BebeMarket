@@ -143,22 +143,22 @@ export default function ProfileEdit() {
   return (
     <div>
       <TopUploadNav handleUpload={handleEditProfile} />
-      <S.ProfileEdit>
-        <S.UploadDiv>
-          <S.ProfileImage src={image} alt="회원가입 유저 프로필 이미지" />
-          <S.UploadInputLabel htmlFor="uploadInput" />
-          <S.UploadInput
-            type="file"
-            id="uploadInput"
-            alt="프로필 수정 업로드 이미지"
-            accept="image/"
-            onChange={uploadImage}
-          />
-        </S.UploadDiv>
-        {/* <S.ImageContainer>
+      <S.UploadDiv>
+        <S.ProfileImage src={image} alt="회원가입 유저 프로필 이미지" />
+        <S.UploadInputLabel htmlFor="uploadInput" />
+        <S.UploadInput
+          type="file"
+          id="uploadInput"
+          alt="프로필 수정 업로드 이미지"
+          accept="image/"
+          onChange={uploadImage}
+        />
+      </S.UploadDiv>
+      {/* <S.ImageContainer>
           <S.ProfileImage src={`${myInfo.user?.image}`} />
           <S.EditProfileImage src={EditProfileImage} />
         </S.ImageContainer> */}
+      <S.inputWrapper>
         <InputBox
           label="사용자 이름"
           id="username"
@@ -182,7 +182,7 @@ export default function ProfileEdit() {
           errorMessage={accountIdErrorMessage}
           show={!isAccountIdValid ? 'on' : null}
           onChange={handleAccountIdValid}
-          onInput={handleUserIdDuplicateValid}
+          onBlur={handleUserIdDuplicateValid}
         />
         <InputBox
           label="소개"
@@ -195,7 +195,7 @@ export default function ProfileEdit() {
           show={null}
           onChange={handleIntro}
         />
-      </S.ProfileEdit>
+      </S.inputWrapper>
     </div>
   );
 }

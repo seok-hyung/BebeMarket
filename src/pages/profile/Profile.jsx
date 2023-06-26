@@ -200,7 +200,7 @@ export default function Profile() {
             {/* 프로필 정보 표시 변경 (사용자 이름, 계정명, 설명 등) */}
             <p>{profile ? profile.username : 'Loading...'}</p>
             <p>@{profile ? profile.accountname : 'Loading...'}</p>
-            <p>{profile ? profile.description : 'Loading...'}</p>
+            <p>{profile ? profile.intro : 'Loading...'}</p>
           </S.ProfileMain>
           <S.ProfileFooter>
             {isMyProfile ? (

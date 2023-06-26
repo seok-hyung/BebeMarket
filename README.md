@@ -1,4 +1,6 @@
 # 🍼 Bebe Market | 육아 커뮤니티 플랫폼
+<img width="3491" alt="베베마켓" src="https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/c880cfcf-d732-40f4-aa4f-9aa77be506bd">
+
 
 > Bebe Market은 육아 중인 부모들을 위한 커뮤니티 플랫폼입니다.
 > 이 플랫폼은 육아에 필요한 정보를 공유하고 교류할 수 있는 장을 제공합니다.

@@ -295,6 +295,11 @@
 | ------ | ------ | 
 | 브랜치 전략 | [Git-Flow](https://github.com/susuje)  | 
 
+## [🧷기술 및 개발 환경 상세 설명](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki)
+
+
+
+
 ## 기능 시현
 
 1) 홈

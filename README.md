@@ -15,7 +15,6 @@
 <br>
 <br>
 
-[링크]
 💎 [프로젝트 레포지토리](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket)
 📚 [팀 스터디 레포지토리](https://www.notion.so/12c57d2ccab14d1cb045fc9c8477d9f7?pvs=4)
 📝 [팀 워크스페이스](https://www.notion.so/fa26227061e6455eb9ffaa4890b5820b?v=6b0e9d29545a4964874dfb61c3ed7150&pvs=4)

@@ -329,15 +329,17 @@
 
 | splash | 로그인 | 회원 가입 |
 | ------ | ------ | ------ | 
-| https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/issues/128#issue-1774215004 | https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/issues/129#issue-1774217448 | ![이미지3](이미지3_URL) |
+| ![스플래쉬](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/bc9971ac-6d01-4ecd-96dc-2abd7d07eb79) | ![로그인](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/21aa1964-c15c-478c-83a8-868b7f5756ca) | ![회원가입](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/a1765abf-abe0-47ec-85f4-3fb9aca50587) |
 
 | 홈 피드 | 검색 | 
 | ------ | ------ |
-| ![이미지1](이미지1_URL) | ![이미지2](이미지2_URL) | ![이미지3](이미지3_URL) | ![이미지4](이미지4_URL) |
+| ![홈피드](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/91ccb32e-5881-4c5a-ac6b-6b016da5e3a1) | ![검색](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/2d82fa1c-0083-4b8e-b7b9-cd243e95642e)
+  
 
 | 채팅 | 404 페이지 | 
 | ------ | ------ |
-| ![이미지1](이미지1_URL) | ![이미지2](이미지2_URL) | 
+| ![채팅](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/9d1dadaf-4365-49d4-bc0a-49358ac7a0ee)
+ | ![이미지2](이미지2_URL) | 
 
 2) 게시글
 

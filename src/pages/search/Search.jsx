@@ -14,20 +14,15 @@ export default function Search() {
   const [searchUserData, setSearchUserData] = useState([]);
   const userToken = useRecoilValue(userTokenState);
 
-  const [isLoading, setIsLoading] = useState(false);
-
   useEffect(() => {
     if (searchValue) {
-      setIsLoading(true);
       const getSearchUserAPIDatas = async () => {
         const searchUserAPIData = await searchUserAPI(userToken, searchValue);
         setSearchUserData(searchUserAPIData);
       };
       getSearchUserAPIDatas();
-      setIsLoading(false);
     } else {
       setSearchUserData([]);
-      setIsLoading(false);
     }
   }, [searchValue, userToken]);
 

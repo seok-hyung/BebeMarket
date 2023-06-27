@@ -302,6 +302,8 @@
    └─ yarn.lock
 
 ```
+<br>
+
 ## [🧷기술 스택 상세 설명으로 이동](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/기술-스택-선택-이유)
 ## 기술
 
@@ -317,15 +319,11 @@
 | 이슈 관리 |  ![Git](https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white)| 
 | ------ | ------ | 
 | 브랜치 전략 | [Git-Flow](https://github.com/susuje)  | 
-
-
-
-
-
-## 기능 시연
+<br>
+<br>
 
 ## [🧷기능 상세 설명으로 이동](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/기능-상세-설명)
-
+## 기능 시연
 1) 홈
 
 | splash | 로그인 | 회원 가입 |
@@ -375,7 +373,7 @@
 | ------ | ------ | ------ |
 | ![상품등록](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/2a7cfa46-def6-4d57-8b59-2cf56a7ac007) | ![상품수정](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/79ae7fd8-3ce2-4a8a-b89a-a649151b8c49) | ![상품삭제](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/b92a381f-a95d-476b-9070-159875d39528) | 
 
-
+<br>
 
 ##  ✨ 앞으로의 또 다른 시작 ✨
 

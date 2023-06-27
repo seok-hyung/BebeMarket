@@ -182,7 +182,7 @@ Test PW : `127.0.0.1:8000`
 
 | 게시글 상세 및 댓글 | 댓글 삭제 | 댓글 신고 |
 | ------ | ------ | ------ | 
-| ![게시글 상세 및 댓글달기](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/92c5e301-fdb2-42da-8fa9-75383bef15da) | ![댓글 삭제](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/ad1b40f2-2745-4b2d-b653-99eea881d5c6) | ![댓글신고](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/c77321de-44a3-459e-b864-45cf902dbe02) | 
+| ![게시물 상세 및 댓글](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/4f835cc3-afb0-417f-a5c9-85c73f823624) | ![댓글 삭제](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/ad1b40f2-2745-4b2d-b653-99eea881d5c6) | ![댓글신고](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/c77321de-44a3-459e-b864-45cf902dbe02) | 
 
 | 게시글 신고 | 좋아요, 좋아요 취소 |
 | ------ | ------ |

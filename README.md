@@ -9,9 +9,8 @@
 
 
 ``` 
-배포 URL : `127.0.0.1:8000`
-Test ID : `127.0.0.1:8000`
-Test PW : `127.0.0.1:8000`
+Test ID : final@test.com
+Test PW : 123123
 ```
 <br>
 

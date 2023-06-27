@@ -161,7 +161,7 @@ Test PW : `127.0.0.1:8000`
 ### 1) 홈
 | splash | 로그인 | 회원 가입 |
 | ------ | ------ | ------ | 
-| ![스플래쉬](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/bc9971ac-6d01-4ecd-96dc-2abd7d07eb79) | ![로그인](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/21aa1964-c15c-478c-83a8-868b7f5756ca) | ![회원가입](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/a1765abf-abe0-47ec-85f4-3fb9aca50587) |
+| ![스플래쉬](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/bc9971ac-6d01-4ecd-96dc-2abd7d07eb79) | ![로그인](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/21aa1964-c15c-478c-83a8-868b7f5756ca) | ![회원가입](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/723f5a42-0821-4c02-8d70-7963dc8aa896) |
 
 | 홈 피드 | 검색 | 
 | ------ | ------ |

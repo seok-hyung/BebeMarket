@@ -1,5 +1,6 @@
 # 🍼 Bebe Market | 육아 커뮤니티 플랫폼<br>
-<img width="3491" alt="베베마켓" src="https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/c880cfcf-d732-40f4-aa4f-9aa77be506bd">
+<img width="3491" alt="베베마켓썸네일" src="https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/e44ca668-060e-46cb-bed1-88a36212b121">
+
 <br>
 
 > Bebe Market은 육아 중인 부모들을 위한 커뮤니티 플랫폼입니다.<br>
@@ -336,30 +337,32 @@
 | ![홈피드](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/91ccb32e-5881-4c5a-ac6b-6b016da5e3a1) | ![검색](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/2d82fa1c-0083-4b8e-b7b9-cd243e95642e)
   
 
-| 채팅 | 404 페이지 | 
-| ------ | ------ |
-| ![채팅](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/c4190c98-f535-4c70-86cd-3cf719760aca)
- | 404 페이지 |
+| 채팅 | 404 페이지 |
+|------|---------|
+| ![채팅](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/c4190c98-f535-4c70-86cd-3cf719760aca.jpg) | ![404 페이지](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/0c375580-a2dd-41f0-8ecf-9b81e0c76add.jpg) |
+
 
 2) 게시글
 
 | 게시글 작성 | 게시글 수정 | 게시글 삭제 |
-| ------ | ------ | ------ | 
-| ![이미지1](이미지1_URL) | ![이미지2](이미지2_URL) | ![이미지3](이미지3_URL) | 
+|------------|------------|------------|
+| ![게시글작성1](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/2609aa76-ec34-4534-88fa-c74cacfc9e3e) | ![게시글수정](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/95a664c4-e4dc-42a8-8177-5a908f3ddc25) | ![게시글삭제](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/97f2477b-09af-4250-a2c0-1eedc79db67a) |
+
 
 | 게시글 상세 및 댓글 | 댓글 삭제 | 댓글 신고 |
 | ------ | ------ | ------ | 
-| ![이미지1](이미지1_URL) | ![이미지2](이미지2_URL) | ![이미지3](이미지3_URL) | 
+| ![게시글 상세 및 댓글달기](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/92c5e301-fdb2-42da-8fa9-75383bef15da) | ![댓글 삭제](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/ad1b40f2-2745-4b2d-b653-99eea881d5c6) | ![댓글신고](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/c77321de-44a3-459e-b864-45cf902dbe02) | 
 
-| 게시글 신고 | 좋아요, 좋아요 취소 | 
+| 게시글 신고 | 좋아요, 좋아요 취소 |
 | ------ | ------ |
-| ![이미지1](이미지1_URL) | ![이미지2](이미지2_URL) | 
+| ![게시글신고](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/cdfbd75e-33a5-4649-bb60-355eae84a4a9) | ![게시글좋아요,취소](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/aa731002-90d6-46a8-b1ee-63fd54134a5d) | 
 
 3) 프로필
 
 | 내 프로필 | 프로필 수정 | 
 | ------ | ------ |
-| ![이미지1](이미지1_URL) | ![이미지2](이미지2_URL) | 
+|![내프로필](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/487f209f-d1a6-45d1-97ee-9b4d6f23ed07) | ![프로필수정](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/1cccfb61-ba47-4c26-8f35-3f722b6c49b4)
+  
 
 | 팔로워, 팔로잉 | 타 유저 프로필 및 팔로우, 언팔로우 | 
 | ------ | ------ |
@@ -368,62 +371,17 @@
 
 4) 판매 상품
 
-| 상품 등록 | 상품 삭제 |
-| ------ | ------ |
-| ![이미지1](이미지1_URL) | ![이미지2](이미지2_URL) | 
+| 상품 등록 | 상품 수정 | 상품 삭제 |
+| ------ | ------ | ------ |
+| ![상품등록](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/2a7cfa46-def6-4d57-8b59-2cf56a7ac007) | ![상품수정](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/79ae7fd8-3ce2-4a8a-b89a-a649151b8c49) | ![상품삭제](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/b92a381f-a95d-476b-9070-159875d39528) | 
 
 
-
-## 🙌 공통 주요 기능
-
-Recoil을 이용하여 전역 상태를 관리하고, useState를 이용하여 컴포넌트 간 상태를 관리하는 방식을 사용하여 상태를 효율적으로 관리하고 있습니다. <br>
-또한, 커스텀 InputBox 컴포넌트를 작성하여 코드의 가독성을 높이고 있습니다. <br>
-이를 통해 코드의 유지보수성을 높이고, 사용자 경험을 개선하고자 노력하고 있습니다. <br>
-마지막으로, axios를 활용하여 API 요청을 처리하고 있습니다. 이를 통해 비동기 처리를 직관적으로 구현하고 있습니다.<br>
-따라서 이 프로젝트의 강점은 Recoil과 useState를 통해 상태를 효율적으로 관리하고 있고<br>
-axios를 활용하여 비동기 처리를 구현하고 있어 코드의 직관성을 높였습니다.
-
-
-## 🌷적극적인 깃허브 활용 (참고 - 수정하기)
-
-태스크, 이슈, PR 관리 등에 깃허브를 적극적으로 활용하였습니다.
-
-구체적인 PR 작성
-PR에는 이슈를 링크해 어떻게 해결했는지, 어떤 글을 참고했는 지에 대한 설명과 중점적으로 봐주었으면 하는 부분을 명시해 효율적인 코드 리뷰를 유도하였습니다.
-
-Issue와 Pull Request에 템플릿을 적용
-깃허브의 Issue와 Pull Request에 템플릿을 적용하여 커뮤니케이션에 사용되는 비용을 줄이고자 하였습니다.
-FEATURE, BUG 두 가지 Issue 템플릿을 만들어 사용하였습니다.
-
-깃허브 위키
-📑깃허브 위키에 코딩, 커밋, PR 컨벤션을 정리해 두어 편하게 볼 수 있도록 하였습니다.
-
-
-## ❓ Recoil 사용 이유
-
-Recoil을 사용하는 이유는 대표적으로 세 가지가 있습니다. 
-
-1) Recoil은 상태를 효과적으로 관리할 수 있습니다.<br>
-컴포넌트 간에 공유되는 다양한 상태를 효과적으로 관리할 수 있어서, 복잡한 상태를 관리하는 것이 용이해집니다.<br>
-예를 들어, 팔로워 정보 조회 기능에서 useRecoilValue를 이용하여 인증된 사용자만이 팔로워 정보를 조회할 수 있도록 설정할 수 있습니다. 
-
-2) Recoil은 업데이트 성능을 최적화할 수 있습니다. <br>
-Recoil을 사용하면 컴포넌트를 즉각적으로 리렌더링하지 않고, 변경된 값을 Recoil Store에서 가져오기 때문에 성능 개선이 가능합니다. <br>
-또한, 변경된 상태의 범위가 제한됨으로써 불필요한 렌더링을 최적화할 수 있습니다. <br>
-예를 들어, 팔로워 정보를 업데이트할 때, useState를 이용해 각 컴포넌트 상태를 저장하고 API로부터 정보를 업데이트하는 것이 성능 최적화에 도움이 됩니다. 
-
-3) Recoil은 중앙 집중화를 가능케 합니다. <br>
-Recoil을 사용하면 상태를 관리하는 패턴이 일관성을 유지하므로, 상태 업데이트 로직을 직관적으로 작성할 수 있습니다. <br>
-이에 따라 컴포넌트에서 중앙 집중적으로 상태를 변경하는 패턴을 유지하면서 코드 가독성도 높아집니다.<br>
-예를 들어, 로그인 여부나 계정 정보를 전역 상태로 관리하여 리액트 애플리케이션 전역에서 필요한 상태를 공유할 수 있도록 관리하는 것이 중앙 집중화를 가능케 합니다.<br>
-따라서 Recoil을 사용하는 이유는 상태를 효율적으로 관리하고 전역 상태를 공유하여 코드의 복잡도를 낮추기 위함입니다.
 
 ##  ✨ 앞으로의 또 다른 시작 ✨
 
 - 맵 API 활용
 - 웹 접근성을 고려해 시각, 청각, 지체, 인지적 장애 등 다양한 장애를 가진 사용자들이 웹 사이트나 애플리케이션을 사용할 때,
   어떤 방식으로든 이용이 가능하도록 보장
-- 
 
 
 

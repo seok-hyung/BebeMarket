@@ -208,7 +208,7 @@ Test PW : `127.0.0.1:8000`
 ## [🧷기능 상세 설명 보기](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/기능-상세-설명)
 <br>
 
-## [🧷폴더 구조 보기](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/폴더-구조)
+## [🧷폴더 구조 보기](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/디렉터리-구조)
 <br>
 
 ##  ✨ 앞으로의 또 다른 시작 ✨

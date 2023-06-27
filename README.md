@@ -51,17 +51,24 @@
 
 
 ❤️ 이석형
-- UI
--- 
-- 기능
+- UI<br>
 --
+
+- 기능<br>
+--
+
 
 💜  임수정
 - UI<br>
--- 버튼 컴포넌트, 마이 프로필 페이지, 사용자 프로필 페이지, 프로필 수정 페이지<br>
+-- 페이지: 마이 프로필, 사용자 프로필, 프로필 수정, 소셜 로그인 화면<br>
+-- 컴포넌트: 버튼, 게시글 앨범형
+  
 - 기능<br>
--- 사용자 이름, 계정 유효성 검사<br>
--- 프로필 페이지 (판매 중인 상품 불러오기, 게시글 불러오기) 구현, 프로필 수정 페이지 구현
+-- 프로필 수정 페이지 사용자 이름, 계정 유효성 검사<br>
+-- 프로필 페이지 (판매 중인 상품 불러오기, 게시글 불러오기) 구현<br>
+
+- 협업<br>
+-- 노션 작성, README.md 작성
 
 💚  ️임지인
 - UI<br>
@@ -73,11 +80,26 @@
 -- 이메일 로그인 기능 및 토큰 검증, 유효성 검사를 통해 입력값이 적절한지 확인<br>
 -- 팔로우, 언팔로우 목록 기능 구현
 
+- 협업<br>
+-- README.md 작성
+
 💙  정수연
-- UI
--- 
-- 기능
---
+- UI<br>
+-- 페이지 : 게시글 작성 및 수정, 게시글 상세, Splash 화면<br>
+-- 공통 컴포넌트 : Modal, NavBar<br>
+
+- 기능<br>
+-- 게시글 등록 ( + 이미지 업로드), 게시글 수정, 삭제,  신고<br>
+-- 게시글 상세 페이지 확인<br>
+-- 댓글 등록, 삭제, 신고<br>
+-- 좋아요 및 좋아요 취소<br>
+-- 상 하단 Nav 및 모달 기능<br>
+-- 상품 수정 및 삭제, 웹사이트 방문<br>
+--  Splash 페이지 animation<br>
+
+- 디자인<br>
+-- 로고 및 아이콘 등 컨셉 디자인 담당<br>
+-- Mockup 이미지 제작<br>
 <br>
 <br>
 ## 디렉터리 구조
@@ -279,7 +301,7 @@
    └─ yarn.lock
 
 ```
-
+## [🧷기술 스택 상세 설명으로 이동](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/기술-스택-선택-이유)
 ## 기술
 
 | Front-end |  ![React](https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black) ![styled-components](https://img.shields.io/badge/styled_components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) ![Recoil](https://img.shields.io/badge/Recoil-61DAFB?style=for-the-badge&logo=Recoil&logoColor=1189FB)| 
@@ -295,12 +317,13 @@
 | ------ | ------ | 
 | 브랜치 전략 | [Git-Flow](https://github.com/susuje)  | 
 
-## [🧷기술 및 개발 환경 상세 설명](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki)
 
 
 
 
 ## 기능 시현
+
+## [🧷기능 상세 설명으로 이동](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/기능-상세-설명)
 
 1) 홈
 
@@ -346,6 +369,8 @@
 | 상품 등록 | 상품 삭제 |
 | ------ | ------ |
 | ![이미지1](이미지1_URL) | ![이미지2](이미지2_URL) | 
+
+
 
 ## 🙌 공통 주요 기능
 

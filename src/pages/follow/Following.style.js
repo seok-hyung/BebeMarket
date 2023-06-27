@@ -9,6 +9,7 @@ export const FollowingWrapper = styled.div`
   align-items: center;
   margin-bottom: 60px;
   padding: 24px 0 24px;
+  min-height: 90vh;
 `;
 
 export const FollowingUserList = styled.ul`

@@ -362,9 +362,9 @@
 |![내프로필](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/487f209f-d1a6-45d1-97ee-9b4d6f23ed07) | ![프로필수정](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/1cccfb61-ba47-4c26-8f35-3f722b6c49b4)
   
 
-| 팔로워, 팔로잉 | 타 유저 프로필 및 팔로우, 언팔로우 | 
+| 타 유저 프로필 및 팔로우, 언팔로우 | 팔로우 목록 | 
 | ------ | ------ |
-| ![이미지1](이미지1_URL) | ![이미지2](이미지2_URL) | 
+| ![팔언팔](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/a3cb5090-0598-455e-9f91-025c9581816b) | ![팔로잉목록](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/e0913013-d107-4d2b-8b71-ff62f02187b3) | 
 
 
 4) 판매 상품

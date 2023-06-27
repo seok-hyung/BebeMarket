@@ -1,16 +1,18 @@
 # 🍼 Bebe Market | 육아 커뮤니티 플랫폼<br>
-<img width="3491" alt="베베마켓썸네일" src="https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/e44ca668-060e-46cb-bed1-88a36212b121">
-
-<br>
 
 > Bebe Market은 육아 중인 부모들을 위한 커뮤니티 플랫폼입니다.<br>
 > 이 플랫폼은 육아에 필요한 정보를 공유하고 교류할 수 있는 장을 제공합니다.<br>
 > `육아 꿀팁` `육아템 추천` `아기용품 거래` `이유식 레시피 공유`<br>
+<img width="3491" alt="베베마켓썸네일" src="https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/e44ca668-060e-46cb-bed1-88a36212b121">
+
 <br>
 
-- 배포 URL : `127.0.0.1:8000`
-- Test ID : `127.0.0.1:8000`
-- Test PW : `127.0.0.1:8000`
+
+``` 
+배포 URL : `127.0.0.1:8000`
+Test ID : `127.0.0.1:8000`
+Test PW : `127.0.0.1:8000`
+```
 <br>
 
 💎 [프로젝트 레포지토리](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket)
@@ -49,74 +51,94 @@
 
 
 ❤️ 이석형
-- UI<br>
--- 페이지 : 회원가입, 홈 피드, 채팅 리스트, 채팅 방, 검색
--- 공용 컴포넌트 : InputBox, user
+- UI
+  <ul>
+    <li>페이지 : 회원가입, 홈 피드, 채팅 리스트, 채팅 방, 검색</li>
+    <li>공용 컴포넌트 : InputBox, user</li>
+  </ul>
 
-- 기능<br>
--- 회원가입<br>
--- 홈 피드<br>
--- 검색<br>
--- 팔로우 팔로잉 리스트 불러오기 구현<br>
--- 팔로우 언팔로우 기능 구현<br>
--- 홈피드 / 팔로우 / 팔로잉 무한스크롤 기능 구현<br>
--- 프로필 수정 기능 구현<br>
--- 로그아웃<br>
+- 기능
+  <ul>
+    <li>홈 피드</li>
+    <li>검색</li>
+    <li>팔로우 팔로잉 리스트 불러오기 구현</li>
+    <li>팔로우 언팔로우 기능 구현</li>
+    <li>홈피드 / 팔로우 / 팔로잉 무한스크롤 기능 구현</li>
+    <li>프로필 수정 기능 구현</li>
+    <li>로그아웃</li>
+  </ul>
 
-- 협업<br>
--- PR 확인 및 머지
+- 협업
+  <ul>
+    <li>PR 확인 및 머지</li>
+  </ul>
 <br>
 
 💜  임수정
-- UI<br>
--- 페이지: 마이 프로필, 사용자 프로필, 프로필 수정, 소셜 로그인 화면<br>
--- 컴포넌트: 버튼, 게시글 앨범형
+- UI
+  <ul>
+    <li>페이지: 마이 프로필, 사용자 프로필, 프로필 수정, 소셜 로그인 화면</li>
+    <li>컴포넌트: 버튼, 게시글 앨범형</li>
+  </ul>
   
 - 기능<br>
--- 프로필 수정 페이지 사용자 이름, 계정 유효성 검사<br>
--- 프로필 페이지 (판매 중인 상품 불러오기, 게시글 불러오기) 구현<br>
--- 판매 중인 상품 리스트 구현
+  <ul>
+    <li>프로필 수정 페이지 사용자 이름, 계정 유효성 검사</li>
+    <li>프로필 페이지 (판매 중인 상품 불러오기, 게시글 불러오기) 구현</li>
+    <li>판매 중인 상품 리스트 구현</li>
+  </ul>
 
 - 협업<br>
--- 노션 작성, README.md 작성, Wiki 작성
+  <ul>
+    <li>README.md 작성, Wiki 작성, 노션 작성</li>
+  </ul>
 <br>
 
 💚  ️임지인
 - UI<br>
--- 홈 포스트, 프로덕트 공통 컴포넌트 마크업<br>
--- 이메일 로그인 마크업<br>
--- 팔로잉/팔로워 목록 페이지 마크업
+  <ul>
+    <li>홈 포스트, 프로덕트 공통 컴포넌트 마크업</li>
+    <li>이메일 로그인 마크업</li>
+    <li>팔로잉/팔로워 목록 페이지 마크업</li>
+  </ul>
 
 - 기능<br>
--- 이메일 로그인 기능 및 토큰 검증, 유효성 검사를 통해 입력값이 적절한지 확인<br>
--- 팔로우, 언팔로우 목록 기능 구현
+  <ul>
+    <li>이메일 로그인 기능 및 토큰 검증, 유효성 검사를 통해 입력값이 적절한지 확인</li>
+    <li>팔로우, 언팔로우 목록 기능 구현</li>
+  </ul>
 
 - 협업<br>
--- README.md 작성
+  <ul>
+    <li>README.md 작성</li>
+  </ul>
 <br>
 
 💙  정수연
 - UI<br>
--- 페이지 : 게시글 작성 및 수정, 게시글 상세, Splash 화면<br>
--- 공통 컴포넌트 : Modal, NavBar<br>
+  <ul>
+    <li>페이지 : 게시글 작성 및 수정, 게시글 상세, Splash 화면</li>
+    <li>공통 컴포넌트 : Modal, NavBar</li>
+  </ul>
 
 - 기능<br>
--- 게시글 등록 ( + 이미지 업로드), 게시글 수정, 삭제,  신고<br>
--- 게시글 상세 페이지 확인<br>
--- 댓글 등록, 삭제, 신고<br>
--- 좋아요 및 좋아요 취소<br>
--- 상 하단 Nav 및 모달 기능<br>
--- 상품 수정 및 삭제, 웹사이트 방문<br>
---  Splash 페이지 animation<br>
+  <ul>
+    <li>게시글 등록 ( + 이미지 업로드), 게시글 수정, 삭제,  신고</li>
+    <li>게시글 상세 페이지 확인</li>
+    <li>댓글 등록, 삭제, 신고</li>
+    <li>좋아요 및 좋아요 취소</li>
+    <li>상 하단 Nav 및 모달 기능</li>
+    <li>상품 수정 및 삭제, 웹사이트 방문</li>
+    <li>Splash 페이지 animation</li>
+  </ul>
 
 - 디자인<br>
--- 로고 및 아이콘 등 컨셉 디자인 담당<br>
--- Mockup 이미지 제작<br>
-<br>
+  <ul>
+    <li>로고 및 아이콘 등 컨셉 디자인 담당</li>
+    <li>Mockup 이미지 제작</li>
+  </ul>
 <br>
 
-
-## [🧷기술 스택 상세 설명으로 이동](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/기술-스택-선택-이유)
 ## 기술
 
 | Front-end |  ![React](https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black) ![styled-components](https://img.shields.io/badge/styled_components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) ![Recoil](https://img.shields.io/badge/Recoil-61DAFB?style=for-the-badge&logo=Recoil&logoColor=1189FB)| 
@@ -125,19 +147,18 @@
 | 협업 툴 | ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white) ![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white) | [@susuje](https://github.com/susuje) |
 | 디자인 | ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)  |
 
-
 ## 개발 환경
 
 | 이슈 관리 |  ![Git](https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white)| 
 | ------ | ------ | 
 | 브랜치 전략 | [Git-Flow](https://github.com/susuje)  | 
+
+## [🧷기술 스택 상세 설명 보기](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/기술-스택-선택-이유)
 <br>
 <br>
 
-## [🧷기능 상세 설명으로 이동](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/기능-상세-설명)
 ## 기능 시연
 ### 1) 홈
-
 | splash | 로그인 | 회원 가입 |
 | ------ | ------ | ------ | 
 | ![스플래쉬](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/bc9971ac-6d01-4ecd-96dc-2abd7d07eb79) | ![로그인](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/21aa1964-c15c-478c-83a8-868b7f5756ca) | ![회원가입](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/a1765abf-abe0-47ec-85f4-3fb9aca50587) |
@@ -185,6 +206,7 @@
 | ------ | ------ | ------ |
 | ![상품등록](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/2a7cfa46-def6-4d57-8b59-2cf56a7ac007) | ![상품수정](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/79ae7fd8-3ce2-4a8a-b89a-a649151b8c49) | ![상품삭제](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/b92a381f-a95d-476b-9070-159875d39528) | 
 
+## [🧷기능 상세 설명 보기](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/기능-상세-설명)
 <br>
 
 ## [🧷폴더 구조 보기](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/폴더-구조)

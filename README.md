@@ -153,7 +153,7 @@ Test PW : `127.0.0.1:8000`
 | ------ | ------ | 
 | 브랜치 전략 | [Git-Flow](https://github.com/susuje)  | 
 
-## [🧷기술 스택 상세 설명 보기](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/기술-스택-선택-이유)
+## [🧷기술 및 개발 환경 상세 설명 보기](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/기술-스택-선택-이유)
 <br>
 <br>
 

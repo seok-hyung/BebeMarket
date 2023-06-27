@@ -40,7 +40,7 @@ Test PW : `127.0.0.1:8000`
 
 | 이석형| 임수정 | 임지인 | 정수연 |
 | ------ | ------ | ------ | ------ |
-| ![임수정](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/1b07a06c-6373-4a61-98f0-8971cf7584cc)| ![임수정](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/1b07a06c-6373-4a61-98f0-8971cf7584cc)| ![eb13](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/0f28c820-3477-49ba-ae78-db14bca8eefa)| ![수연님](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/0dffd8f9-8179-484b-8ab8-f83d4128d000)|
+| ![IMG_0522](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/84b2a722-24d8-4497-a033-9f0eeb8557e3)| ![임수정](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/1b07a06c-6373-4a61-98f0-8971cf7584cc)| ![eb13](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/0f28c820-3477-49ba-ae78-db14bca8eefa)| ![수연님](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/0dffd8f9-8179-484b-8ab8-f83d4128d000)|
 | <div align=center>[@seok-hyung](https://github.com/seok-hyung)</div> | <div align=center>[@sujung-lim](https://github.com/sujung-lim)</div> | <div align=center>[@LimJeeIn](https://github.com/LimJeeIn)</div> | <div align=center>[@susuje](https://github.com/susuje)</div> |
 
 <br>

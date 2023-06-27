@@ -369,6 +369,8 @@
 | ![이미지1](이미지1_URL) | ![이미지2](이미지2_URL) | 
 
 
+## [🧷기능 상세 설명으로 이동](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/기능-상세-설명)
+
 ## 🙌 공통 주요 기능
 
 Recoil을 이용하여 전역 상태를 관리하고, useState를 이용하여 컴포넌트 간 상태를 관리하는 방식을 사용하여 상태를 효율적으로 관리하고 있습니다. <br>

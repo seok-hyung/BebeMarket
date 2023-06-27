@@ -365,7 +365,7 @@
 | ------ | ------ |
 | ![이미지1](이미지1_URL) | ![이미지2](이미지2_URL) | 
 
-## [🧷기술 및 개발 환경 상세 설명으로 이동](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki)
+## [🧷기술 및 개발 환경 상세 설명으로 이동](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/기능-상세-설명)
 
 ## 🙌 공통 주요 기능
 

@@ -324,7 +324,7 @@
 
 ## [🧷기능 상세 설명으로 이동](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/기능-상세-설명)
 ## 기능 시연
-1) 홈
+### 1) 홈
 
 | splash | 로그인 | 회원 가입 |
 | ------ | ------ | ------ | 
@@ -340,7 +340,7 @@
 | ![채팅](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/c4190c98-f535-4c70-86cd-3cf719760aca.jpg) | ![404 페이지](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/0c375580-a2dd-41f0-8ecf-9b81e0c76add.jpg) |
 
 
-2) 게시글
+### 2) 게시글
 
 | 게시글 작성 | 게시글 수정 | 게시글 삭제 |
 |------------|------------|------------|
@@ -355,7 +355,7 @@
 | ------ | ------ |
 | ![게시글신고](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/cdfbd75e-33a5-4649-bb60-355eae84a4a9) | ![게시글좋아요,취소](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/aa731002-90d6-46a8-b1ee-63fd54134a5d) | 
 
-3) 프로필
+### 3) 프로필
 
 | 내 프로필 | 프로필 수정 | 
 | ------ | ------ |
@@ -367,7 +367,7 @@
 | ![팔언팔](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/a3cb5090-0598-455e-9f91-025c9581816b) | ![팔로잉목록](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/e0913013-d107-4d2b-8b71-ff62f02187b3) | 
 
 
-4) 판매 상품
+### 4) 판매 상품
 
 | 상품 등록 | 상품 수정 | 상품 삭제 |
 | ------ | ------ | ------ |

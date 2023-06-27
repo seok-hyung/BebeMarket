@@ -15,7 +15,6 @@ Test PW : `127.0.0.1:8000`
 ```
 <br>
 
-💎 [프로젝트 레포지토리](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket)
 📚 [팀 스터디 레포지토리](https://www.notion.so/12c57d2ccab14d1cb045fc9c8477d9f7?pvs=4)
 📝 [팀 워크스페이스](https://www.notion.so/fa26227061e6455eb9ffaa4890b5820b?v=6b0e9d29545a4964874dfb61c3ed7150&pvs=4)
 🎨 [디자인 피그마](https://www.figma.com/file/nJWmlNXio2PaUPKxgFp0nm/%EA%B0%90%EA%B7%A4?type=design&node-id=7088-4332&mode=design&t=NBFWiiIi6UpSdBv5-0)
@@ -41,7 +40,7 @@ Test PW : `127.0.0.1:8000`
 
 | 이석형| 임수정 | 임지인 | 정수연 |
 | ------ | ------ | ------ | ------ |
-| ![이미지1](이미지1_URL) | ![이미지2](이미지2_URL) | ![이미지3](이미지3_URL) | ![이미지4](이미지4_URL) |
+| ![임수정](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/1b07a06c-6373-4a61-98f0-8971cf7584cc)| ![임수정](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/1b07a06c-6373-4a61-98f0-8971cf7584cc)| ![eb13](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/0f28c820-3477-49ba-ae78-db14bca8eefa)| ![수연님](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/0dffd8f9-8179-484b-8ab8-f83d4128d000)|
 | [@seok-hyung](https://github.com/seok-hyung) | [@sujung-lim](https://github.com/sujung-lim) | [@LimJeeIn](https://github.com/LimJeeIn) | [@susuje](https://github.com/susuje) |
 
 <br>

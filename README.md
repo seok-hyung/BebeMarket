@@ -321,7 +321,7 @@
 
 
 
-## 기능 시현
+## 기능 시연
 
 ## [🧷기능 상세 설명으로 이동](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/기능-상세-설명)
 
@@ -338,8 +338,8 @@
 
 | 채팅 | 404 페이지 | 
 | ------ | ------ |
-| ![채팅](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/9d1dadaf-4365-49d4-bc0a-49358ac7a0ee)
- | ![이미지2](이미지2_URL) | 
+| ![채팅](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/c4190c98-f535-4c70-86cd-3cf719760aca)
+ | 404 페이지 |
 
 2) 게시글
 

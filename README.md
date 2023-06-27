@@ -210,12 +210,13 @@ Test PW : 123123
 ## [🧷폴더 구조 보기](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/디렉터리-구조)
 <br>
 
+## 에러 해결
+- [무한스크롤 이슈](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/%5B%EC%97%90%EB%9F%AC-%ED%95%B4%EA%B2%B0-%EA%B3%BC%EC%A0%95%5D-%ED%8C%94%EB%A1%9C%EC%9A%B0---%ED%8C%94%EB%A1%9C%EC%9E%89-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%AC%B4%ED%95%9C-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%9D%B4%EC%8A%88)
+
 ##  ✨ 앞으로의 또 다른 시작 ✨
 
 - 맵 API 활용
 - 웹 접근성을 고려해 시각, 청각, 지체, 인지적 장애 등 다양한 장애를 가진 사용자들이 웹 사이트나 애플리케이션을 사용할 때,
   어떤 방식으로든 이용이 가능하도록 보장
-
-
 
 

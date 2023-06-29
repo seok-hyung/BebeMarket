@@ -27,4 +27,5 @@ export const Nav = styled.nav`
   position: fixed;
   width: 100%;
   border-top: 0.5px solid #dbdbdb;
+  z-index: 100;
 `;

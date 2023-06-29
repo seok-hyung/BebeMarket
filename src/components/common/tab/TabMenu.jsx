@@ -29,6 +29,8 @@ export default function TabMenu() {
       } else {
         setActiveTab(-1);
       }
+    } else if (location.pathname.includes('/search')) {
+      setActiveTab(-1);
     }
   }, [location.pathname]);
 

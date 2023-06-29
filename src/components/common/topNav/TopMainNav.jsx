@@ -6,11 +6,13 @@ import LogoImage from '../../../assets/images/logo-text.svg';
 export default function TopMainNav() {
   const navigate = useNavigate();
   return (
-    <S.Nav>
-      <S.LogoText src={LogoImage} />
-      <S.Button onClick={() => navigate('/search')}>
-        <img src={searchIcon} alt="검색 아이콘" />
-      </S.Button>
-    </S.Nav>
+    <S.Div>
+      <S.Nav>
+        <S.LogoText src={LogoImage} />
+        <S.Button onClick={() => navigate('/search')}>
+          <img src={searchIcon} alt="검색 아이콘" />
+        </S.Button>
+      </S.Nav>
+    </S.Div>
   );
 }

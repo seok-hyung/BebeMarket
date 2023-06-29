@@ -17,3 +17,10 @@ export const verticalButton = styled.button`
   width: 24px;
   height: 24px;
 `;
+export const Div = styled.div`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: #ffffff;
+`;

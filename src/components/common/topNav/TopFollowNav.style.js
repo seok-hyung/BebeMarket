@@ -19,3 +19,10 @@ export const Title = styled.h1`
   line-height: 22px;
   padding-left: 13px;
 `;
+export const Div = styled.div`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: #ffffff;
+`;

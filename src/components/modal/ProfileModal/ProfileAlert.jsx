@@ -24,7 +24,6 @@ export default function ProfileAlert({ setIsAlertOpen }) {
     setUserToken('');
     setAccountName('');
     navigate('/socialLogin');
-    //이거 추후에 변경될듯. 로그아웃되게끔 토큰 뺏어와야할듯?
   };
 
   return (

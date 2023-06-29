@@ -17,12 +17,9 @@ export default function PostAlert({ setIsAlertOpen, postId, setisModalOpen }) {
   const token = useRecoilValue(userTokenState);
   const accountname = useRecoilValue(accountNameState);
   const deletePost = () => {
-    //console.log('삭제');
-
     if (location.pathname === `/profile/${accountname}`) {
       deletePostAPI(postId, token).then((data) => {
         console.log(data);
-        //window.location.reload();
         setisModalOpen(false);
       });
     } else {
@@ -50,7 +47,3 @@ export default function PostAlert({ setIsAlertOpen, postId, setisModalOpen }) {
     </AlertContainer>
   );
 }
-
-// if (location.pathname === '/post/:postId') {
-//   navigate(`/profile/${accountname}`);
-// }

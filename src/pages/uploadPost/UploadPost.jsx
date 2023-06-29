@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import React from 'react';
-//import * as S from './index.style.js';
 import BasicProfileImg from '../../assets/images/Ellipse-1.png';
 import TopUploadNav from '../../components/common/topNav/TopUploadNav.jsx';
 import * as S from './UploadPost.style';
@@ -10,7 +9,7 @@ import { uploadPostAPI } from '../../api/post/uploadPostAPI';
 import { getMyInfoAPI } from '../../api/user/getMyInfoAPI';
 import { apiURL } from '../../api/apiURL';
 import { useRecoilValue } from 'recoil';
-import { userTokenState, accountNameState } from '../../atoms/Atoms';
+import { userTokenState } from '../../atoms/Atoms';
 import { useNavigate } from 'react-router-dom';
 
 export default function UploadPost() {
@@ -21,14 +20,9 @@ export default function UploadPost() {
   const [myProfileImg, setMyProfileImg] = useState('');
   const navigate = useNavigate();
   const token = useRecoilValue(userTokenState);
-  const accountname = useRecoilValue(accountNameState);
   const [postData, setPostData] = useState('');
-  // useEffect(() => {
-  //   console.log(selectedImages.join(', '));
-  // }, [selectedImages]);
 
   useEffect(() => {
-    //console.log(token);
     getMyInfoAPI(token).then((data) => {
       setMyProfileImg(data.user.image); //프로필 사진 가져오기
     });
@@ -64,10 +58,6 @@ export default function UploadPost() {
       uploadImagesAPI(formData).then((data) => {
         setSelectedImages([...selectedImages, `${apiURL}${data[0].filename}`]);
       });
-      // .then(() => {
-      //   console.log(sendData);
-      // });
-      //.then(()=>{console.log(selectedImages)})
       //상태 업데이트 함수인 setSelectedImages는 비동기적으로 동작하기 때문에,
       //console.log 문이 실행되는 시점에서는 상태가 아직 업데이트되지 않은 상태입니다.
     }

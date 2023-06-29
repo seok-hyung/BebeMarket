@@ -18,28 +18,25 @@ function Following() {
   const accountname = location.pathname.split('/')[2];
   const skip = pageNumber * pageSize;
 
-  const loadFollowing = useCallback(
-    async (pageNum) => {
-      if (!hasMore) return;
+  const loadFollowing = useCallback(async () => {
+    if (!hasMore) return;
 
-      const data = await loadFollowingListAPI(
-        accountname,
-        userToken,
-        skip,
-        pageSize,
-      );
+    const data = await loadFollowingListAPI(
+      accountname,
+      userToken,
+      skip,
+      pageSize,
+    );
 
-      if (data) {
-        setFollowing((prevState) => [...prevState, ...data]);
-        if (data.length < pageSize) {
-          setHasMore(false);
-        }
-      } else {
-        console.error('API returned null or undefined');
+    if (data) {
+      setFollowing((prevState) => [...prevState, ...data]);
+      if (data.length < pageSize) {
+        setHasMore(false);
       }
-    },
-    [accountname, userToken, skip, pageSize, hasMore],
-  );
+    } else {
+      console.error('API returned null or undefined');
+    }
+  }, [accountname, userToken, skip, pageSize, hasMore]);
 
   useEffect(() => {
     loadFollowing(pageNumber);

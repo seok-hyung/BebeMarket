@@ -54,10 +54,7 @@ export default function ProfileEdit() {
 
       if (result) {
         console.log('프로필 수정이 완료되었습니다.', result);
-        //console.log(result.user.accountname); // 수정된 accountname
         setAccountName(result.user.accountname);
-        //console.log(accountName); // 수정 전 accountname
-
         navigate(`/profile/${result.user.accountname}`);
       } else {
         console.log('프로필 수정에 실패했습니다.');
@@ -154,10 +151,6 @@ export default function ProfileEdit() {
           onChange={uploadImage}
         />
       </S.UploadDiv>
-      {/* <S.ImageContainer>
-          <S.ProfileImage src={`${myInfo.user?.image}`} />
-          <S.EditProfileImage src={EditProfileImage} />
-        </S.ImageContainer> */}
       <S.inputWrapper>
         <InputBox
           label="사용자 이름"

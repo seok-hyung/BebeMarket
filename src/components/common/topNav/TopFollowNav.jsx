@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './TopFollowNav.style';
 import arrowLeft from '../../../assets/icon/icon-arrow-left.svg';
 import { useNavigate } from 'react-router-dom';

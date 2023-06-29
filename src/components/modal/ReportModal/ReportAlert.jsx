@@ -7,11 +7,8 @@ import {
   DeleteButton,
 } from '../styled';
 import ReportModal from './ReportModal';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { accountNameState } from '../../../atoms/Atoms';
+
 export default function PostAlert({ setIsReportAlertOpen, setisModalOpen }) {
-  const navigate = useNavigate();
-  const location = useLocation();
   const [isReported, setIsReported] = useState(false);
 
   return (

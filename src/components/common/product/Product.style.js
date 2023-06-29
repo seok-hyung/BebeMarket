@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import productImages from '../../../assets/images/product-img-example.png';
 
 export const Product = styled.section`
   max-width: 400px;
@@ -13,18 +12,12 @@ export const Wrapper = styled.ul`
 `;
 
 export const ProductContent = styled.li`
-  // flex-shrink: 0;
   width: 140px;
 `;
 
 export const ProductImage = styled.img`
   width: 100%;
   height: 90px;
-  // padding-bottom: calc(196 / 304 * 100%);
-  // background-image: url(${productImages});
-  // background-repeat: no-repeat;
-  // background-position: center center;
-  // background-size: contain;
   border-radius: 8px;
   object-fit: cover;
 `;

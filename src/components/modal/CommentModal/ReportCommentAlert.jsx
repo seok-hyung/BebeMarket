@@ -1,18 +1,7 @@
-import React, { useState } from 'react';
-import {
-  AlertContainer,
-  DeleteConfirm,
-  ReportDone,
-  ButtonDiv,
-  CancleButton,
-} from '../styled';
+import React from 'react';
+import { ReportDone, CancleButton } from '../styled';
 
-import { useLocation, useNavigate } from 'react-router-dom';
-import { accountNameState } from '../../../atoms/Atoms';
 export default function ReportCommentAlert({ setisModalOpen }) {
-  const navigate = useNavigate();
-  const location = useLocation();
-
   return (
     <ReportDone>
       신고되었습니다!

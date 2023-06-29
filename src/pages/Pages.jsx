@@ -21,7 +21,7 @@ import Splash from './splash/Splash';
 import ProductEdit from './productEdit/ProductEdit';
 import { useRecoilValue } from 'recoil';
 import { isLoginState } from '../atoms/Atoms';
-//만약 from 뒤에 빨간색 에러가뜬다면 vs코드 껏다가 다시켜보기.
+//만약 from 뒤에 빨간색 에러가뜬다면 vs코드 종료 후 다시켜보기.
 
 function Pages() {
   const [loading, setLoading] = useState(false);

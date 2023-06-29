@@ -40,18 +40,3 @@ export default function CommentModal({
     </>
   );
 }
-
-//<Button onClick={() => setIsAlertOpen(true)}>{content}</Button>
-//{content} 는 삭제 또는 신고
-
-// {isMyComment ? (
-//   <>
-//     <Li>
-//       <Button onClick={() => setIsAlertOpen(true)}>삭제</Button>
-//     </Li>
-//   </>
-// ) : (
-//   <Li>
-//     <Button>신고</Button>
-//   </Li>
-// )}

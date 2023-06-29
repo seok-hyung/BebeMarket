@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import TopUploadNav from '../../components/common/topNav/TopUploadNav';
 import { uploadImageAPI } from '../../api/uploadImg/uploadImageAPI';
-import { addProductAPI } from '../../api/product/addProductAPI';
 import { productDetailAPI } from '../../api/product/productDetailAPI';
 import { editProductAPI } from '../../api/product/editProductAPI';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { accountNameState, userTokenState } from '../../atoms/Atoms';
 
 import * as S from './ProductEdit.style';
@@ -35,8 +34,8 @@ export default function ProductEdit() {
 
   const [productImage, setProductImage] = useState(uploadFileImage);
 
-  const [userToken, setUserToken] = useRecoilState(userTokenState);
-  const [accountName, setAccountName] = useRecoilState(accountNameState);
+  const userToken = useRecoilValue(userTokenState);
+  const accountName = useRecoilValue(accountNameState);
   const { productId } = useParams();
   //내 상품 정보 가져오기
   useEffect(() => {
@@ -131,9 +130,6 @@ export default function ProductEdit() {
     ) {
       setIsButtonDisabled(true);
     }
-    // else {
-    //   setIsButtonDisabled(false);
-    // }
   }, [isProductValid, isPriceValid, isSalesLinkValid, productImage]);
 
   // 이미지 업로드
@@ -150,11 +146,6 @@ export default function ProductEdit() {
     e.preventDefault();
     e.stopPropagation();
     document.getElementById('product').click();
-  };
-
-  // 새로운 이벤트를 추가할 함수를 추가합니다.
-  const suppressEvent = (e) => {
-    e.stopPropagation();
   };
 
   const sendData = {

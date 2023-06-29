@@ -24,11 +24,11 @@ function HomePost({ post, postId, commentCount }) {
     if (isLiked) {
       unLike();
       setIsLiked(false);
-      setLikeCount(likeCount - 1); // Update the like count when unliked
+      setLikeCount(likeCount - 1);
     } else {
       like();
       setIsLiked(true);
-      setLikeCount(likeCount + 1); // Update the like count when liked
+      setLikeCount(likeCount + 1);
     }
   };
   useEffect(() => {

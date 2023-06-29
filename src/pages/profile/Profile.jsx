@@ -17,7 +17,6 @@ import {
   MediumFollowButton,
   UnfollowButton,
 } from '../../components/common/button/Button';
-//import Product from '../../components/common/product/Product';
 import HomePost from '../../components/common/home/HomePost';
 import HomeAlbum from '../../components/common/home/HomeAlbum';
 import TabMenu from '../../components/common/tab/TabMenu';
@@ -68,26 +67,12 @@ export default function Profile() {
 
   useEffect(() => {
     getProductListAPI(accountname, token).then((data) => {
-      // console.log(data, 'hi');
       setProductList(data.product);
     });
     getProfilePostAPI(accountname, token).then((data) => {
       setMyPost(data);
-      // console.log('myPost : ', data);
-      // console.log(data);
     });
   }, [accountname, productList]);
-
-  // useEffect(() => {
-  //   getMyInfoAPI(token).then((data) => {
-  //     setProfile(data.user);
-  //     console.log(accountname + 'hi');
-  //   });
-
-  //   getProfileAPI(accountname,token).then((data)=>{
-  //     setProfile(data.user);
-  //   })
-  // }, [token, accountname]);
 
   useEffect(() => {
     if (!isMyProfile) {
@@ -96,10 +81,6 @@ export default function Profile() {
           setProfile(data.profile);
           setFollowersCount(data.profile.followerCount);
           setFollowingCount(data.profile.followingCount);
-          // setFollowersCount(data.profile.followerCount);
-          // setFollowingCount(data.profile.followingCount);
-          console.log('getprofileapi 사용합니다!!');
-          console.log(data);
         })
         .catch((error) => {
           console.error('프로필 데이터를 불러오지 못했습니다.', error);
@@ -110,7 +91,6 @@ export default function Profile() {
           setProfile(data.user);
           setFollowersCount(data.user.followerCount);
           setFollowingCount(data.user.followingCount);
-          console.log('getmyinfoapi 사용합니다!!');
         })
         .catch((error) => {
           console.error('프로필 데이터를 불러오지 못했습니다.', error);
@@ -125,7 +105,7 @@ export default function Profile() {
         console.log(data);
       });
       setIsFollowed(false);
-      console.log(isFollowed);
+      // console.log(isFollowed);
       setFollowersCount(followersCount - 1);
     } else {
       // 아직 팔로우하지 않은 경우
@@ -139,17 +119,11 @@ export default function Profile() {
   };
   const handleEditProfile = () => {
     navigate(`/profile/${myAccountname}/edit`);
-    console.log('프로필 수정');
   };
 
   const handleUploadProduct = () => {
     navigate('/product');
-    console.log('상품 등록');
   };
-
-  // console.log('myAccountname:', myAccountname);
-  // console.log('isMyProfile:', isMyProfile);
-  // console.log(myPostArray);
 
   const handleProductClick = (e, product_Id, product_Link) => {
     if (isMyProfile) {
@@ -292,43 +266,3 @@ export default function Profile() {
     </div>
   );
 }
-
-// const fetchData = () => {
-//   getMyInfoAPI(token)
-//     .then((data) => {
-//       if (data) {
-//         setProfile(data.user);
-//         console.log(data);
-//       } else {
-//         console.error('프로필 데이터를 불러오지 못했습니다.');
-//       }
-//     })
-//     .catch((error) => console.error('프로필 로딩 중 에러 발생:', error));
-
-// 상품 목록 API 호출
-// getProductListAPI(myAccountname, token)
-//   .then((data) => {
-//     if (data) {
-//       //setProducts(data.product);
-//       console.log(data);
-//     } else {
-//       console.error('상품 목록 데이터를 불러오지 못했습니다.');
-//     }
-//   })
-//   .catch((error) => console.error('상품 목록 로딩 중 에러 발생:', error));
-
-// 게시물 상세 API 호출
-// getPostDetailAPI(id, token)
-//   .then((data) => {
-//     if (data) {
-//       setProducts(data.posts);
-//       console.log(data);
-//     } else {
-//       console.error('게시물 상세를 불러오지 못했습니다.');
-//     }
-//   })
-//   .catch((error) =>
-//     console.error('게시물 상세 로딩 중 에러 발생:', error),
-//   );
-
-// fetchData();

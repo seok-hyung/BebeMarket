@@ -4,7 +4,7 @@ import TopUploadNav from '../../components/common/topNav/TopUploadNav';
 import { uploadImageAPI } from '../../api/uploadImg/uploadImageAPI';
 import { addProductAPI } from '../../api/product/addProductAPI';
 
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { accountNameState, userTokenState } from '../../atoms/Atoms';
 
 import * as S from './UploadProduct.style';
@@ -34,8 +34,8 @@ export default function UploadProduct() {
 
   const [productImage, setProductImage] = useState(uploadFileImage);
 
-  const [userToken, setUserToken] = useRecoilState(userTokenState);
-  const [accountName, setAccountName] = useRecoilState(accountNameState);
+  const userToken = useRecoilValue(userTokenState);
+  const accountName = useRecoilValue(accountNameState);
 
   // 상품명 유효성 검사
   const handleProductChange = (e) => {
@@ -137,11 +137,6 @@ export default function UploadProduct() {
     e.preventDefault();
     e.stopPropagation();
     document.getElementById('product').click();
-  };
-
-  // 새로운 이벤트를 추가할 함수를 추가합니다.
-  const suppressEvent = (e) => {
-    e.stopPropagation();
   };
 
   const sendData = {

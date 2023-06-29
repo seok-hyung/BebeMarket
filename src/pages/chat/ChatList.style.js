@@ -6,6 +6,7 @@ export const List = styled.ul`
   flex-direction: column;
   gap: 20px;
   min-width: 320px;
+  margin-top: 60px;
 `;
 
 export const ChatListWrapper = styled.li`

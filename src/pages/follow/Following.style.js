@@ -10,6 +10,7 @@ export const FollowingWrapper = styled.div`
   margin-bottom: 60px;
   padding: 24px 0 24px;
   min-height: 90vh;
+  margin-top: 50px;
 `;
 
 export const FollowingUserList = styled.ul`

@@ -7,6 +7,7 @@ export const ProfileWrapper = styled.div`
   flex-direction: column;
   gap: 6px;
   background-color: #f2f2f2;
+  margin-top: 50px;
 `;
 
 //====프로필====

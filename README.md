@@ -9,7 +9,7 @@
 
 
 ``` 
-Test ID : final@test.com
+Test ID : james@test.co.kr
 Test PW : 123123
 ```
 <br>
@@ -57,9 +57,9 @@ Test PW : 123123
 
 - 기능
   <ul>
+    <li>회원가입</li>
     <li>홈 피드</li>
     <li>검색</li>
-    <li>팔로우 팔로잉 리스트 불러오기 구현</li>
     <li>팔로우 언팔로우 기능 구현</li>
     <li>홈피드 / 팔로우 / 팔로잉 무한스크롤 기능 구현</li>
     <li>프로필 수정 기능 구현</li>
@@ -69,7 +69,7 @@ Test PW : 123123
 - 협업
   <ul>
     <li>깃 이슈 템플릿 작성</li>
-    <li>충돌 최소화를 위한 브렌치 전략 설정</li>
+    <li>브렌치 전략 설정(git flow)</li>
   </ul>
 <br>
 

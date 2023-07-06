@@ -17,7 +17,7 @@ export const Ul = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 36px 6px;
+  padding: 12px 20px 6px;
   text-align: center;
 `;
 

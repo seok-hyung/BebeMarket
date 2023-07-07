@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 export const ListArticle = styled.article`
   width: 40%;
+
+  @media (max-width: 980px) {
+    width: 100%;
+  }
 `;
 
 export const ListContent = styled.li`
@@ -22,16 +26,22 @@ export const ContentWrapper = styled.div`
   gap: 8px;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-right: 20px;
+  cursor: pointer;
 `;
 
 export const ContentTitle = styled.h2`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-weight: 700;
   font-size: 17px;
   color: var(--main-color);
 `;
 
 export const ContentInfo = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 15px;
   color: var(--sub-text-color);
 `;
@@ -41,21 +51,22 @@ export const ContentNumber = styled.p`
 `;
 
 export const Location = styled.img`
-  width: 28px;
+  width: 32px;
   object-fit: cover;
   cursor: pointer;
+  margin-left: 50px;
 `;
 
 export const Pagination = styled.ul`
   display: flex;
   justify-content: center;
-  gap: 12px;
-  padding: 20px;
+  align-items: center;
+  gap: 20px;
+  padding: 35px;
 `;
 
 export const PaginationNumber = styled.li`
-  border-radius: 6px;
-  padding: 10px;
-  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px 8px;
   cursor: pointer;
 `;

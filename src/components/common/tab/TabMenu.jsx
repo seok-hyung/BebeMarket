@@ -20,31 +20,20 @@ export default function TabMenu() {
   const [activeTab, setActiveTab] = useState(0);
   const myAccountname = useRecoilValue(accountNameState);
 
-  // useEffect(() => {
-  //   if (location.pathname === '/home') {
-  //     setActiveTab(0); //home에서 다른 사람 프로필 들어가면 계속 activeTab이 0이므로 홈에 색깔이 유지됨.
-  //   } else if (location.pathname === '/chat') {
-  //     setActiveTab(1);
-  //   } else if (location.pathname.includes('/profile/')) {
-  //     if (location.pathname === `/profile/${myAccountname}`) {
-  //       setActiveTab(2);
-  //     } else {
-  //       setActiveTab(-1);
-  //     }
-  //   } else if (location.pathname.includes('/search')) {
-  //     setActiveTab(-1);
-  //   }
-  // }, [location.pathname]);
   useEffect(() => {
     if (location.pathname === '/home') {
-      setActiveTab(0);
+      setActiveTab(0); //home에서 다른 사람 프로필 들어가면 계속 activeTab이 0이므로 홈에 색깔이 유지됨.
     } else if (location.pathname === '/chat') {
       setActiveTab(1);
     } else if (location.pathname === `/map`) {
       setActiveTab(2);
     } else if (location.pathname.includes('/profile/')) {
-      setActiveTab(3);
-    } else {
+      if (location.pathname === `/profile/${myAccountname}`) {
+        setActiveTab(3);
+      } else {
+        setActiveTab(-1);
+      }
+    } else if (location.pathname.includes('/search')) {
       setActiveTab(-1);
     }
   }, [location.pathname]);

@@ -25,6 +25,7 @@ Test PW : 123123
 
 - 팀원 소개
 - 역할 분담
+- 팀문화
 - 기술 및 개발 환경
 - 기능 시연
 - 디렉토리 구조
@@ -140,6 +141,9 @@ Test PW : 123123
   </ul>
 <br>
 
+## 팀 문화
+
+
 ## 기술
 
 | Front-end |  ![React](https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black) ![styled-components](https://img.shields.io/badge/styled_components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) ![Recoil](https://img.shields.io/badge/Recoil-61DAFB?style=for-the-badge&logo=Recoil&logoColor=1189FB)| 
@@ -213,7 +217,7 @@ Test PW : 123123
 ## [🧷폴더 구조 보기](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/디렉터리-구조)
 <br>
 
-## 에러 해결
+## 트러블 슈팅
 - [무한스크롤 이슈](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/wiki/%5B%EC%97%90%EB%9F%AC-%ED%95%B4%EA%B2%B0-%EA%B3%BC%EC%A0%95%5D-%ED%8C%94%EB%A1%9C%EC%9A%B0---%ED%8C%94%EB%A1%9C%EC%9E%89-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%AC%B4%ED%95%9C-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%9D%B4%EC%8A%88)
 
 ##  ✨ 앞으로의 또 다른 시작 ✨

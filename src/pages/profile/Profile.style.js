@@ -25,6 +25,7 @@ export const ProfileHeader = styled.div`
   gap: 41px;
   padding-top: 30px;
   margin-bottom: 14px;
+  margin-left: 12px;
 `;
 
 export const Followers = styled.div`

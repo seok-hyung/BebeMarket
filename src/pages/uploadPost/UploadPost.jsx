@@ -21,6 +21,17 @@ export default function UploadPost() {
   const navigate = useNavigate();
   const token = useRecoilValue(userTokenState);
   const [postData, setPostData] = useState('');
+  const [clickedTags, setClickedTags] = useState([]);
+
+  const Tags = [
+    '육아',
+    '일상',
+    '요리',
+    '꿀팁',
+    '음식점',
+    '꿀템추천',
+    '키즈카페',
+  ];
 
   useEffect(() => {
     getMyInfoAPI(token).then((data) => {
@@ -42,7 +53,10 @@ export default function UploadPost() {
   //내가 보낼 데이터
   const sendData = {
     post: {
-      content: text,
+      content:
+        clickedTags.length > 0
+          ? `content:${text}\\tag:${clickedTags}`
+          : `content:${text}`,
       image: selectedImages.join(','), //"imageurl1, imageurl2" 형식으로 보내야한다.
     },
   };
@@ -82,23 +96,51 @@ export default function UploadPost() {
     try {
       const data = await uploadPostAPI(sendData, token);
       setPostData(data.post.id);
+      console.log(data, 'hi');
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  //태그
+
+  const handleClickTag = (tag) => {
+    // 클릭된 태그가 이미 클릭된 상태인지 확인
+    const tagExists = clickedTags.includes(tag);
+
+    if (tagExists) {
+      // 기존 클릭된 태그 제거
+      setClickedTags(clickedTags.filter((t) => t !== tag));
+    } else {
+      // 새로 클릭된 태그 추가
+      setClickedTags([...clickedTags, tag]);
     }
   };
 
   // 이 useEffect 안에서만 변경사항을 확인할 수 있습니다.
   useEffect(() => {
     if (postData) {
-      console.log(postData);
+      //console.log(postData); postId입니다.
       navigate(`/post/${postData}`);
     }
   }, [postData]);
 
-  //TopUploadNav 폰트패밀리가 SUITE이 아님.
   return (
     <S.Container>
       <TopUploadNav disabled={disabled} handleUpload={handleUpload} />
+      <S.TagWrapper>
+        {Tags.map((tag, index) => (
+          <S.TagList
+            type="button"
+            key={index}
+            value={tag}
+            onClick={() => handleClickTag(tag)}
+            clicked={clickedTags.includes(tag)}
+          >
+            {tag}
+          </S.TagList>
+        ))}
+      </S.TagWrapper>
       <S.Main>
         <S.ImgProfile src={myProfileImg ? myProfileImg : BasicProfileImg} />
         <S.Article>

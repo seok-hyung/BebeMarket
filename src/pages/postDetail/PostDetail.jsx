@@ -66,7 +66,7 @@ export default function PostDetail() {
   return (
     <S.Container>
       <TopBasicNav />
-      {post && <HomePost post={post} postId={postId} />}
+      <S.Div>{post && <HomePost post={post} postId={postId} />}</S.Div>
       <S.Line />
       <S.PostCommentWrapper>
         {commentData &&

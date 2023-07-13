@@ -65,6 +65,7 @@ function Home() {
     const data = await getPostFeedAPI(userToken, skip, 4);
     if (data) {
       setFeedData((prevState) => [...prevState, ...data]);
+      //console.log(feedData, '팔로잉게시글');
       if (data.length < 4) {
         setHasMore(false);
       } else {
@@ -117,7 +118,11 @@ function Home() {
           <S.LoadingImage src={loadingGif} alt="로딩중일 때 이미지" />
         ) : feedData?.length > 0 ? (
           feedData.map((post) => (
-            <HomePost key={post.id} post={post} postId={post.id} />
+            <HomePost
+              key={post.id}
+              post={post}
+              postId={post.id ? post.id : post._id}
+            />
           ))
         ) : (
           <S.Div>

@@ -130,7 +130,7 @@ function HomePost({ post, postId, commentCount }) {
                   onClick={() => navigate(`/post/${postId}`)}
                 ></S.CommentIcon>
                 <S.CommentCount>
-                  {commentCount || post.commentCount}
+                  {commentCount || post.commentCount || post.comments.length}
                 </S.CommentCount>
               </S.Comment>
             </S.PostIconWrapper>

@@ -139,7 +139,7 @@ export const LikeIcon = styled.img`
   background-position: center center;
   background-size: contain; */
   object-fit: cover;
-  width: 18px;
+  width: 20px;
   height: 18px;
   cursor: pointer;
 `;

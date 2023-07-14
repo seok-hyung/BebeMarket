@@ -8,7 +8,7 @@ import commentIcon from '../../../assets/icon/icon-message-circle-1.svg';
 export const Wrapper = styled.section`
   max-width: 400px;
   /* padding: 16px; */
-  margin: auto;
+  //margin: auto;
 `;
 
 export const Article = styled.article`
@@ -139,7 +139,7 @@ export const LikeIcon = styled.img`
   background-position: center center;
   background-size: contain; */
   object-fit: cover;
-  width: 18px;
+  width: 20px;
   height: 18px;
   cursor: pointer;
 `;
@@ -177,4 +177,14 @@ export const PostDate = styled.span`
   font-size: 10px;
   line-height: 12px;
   color: var(--sub-text-color);
+`;
+
+export const Tag = styled.button`
+  padding: 8px 10px;
+  font-size: 10px;
+  border: 1px solid #d9d9d9;
+  //color: var(--main-color);
+  border-radius: 20px;
+  margin-bottom: 16px;
+  margin-right: 10px;
 `;

@@ -117,3 +117,26 @@ export const MultipleImg = styled.img`
   border-radius: 10px;
   object-fit: cover;
 `;
+
+// tagList
+export const TagWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap; //태그들이 화면 가로 크기를 초과하면 자연스럽게 2줄이 되도록 설정
+  padding: 20px 16px 0px 16px;
+`;
+
+export const TagList = styled.button`
+  padding: 10px 15px;
+  border: 1px solid #d9d9d9;
+  border-radius: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  ${({ clicked }) =>
+    clicked && 'background-color: var(--main-color); color:white;'}
+  @media screen and (max-width: 497px) {
+    &:nth-child(5) {
+      margin-right: 0;
+    }
+  }
+`;

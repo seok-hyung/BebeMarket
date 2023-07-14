@@ -20,6 +20,22 @@ function HomePost({ post, postId, commentCount }) {
   const token = useRecoilValue(userTokenState);
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(post.heartCount);
+
+  //post 내용 및 태그
+  //console.log(post.content); //   content:ㅎㅇ\\tag:키즈카페,요리
+  const splitText = post.content.split('\\'); //ex. ['content:키카추천합니다', 'tag:키즈카페']
+  const result = [splitText[0]];
+  const tagIndex = splitText.findIndex((element) => element.includes('tag:'));
+  const remainingTags = splitText.slice(tagIndex + 1).join();
+  let tagText = splitText[tagIndex];
+  if (remainingTags !== '') {
+    tagText += ',' + remainingTags;
+  }
+  result.push(tagText);
+  //result  ['content:ㅎㅇ', 'tag:키즈카페,요리,일상']
+  const postContentTxt = result[0].split(':')[1];
+  const postContentTags = result[1].split(':')[1].split(','); //['키즈카페', '요리', '일상']
+
   const handleLikeClick = () => {
     if (isLiked) {
       unLike();
@@ -73,8 +89,13 @@ function HomePost({ post, postId, commentCount }) {
               <S.MoreButton onClick={showModal}></S.MoreButton>
             </S.PostHeader>
             <S.PostDetail>
+              {splitText.length > 1
+                ? postContentTags.map((tag, index) => (
+                    <S.Tag key={index}># {tag}</S.Tag>
+                  )) //tag이용해서 홈피드에 표시해야함
+                : null}
               <S.Content onClick={() => navigate(`/post/${postId}`)}>
-                {post.content}
+                {postContentTxt}
               </S.Content>
               {post.image ? (
                 post.image.split(',').length === 1 ? (
@@ -109,7 +130,7 @@ function HomePost({ post, postId, commentCount }) {
                   onClick={() => navigate(`/post/${postId}`)}
                 ></S.CommentIcon>
                 <S.CommentCount>
-                  {commentCount || post.commentCount}
+                  {commentCount || post.commentCount || post.comments.length}
                 </S.CommentCount>
               </S.Comment>
             </S.PostIconWrapper>

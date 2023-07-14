@@ -8,23 +8,65 @@ import TabMenu from '../../components/common/tab/TabMenu';
 import { useNavigate } from 'react-router-dom';
 
 import { useRecoilValue } from 'recoil';
-import { userTokenState } from '../../atoms/Atoms';
+import { userTokenState, accountNameState } from '../../atoms/Atoms';
 import HomePost from '../../components/common/home/HomePost';
 import getPostFeedAPI from '../../api/post/getPostFeedAPI';
+import getAllFeedAPI from '../../api/post/getAllFeedAPI';
 
 function Home() {
   const navigate = useNavigate();
   const userToken = useRecoilValue(userTokenState);
-  const [followerData, setFollowerData] = useState([]);
+  const userAccountname = useRecoilValue(accountNameState);
+  const [feedData, setFeedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [skip, setSkip] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [selectedTag, setSelectedTag] = useState('팔로잉');
+
+  const handleClickTag = async (tag) => {
+    setSelectedTag(tag);
+    if (tag === '팔로잉') {
+      loadFollowingPosts();
+    } else {
+      const data = await getAllFeedAPI(userToken);
+      const allFeedArr = data.posts;
+
+      const regex = new RegExp(`\\\\tag:.*${tag}.*(?=,|\\\\|$)`);
+      const TaggeddArr = allFeedArr.filter((item) =>
+        item.author.accountname === userAccountname
+          ? null
+          : item.content.match(regex),
+      );
+      console.log(TaggeddArr);
+      console.log('태그게시글불러오기');
+      setFeedData(TaggeddArr);
+    }
+  };
+  const Tags = [
+    '팔로잉',
+    '육아',
+    '일상',
+    '요리',
+    '꿀팁',
+    '음식점',
+    '꿀템추천',
+    '키즈카페',
+  ];
+  const loadFollowingPosts = useCallback(async () => {
+    setIsLoading(true);
+    const data = await getPostFeedAPI(userToken, 0, Infinity); // 모든 글을 불러오기 위해 skip을 설정하지 않고, Infinity를 넘겨줍니다.
+    if (data) {
+      setFeedData(data);
+    }
+    setIsLoading(false);
+  }, [userToken]);
 
   const loadMorePosts = useCallback(async () => {
     setIsLoading(true);
     const data = await getPostFeedAPI(userToken, skip, 4);
     if (data) {
-      setFollowerData((prevState) => [...prevState, ...data]);
+      setFeedData((prevState) => [...prevState, ...data]);
+      //console.log(feedData, '팔로잉게시글');
       if (data.length < 4) {
         setHasMore(false);
       } else {
@@ -43,11 +85,11 @@ function Home() {
       window.innerHeight + document.documentElement.scrollTop >=
       document.documentElement.offsetHeight - 50
     ) {
-      if (!isLoading && hasMore) {
+      if (!isLoading && hasMore && selectedTag === '팔로잉') {
         loadMorePosts();
       }
     }
-  }, [isLoading, hasMore, loadMorePosts]);
+  }, [isLoading, hasMore, loadMorePosts, selectedTag]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -59,15 +101,32 @@ function Home() {
   return (
     <>
       <TopMainNav />
+      <S.TagWrapper>
+        {Tags.map((tag, index) => (
+          <S.TagList
+            type="button"
+            key={index}
+            value={tag}
+            onClick={() => handleClickTag(tag)}
+            clicked={tag === selectedTag}
+          >
+            # {tag}
+          </S.TagList>
+        ))}
+      </S.TagWrapper>
       <S.HomeWrapper>
         {isLoading ? (
           <S.LoadingImage src={loadingGif} alt="로딩중일 때 이미지" />
-        ) : followerData?.length > 0 ? (
-          followerData.map((post) => (
-            <HomePost key={post.id} post={post} postId={post.id} />
+        ) : feedData?.length > 0 ? (
+          feedData.map((post) => (
+            <HomePost
+              key={post.id}
+              post={post}
+              postId={post.id ? post.id : post._id}
+            />
           ))
         ) : (
-          <>
+          <S.Div>
             <S.HomeDiv>
               <S.HomeImage src={Image} alt="홈 피드 내용이 없을 때의 이미지" />
               <S.HomeDescription>
@@ -77,7 +136,7 @@ function Home() {
                 검색하기
               </S.SearchButton>
             </S.HomeDiv>
-          </>
+          </S.Div>
         )}
       </S.HomeWrapper>
       <TabMenu />

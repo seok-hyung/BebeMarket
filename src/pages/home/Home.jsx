@@ -38,6 +38,7 @@ function Home() {
           : item.content.match(regex),
       );
       console.log(TaggeddArr);
+      console.log('태그게시글불러오기');
       setFeedData(TaggeddArr);
     }
   };
@@ -84,11 +85,11 @@ function Home() {
       window.innerHeight + document.documentElement.scrollTop >=
       document.documentElement.offsetHeight - 50
     ) {
-      if (!isLoading && hasMore) {
+      if (!isLoading && hasMore && selectedTag === '팔로잉') {
         loadMorePosts();
       }
     }
-  }, [isLoading, hasMore, loadMorePosts]);
+  }, [isLoading, hasMore, loadMorePosts, selectedTag]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);

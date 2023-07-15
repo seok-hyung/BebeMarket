@@ -169,7 +169,6 @@ export const ProductPrice = styled.span`
 export const PostContainer = styled.div`
   background-color: #fff;
   height: auto;
-  margin-bottom: 50px;
 `;
 
 // 피드 정렬

@@ -1,5 +1,6 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
+import { data } from '../data/ChildCareInfo';
 
 const { persistAtom } = recoilPersist();
 
@@ -25,4 +26,23 @@ export const accountNameState = atom({
 export const searchValueState = atom({
   key: 'searchValueState',
   default: '',
+});
+
+export const preschoolListState = atom({
+  key: 'preschoolList',
+  default: data[0].ChildCareInfo.row,
+});
+
+export const mapSearchValueState = atom({
+  key: 'mapSearchValue',
+  default: '',
+});
+
+export const filteredPreschoolListState = selector({
+  key: 'filteredPreschoolList',
+  get: ({ get }) => {
+    const searchValue = get(mapSearchValueState);
+    const list = get(preschoolListState);
+    return list.filter((item) => item.CRNAME.includes(searchValue));
+  },
 });

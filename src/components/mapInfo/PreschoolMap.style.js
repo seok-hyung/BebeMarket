@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-export const PreschoolMap = styled.article`
-  width: 60%;
-  background-color: black;
+export const PreschoolMapContainer = styled.article`
+  width: 70%;
+  height: 100%;
 
-  @media (max-width: 980px) {
+  @media (max-width: 1080px) {
     width: 100%;
-    height: 70vh;
   }
 `;

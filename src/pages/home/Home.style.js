@@ -59,6 +59,13 @@ export const TagWrapper = styled.div`
   margin: 50px auto 0 auto;
   overflow-x: auto;
   white-space: nowrap;
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+    border-radius: 6px;
+  }
 `;
 
 export const TagList = styled.button`

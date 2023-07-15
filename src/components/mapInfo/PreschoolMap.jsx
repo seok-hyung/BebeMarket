@@ -30,7 +30,7 @@ function PreschoolMap({
   useEffect(() => {
     const script = document.createElement('script');
     script.src =
-      '//dapi.kakao.com/v2/maps/sdk.js?appkey=17703254ea82341d185ec5149d6948f4&libraries=services';
+      '//dapi.kakao.com/v2/maps/sdk.js?appkey=%REACT_APP_KAKAO_MAP_KEY%&libraries=services';
     script.async = true;
     document.head.appendChild(script);
 

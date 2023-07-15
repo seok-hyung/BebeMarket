@@ -9,7 +9,7 @@
 
 
  
-배포 URL : https://bebemarket.netlify.app/map <br>
+배포 URL : https://bebemarket.netlify.app <br>
 * Test ID : test100@test.co.kr <br>
 * Test PW : 123123
 

@@ -10,9 +10,10 @@
 
  
 배포 URL : https://bebemarket.netlify.app <br>
-* Test ID : test100@test.co.kr <br>
-* Test PW : 123123
-
+```
+Test ID : test100@test.co.kr
+Test PW : 123123
+```
 <br>
 
 📚 [팀 스터디 레포지토리](https://www.notion.so/12c57d2ccab14d1cb045fc9c8477d9f7?pvs=4)

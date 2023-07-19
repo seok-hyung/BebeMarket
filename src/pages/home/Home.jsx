@@ -54,20 +54,49 @@ function Home() {
   ];
   const loadFollowingPosts = useCallback(async () => {
     setIsLoading(true);
-    const data = await getPostFeedAPI(userToken, 0, Infinity); // 모든 글을 불러오기 위해 skip을 설정하지 않고, Infinity를 넘겨줍니다.
+    const data = await getPostFeedAPI(userToken, skip, 4); // 모든 글을 불러오기 위해 skip을 설정하지 않고, Infinity를 넘겨줍니다.
     if (data) {
       setFeedData(data);
     }
     setIsLoading(false);
   }, [userToken]);
 
-  useEffect(() => {
+  const loadMorePosts = useCallback(async () => {
     setIsLoading(true);
-    getPostFeedAPI(userToken).then((data) => {
-      setFeedData(data.posts);
-      setIsLoading(false);
-    });
+    const data = await getPostFeedAPI(userToken, skip, 4);
+    if (data) {
+      setFeedData((prevState) => [...prevState, ...data]);
+      //console.log(feedData, '팔로잉게시글');
+      if (data.length < 4) {
+        setHasMore(false);
+      } else {
+        setSkip((prevState) => prevState + 4);
+      }
+    }
+    setIsLoading(false);
+  }, [skip, userToken]);
+
+  useEffect(() => {
+    loadMorePosts();
   }, []);
+
+  const handleScroll = useCallback(() => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop >=
+      document.documentElement.offsetHeight - 50
+    ) {
+      if (!isLoading && hasMore && selectedTag === '팔로잉') {
+        loadMorePosts();
+      }
+    }
+  }, [isLoading, hasMore, loadMorePosts, selectedTag]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
 
   return (
     <>

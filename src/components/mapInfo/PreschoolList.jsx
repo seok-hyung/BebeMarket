@@ -13,6 +13,7 @@ function PreschoolList({ list, onLocationChange, handleSearchChange }) {
   const [currentPage, setCurrentPage] = useState(0);
   const perPage = 10;
 
+  // 위치 아이콘 클릭 시 실행되는 함수
   const handleLocationClick = (STCODE, LA, LO) => {
     if (LA && LO) {
       onLocationChange(STCODE);
@@ -21,13 +22,16 @@ function PreschoolList({ list, onLocationChange, handleSearchChange }) {
     }
   };
 
+  // 페이지 클릭 시 실행되는 함수
   const handlePageClick = (data) => {
     setCurrentPage(data.selected);
     handleSearchChange(inputValue);
   };
 
+  // 필터링된 유치원 목록을 가져옴
   const filteredLists = useRecoilValue(filteredPreschoolListState);
 
+  // 표시할 유치원 목록을 계산
   const displayedPreschools = filteredLists.slice(
     currentPage * perPage,
     currentPage * perPage + perPage,
@@ -37,10 +41,12 @@ function PreschoolList({ list, onLocationChange, handleSearchChange }) {
 
   const [inputValue, setInputValue] = useState('');
 
+  // 입력 값 변경 시 실행되는 함수
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
+  // 검색 버튼 클릭 시 실행되는 함수
   const handleSubmit = () => {
     handleSearchChange(inputValue);
     setCurrentPage(0); // 페이지네이션을 1페이지로 되돌린다

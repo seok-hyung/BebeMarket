@@ -49,7 +49,7 @@ export const UploadInputLabel = styled.label`
 export const ProfileImage = styled.img`
   width: 110px;
   height: 110px;
-  object-fit: contain;
+  border-radius: 50%;
 `;
 
 export const UploadInput = styled.input`
@@ -71,8 +71,7 @@ export const EditProfileImage = styled.img`
 `;
 
 // 이름, 계정, 소개말
-export const ProfileEdit = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+export const inputWrapper = styled.div`
+  width: 320px;
+  margin: 80px auto;
 `;

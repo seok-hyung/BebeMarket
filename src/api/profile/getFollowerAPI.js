@@ -4,8 +4,8 @@ import { apiURL } from '../apiURL';
 export const loadFollowerListAPI = async (
   accountName,
   userToken,
-  skip = 0,
-  limit = 10,
+  skip,
+  limit,
 ) => {
   try {
     const res = await axios.get(`${apiURL}profile/${accountName}/follower`, {

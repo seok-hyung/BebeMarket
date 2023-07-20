@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './DeleteModal.style';
 
-function DeleteModal(props) {
+function DeleteModal() {
   return (
     <S.ModalOverlay>
       <S.ModalContainer>

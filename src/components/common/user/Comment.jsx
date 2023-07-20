@@ -26,10 +26,10 @@ function Comment({ myProfileImg, postId, handleCommentSubmit }) {
   };
   const handleSubmit = () => {
     postCommentAPI(postId, commentContent, token).then((data) => {
-      console.log(data); //피그마에 사진 올려둠.
+      console.log(data);
     });
-    //window.location.reload();
     handleCommentSubmit();
+    setComment('');
   };
   return (
     <S.CommentBox>

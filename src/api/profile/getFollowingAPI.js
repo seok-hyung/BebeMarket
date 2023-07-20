@@ -4,8 +4,8 @@ import { apiURL } from '../apiURL';
 export const loadFollowingListAPI = async (
   accountName,
   userToken,
-  skip = 0,
-  limit = 10,
+  skip,
+  limit,
 ) => {
   try {
     const result = await axios({

@@ -4,10 +4,13 @@ export const UserBox = styled.div`
   display: flex;
   width: 358px;
   height: 50px;
+  padding: 12px;
+  margin-bottom: 10px;
 `;
 export const ProfileImage = styled.img`
   width: 50px;
   height: 50px;
+  border-radius: 50%;
   margin-right: 12px;
 `;
 export const RightBox = styled.div`

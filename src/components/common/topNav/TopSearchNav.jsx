@@ -1,16 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './TopSearchNav.style.js';
 import arrowLeft from '../../../assets/icon/icon-arrow-left.svg';
 import { useNavigate } from 'react-router-dom';
-import InputBox from '../input/InputBox.jsx';
 
-export default function TopSearchNav({ onSearchInputChange }) {
+export default function TopSearchNav({ onSearchInputChange, searchValue }) {
   const navigate = useNavigate();
-  const handleSearchInput = (e) => {
-    if (onSearchInputChange) {
-      onSearchInputChange(e.target.value);
-    }
-  };
 
   return (
     <S.Nav>
@@ -19,7 +13,8 @@ export default function TopSearchNav({ onSearchInputChange }) {
       </S.Button>
       <S.Input
         type="text"
-        onChange={handleSearchInput}
+        value={searchValue}
+        onChange={onSearchInputChange}
         placeholder="계정 검색"
       />
     </S.Nav>

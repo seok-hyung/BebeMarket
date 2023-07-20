@@ -1,16 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 import React from 'react';
-//import * as S from './index.style.js';
 import BasicProfileImg from '../../assets/images/Ellipse-1.png';
 import TopUploadNav from '../../components/common/topNav/TopUploadNav.jsx';
 import * as S from './UploadPost.style';
-
+import imageCompression from 'browser-image-compression';
 import { uploadImagesAPI } from '../../api/uploadImg/uploadImagesAPI';
 import { uploadPostAPI } from '../../api/post/uploadPostAPI';
 import { getMyInfoAPI } from '../../api/user/getMyInfoAPI';
 import { apiURL } from '../../api/apiURL';
 import { useRecoilValue } from 'recoil';
-import { userTokenState, accountNameState } from '../../atoms/Atoms';
+import { userTokenState } from '../../atoms/Atoms';
 import { useNavigate } from 'react-router-dom';
 
 export default function UploadPost() {
@@ -21,13 +20,20 @@ export default function UploadPost() {
   const [myProfileImg, setMyProfileImg] = useState('');
   const navigate = useNavigate();
   const token = useRecoilValue(userTokenState);
-  const accountname = useRecoilValue(accountNameState);
-  // useEffect(() => {
-  //   console.log(selectedImages.join(', '));
-  // }, [selectedImages]);
+  const [postData, setPostData] = useState('');
+  const [clickedTags, setClickedTags] = useState([]);
+
+  const Tags = [
+    '육아',
+    '일상',
+    '요리',
+    '꿀팁',
+    '음식점',
+    '꿀템추천',
+    '키즈카페',
+  ];
 
   useEffect(() => {
-    //console.log(token);
     getMyInfoAPI(token).then((data) => {
       setMyProfileImg(data.user.image); //프로필 사진 가져오기
     });
@@ -47,28 +53,36 @@ export default function UploadPost() {
   //내가 보낼 데이터
   const sendData = {
     post: {
-      content: text,
+      content:
+        clickedTags.length > 0
+          ? `content:${text}\\tag:${clickedTags}`
+          : `content:${text}`,
       image: selectedImages.join(','), //"imageurl1, imageurl2" 형식으로 보내야한다.
     },
   };
 
-  const handleImageSelect = (event) => {
+  const handleImageSelect = async (event) => {
     const file = event.target.files[0];
+
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 440,
+      initialQuality: 0.7,
+    };
+    const compressedBlob = await imageCompression(file, options); //blob이기 떄문에 file로 바꿔줘야함.
+    const compressedFile = new File([compressedBlob], file.name, {
+      type: file.type,
+    });
+
     const formData = new FormData();
 
-    formData.append('image', file);
+    formData.append('image', compressedFile);
     if (selectedImages.length >= 3) {
       alert('이미지는 최대 3장까지 선택할 수 있습니다.');
     } else {
       uploadImagesAPI(formData).then((data) => {
         setSelectedImages([...selectedImages, `${apiURL}${data[0].filename}`]);
       });
-      // .then(() => {
-      //   console.log(sendData);
-      // });
-      //.then(()=>{console.log(selectedImages)})
-      //상태 업데이트 함수인 setSelectedImages는 비동기적으로 동작하기 때문에,
-      //console.log 문이 실행되는 시점에서는 상태가 아직 업데이트되지 않은 상태입니다.
     }
   };
 
@@ -87,15 +101,53 @@ export default function UploadPost() {
   };
 
   // 업로드 버튼 //오류나면 e.preventDefalt어쩌구
-  const handleUpload = () => {
-    uploadPostAPI(sendData, token).then((data) => console.log(data));
-    navigate(`/profile/${accountname}`);
+  const handleUpload = async () => {
+    try {
+      const data = await uploadPostAPI(sendData, token);
+      setPostData(data.post.id);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  //TopUploadNav 폰트패밀리가 SUITE이 아님.
+  //태그
+
+  const handleClickTag = (tag) => {
+    // 클릭된 태그가 이미 클릭된 상태인지 확인
+    const tagExists = clickedTags.includes(tag);
+
+    if (tagExists) {
+      // 기존 클릭된 태그 제거
+      setClickedTags(clickedTags.filter((t) => t !== tag));
+    } else {
+      // 새로 클릭된 태그 추가
+      setClickedTags([...clickedTags, tag]);
+    }
+  };
+
+  // 이 useEffect 안에서만 변경사항을 확인할 수 있습니다.
+  useEffect(() => {
+    if (postData) {
+      navigate(`/post/${postData}`);
+    }
+  }, [postData]);
+
   return (
     <S.Container>
       <TopUploadNav disabled={disabled} handleUpload={handleUpload} />
+      <S.TagWrapper>
+        {Tags.map((tag, index) => (
+          <S.TagList
+            type="button"
+            key={index}
+            value={tag}
+            onClick={() => handleClickTag(tag)}
+            clicked={clickedTags.includes(tag)}
+          >
+            {tag}
+          </S.TagList>
+        ))}
+      </S.TagWrapper>
       <S.Main>
         <S.ImgProfile src={myProfileImg ? myProfileImg : BasicProfileImg} />
         <S.Article>

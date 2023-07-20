@@ -10,7 +10,7 @@ import DefaultProfileImage from '../../assets/images/basic-profile-img.svg';
 import { accountnameValidAPI } from '../../api/user/accountnameValidAPI';
 import { uploadImageAPI } from '../../api/uploadImg/uploadImageAPI';
 import { joinAPI } from '../../api/user/joinAPI';
-
+import imageCompression from 'browser-image-compression';
 function JoinProfile() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,11 +29,22 @@ function JoinProfile() {
   const [userIdErrorMessage, setUserIdErrorMessage] = useState('');
   const [usernameErrorMessage, setUsernameErrorMessage] = useState('');
 
-  // 이미지 업로드
-  const uploadImage = (e) => {
+  // 이미지 업로드 & 최적화
+  const uploadImage = async (e) => {
     if (e.target.files && e.target.files[0]) {
-      const image = e.target.files[0];
-      uploadImageAPI(image).then((img) => {
+      const image = e.target.files[0]; //File
+
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 440,
+        initialQuality: 0.7,
+      };
+      const compressedBlob = await imageCompression(image, options); //blob이기 떄문에 file로 바꿔줘야함.
+      const compressedFile = new File([compressedBlob], image.name, {
+        type: image.type,
+      });
+
+      uploadImageAPI(compressedFile).then((img) => {
         setImage(img);
       });
     }

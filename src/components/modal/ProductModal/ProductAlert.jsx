@@ -19,7 +19,6 @@ export default function ProductAlert({
   const deleteProduct = () => {
     deleteProductAPI(productId, token).then((data) => {
       console.log(data, '삭제됨');
-      //window.location.reload();
       setIsAlertOpen(false);
       setisModalOpen(false);
     });

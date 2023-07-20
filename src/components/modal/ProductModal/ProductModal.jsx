@@ -13,7 +13,7 @@ export default function ProductModal({
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const navigate = useNavigate();
   const handleToEdit = () => {
-    navigate(`/product/edit/${productId}`); //백틱으로 나중에바꿔주기
+    navigate(`/product/edit/${productId}`);
   };
   console.log(productList, 'ji');
   return (

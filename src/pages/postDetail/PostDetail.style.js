@@ -17,3 +17,6 @@ export const Line = styled.hr`
 export const PostCommentWrapper = styled.div`
   margin-bottom: 120px;
 `;
+export const Div = styled.div`
+  margin-top: 50px;
+`;

@@ -34,23 +34,9 @@ export default function CommentModal({
           commentId={commentId}
           postId={postId}
           handleCommentDelete={handleCommentDelete}
+          setisModalOpen={setisModalOpen}
         />
       ) : null}
     </>
   );
 }
-
-//<Button onClick={() => setIsAlertOpen(true)}>{content}</Button>
-//{content} 는 삭제 또는 신고
-
-// {isMyComment ? (
-//   <>
-//     <Li>
-//       <Button onClick={() => setIsAlertOpen(true)}>삭제</Button>
-//     </Li>
-//   </>
-// ) : (
-//   <Li>
-//     <Button>신고</Button>
-//   </Li>
-// )}

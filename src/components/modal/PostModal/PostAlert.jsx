@@ -11,18 +11,16 @@ import { useRecoilValue } from 'recoil';
 import { userTokenState } from '../../../atoms/Atoms';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { accountNameState } from '../../../atoms/Atoms';
-export default function PostAlert({ setIsAlertOpen, postId }) {
+export default function PostAlert({ setIsAlertOpen, postId, setisModalOpen }) {
   const navigate = useNavigate();
   const location = useLocation();
   const token = useRecoilValue(userTokenState);
   const accountname = useRecoilValue(accountNameState);
   const deletePost = () => {
-    //console.log('삭제');
-
     if (location.pathname === `/profile/${accountname}`) {
       deletePostAPI(postId, token).then((data) => {
         console.log(data);
-        window.location.reload();
+        setisModalOpen(false);
       });
     } else {
       deletePostAPI(postId, token).then((data) => {
@@ -49,7 +47,3 @@ export default function PostAlert({ setIsAlertOpen, postId }) {
     </AlertContainer>
   );
 }
-
-// if (location.pathname === '/post/:postId') {
-//   navigate(`/profile/${accountname}`);
-// }

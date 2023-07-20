@@ -5,11 +5,12 @@ export const FollowerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   -webkit-box-pack: center;
-  justify-content: center;
   -webkit-box-align: center;
   align-items: center;
   margin-bottom: 60px;
   padding: 24px 0 24px;
+  min-height: 90vh;
+  margin-top: 40px;
 `;
 
 export const FollowerUserList = styled.ul`

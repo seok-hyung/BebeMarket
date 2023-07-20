@@ -7,6 +7,7 @@ export const ProfileWrapper = styled.div`
   flex-direction: column;
   gap: 6px;
   background-color: #f2f2f2;
+  margin-top: 50px;
 `;
 
 //====프로필====
@@ -24,6 +25,7 @@ export const ProfileHeader = styled.div`
   gap: 41px;
   padding-top: 30px;
   margin-bottom: 14px;
+  margin-left: 12px;
 `;
 
 export const Followers = styled.div`

@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import TopFollowNav from '../../components/common/topNav/TopFollowNav';
 import TabMenu from '../../components/common/tab/TabMenu';
-import PreschoolMap from '../../components/mapInfo/PreschoolMap';
-import PreschoolList from '../../components/mapInfo/PreschoolList';
+const PreschoolMap = lazy(() =>
+  import('../../components/mapInfo/PreschoolMap'),
+);
+const PreschoolList = lazy(() =>
+  import('../../components/mapInfo/PreschoolList'),
+);
+
 import * as S from './Map.style';
 import { useRecoilState } from 'recoil';
 import { preschoolListState, mapSearchValueState } from '../../atoms/Atoms';
@@ -62,7 +67,7 @@ function Map() {
       <TopFollowNav />
       <S.Map>
         {preschoolList && (
-          <>
+          <Suspense fallback={<div>Loading...</div>}>
             <PreschoolMap
               list={preschoolList}
               mapList={mapList}
@@ -80,7 +85,7 @@ function Map() {
               handleSearchChange={handleSearchChange}
               searchValue={searchValue}
             />
-          </>
+          </Suspense>
         )}
       </S.Map>
       <TabMenu />

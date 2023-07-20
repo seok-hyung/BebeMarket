@@ -9,11 +9,7 @@ import {
   mapSearchValueState,
 } from '../../atoms/Atoms';
 
-export default function PreschoolList({
-  list,
-  onLocationChange,
-  handleSearchChange,
-}) {
+function PreschoolList({ list, onLocationChange, handleSearchChange }) {
   const [currentPage, setCurrentPage] = useState(0);
   const perPage = 10;
 
@@ -112,3 +108,5 @@ export default function PreschoolList({
     </>
   );
 }
+
+export default React.memo(PreschoolList);

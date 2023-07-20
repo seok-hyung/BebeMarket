@@ -27,26 +27,46 @@ function PreschoolMap({
     setOpenModal(false);
   };
 
+  const loadScript = (url) => {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = url;
+      script.async = true;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  };
+
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_MAP_KEY}&libraries=services`;
-    script.async = true;
-    document.head.appendChild(script);
+    loadScript(
+      `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_MAP_KEY}&autoload=false&libraries=services`,
+    )
+      .then(() => {
+        const scriptCheckInterval = setInterval(() => {
+          if (window.kakao) {
+            clearInterval(scriptCheckInterval);
 
-    script.onload = () => {
-      const { kakao } = window;
-      const container = document.getElementById('map');
-      const options = {
-        center: new kakao.maps.LatLng(37.566824, 126.978652),
-        level: 8,
-      };
-      const map = new kakao.maps.Map(container, options);
+            window.kakao.maps.load(() => {
+              const { kakao } = window;
+              const container = document.getElementById('map');
+              const options = {
+                center: new kakao.maps.LatLng(37.566824, 126.978652),
+                level: 8,
+              };
+              const map = new kakao.maps.Map(container, options);
 
-      const zoomControl = new kakao.maps.ZoomControl();
-      map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+              const zoomControl = new kakao.maps.ZoomControl();
+              map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-      setMap(map);
-    };
+              setMap(map);
+            });
+          }
+        });
+      })
+      .catch((err) => {
+        console.error('Failed to load Kakao Maps SDK:', err);
+      });
   }, []);
 
   useEffect(() => {
@@ -182,4 +202,4 @@ function PreschoolMap({
   );
 }
 
-export default PreschoolMap;
+export default React.memo(PreschoolMap);

@@ -9,15 +9,19 @@ import * as S from './Following.style';
 import { useLocation } from 'react-router-dom';
 
 function Following() {
+  // 팔로잉 데이터 및 페이지 정보 관리하는 state
   const [following, setFollowing] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const userToken = useRecoilValue(userTokenState);
   const pageSize = 8;
   const [pageNumber, setPageNumber] = useState(0);
+
+  // 계정 이름 가져오기
   const location = useLocation();
   const accountname = location.pathname.split('/')[2];
   const skip = pageNumber * pageSize;
 
+  // 팔로잉 목록 api 호출 함수
   const loadFollowing = useCallback(async () => {
     if (!hasMore) return;
 
@@ -29,6 +33,7 @@ function Following() {
     );
 
     if (data) {
+      // 팔로잉 데이터 업데이트
       setFollowing((prevState) => [...prevState, ...data]);
       if (data.length < pageSize) {
         setHasMore(false);
@@ -38,10 +43,12 @@ function Following() {
     }
   }, [accountname, userToken, skip, pageSize, hasMore]);
 
+  // 팔로잉 데이터 가져오기
   useEffect(() => {
     loadFollowing(pageNumber);
   }, [loadFollowing, pageNumber]);
 
+  // 무한 스크롤 구현
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -58,6 +65,9 @@ function Following() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [hasMore]);
 
+  // 불필요한 리렌더링 방지용 메모이제이션 컴포넌트
+  const MemoizedUserFollow = React.memo(UserFollow);
+
   return (
     <div>
       <TopFollowNav title="Following" />
@@ -65,7 +75,10 @@ function Following() {
         <S.FollowingUserList>
           {following &&
             following.map((item, index) => (
-              <UserFollow key={`${item.accountname}-${index}`} data={item} />
+              <MemoizedUserFollow
+                key={`${item.accountname}-${index}`}
+                data={item}
+              />
             ))}
         </S.FollowingUserList>
       </S.FollowingWrapper>

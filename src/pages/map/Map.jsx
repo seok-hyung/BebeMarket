@@ -1,6 +1,8 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react';
 import TopFollowNav from '../../components/common/topNav/TopFollowNav';
 import TabMenu from '../../components/common/tab/TabMenu';
+
+// 레이지 로딩을 사용하여 PreschoolMap 및 PreschoolList 컴포넌트를 동적으로 가져옴
 const PreschoolMap = lazy(() =>
   import('../../components/mapInfo/PreschoolMap'),
 );
@@ -21,13 +23,16 @@ function Map() {
   const [markers, setMarkers] = useState([]);
   const [map, setMap] = useState(null);
 
+  // 컴포넌트 마운트 시, 유치원 API 데이터를 가져와 저장
   useEffect(() => {
     let preschoolListAPIDatas = data[0].ChildCareInfo.row;
     setPreschoolList(preschoolListAPIDatas);
     setMapList(preschoolListAPIDatas);
   }, []);
 
+  // 선택한 유치원의 위치를 처리하는 함수
   const handleMapLocation = (STCODE) => {
+    // 검색값이 포함된 유치원 목록에서 STCODE와 일치하는 항목 찾기
     const selectedPreschool = preschoolList
       .filter((preschool) => preschool.CRNAME.includes(searchValue))
       .find((preschool) => preschool.STCODE === STCODE);
@@ -39,23 +44,25 @@ function Map() {
         selectedPreschool.LO,
       );
 
-      // 이전에 생성된 마커 중에서 STCODE와 일치하는 것을 찾기
+      // STCODE와 일치하는 이전에 생성된 마커 찾기
       const selectedMarker = markers.find((marker) => marker.STCODE === STCODE);
 
-      // 만약 일치하는 마커가 있다면, 지도 이동 및 확대
+      // 일치하는 마커가 있다면 지도 이동 및 확대
       if (selectedMarker) {
         map.setLevel(3);
         map.setCenter(coordinates);
       } else {
-        // 일치하는 마커가 없으면 기다렸다가 다시 시도
+        // 일치하는 마커가 없으면 기다린 후 다시 시도
         setTimeout(() => handleMapLocation(STCODE), 200);
       }
     }
   };
 
+  // 검색값이 변경될 때마다 실행되는 함수
   const handleSearchChange = (value) => {
     setSearchValue(value);
 
+    // 검색값이 포함된 항목으로 필터링된 목록 생성
     const filteredList = preschoolList.filter((item) =>
       item.CRNAME.includes(value),
     );

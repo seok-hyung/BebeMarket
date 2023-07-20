@@ -70,4 +70,4 @@ const Modal = ({ closeModal, selectedItem }) => {
   );
 };
 
-export default Modal;
+export default React.memo(Modal);

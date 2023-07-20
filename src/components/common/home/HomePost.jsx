@@ -79,6 +79,8 @@ function HomePost({ post, postId, commentCount }) {
           <S.UserImage
             src={post.author.image}
             onClick={() => navigate(`/profile/${post.author.accountname}`)}
+            loading="lazy"
+            decoding="async"
           />
           <S.PostWapper>
             <S.PostHeader>
@@ -102,6 +104,8 @@ function HomePost({ post, postId, commentCount }) {
                   <S.ContentImage
                     onClick={() => navigate(`/post/${postId}`)}
                     src={post.image.split(',')[0]}
+                    loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <S.MultipleImgUl>
@@ -110,7 +114,12 @@ function HomePost({ post, postId, commentCount }) {
                         onClick={() => navigate(`/post/${postId}`)}
                         key={index}
                       >
-                        <S.ContentImage src={image} alt="포스트 이미지" />
+                        <S.ContentImage
+                          src={image}
+                          alt="포스트 이미지"
+                          loading="lazy"
+                          decoding="async"
+                        />
                       </S.ContentImageWrapper>
                     ))}
                   </S.MultipleImgUl>

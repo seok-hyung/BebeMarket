@@ -2,55 +2,6 @@ import styled from 'styled-components';
 import ReactPaginate from 'react-paginate';
 import basicImage from '../../assets/images/basic-profile-img.svg';
 
-export const ListContent = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 30px;
-  border-bottom: 1px solid #ddd;
-  background: #fff;
-`;
-
-export const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-export const ContentTitle = styled.h2`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-weight: 700;
-  font-size: 17px;
-  color: var(--main-color);
-`;
-
-export const ContentInfo = styled.p`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 15px;
-  color: var(--sub-text-color);
-`;
-export const ContentNumber = styled.p`
-  font-size: 15px;
-  color: var(--sub-text-color);
-`;
-
-export const ContentNumberBold = styled.span`
-  padding-right: 7px;
-`;
-
-export const Location = styled.img`
-  width: 32px;
-  object-fit: cover;
-  cursor: pointer;
-  margin-left: 50px;
-`;
-
 export const ListContainer = styled.article`
   width: 30%;
   height: 100%;
@@ -105,6 +56,55 @@ export const SearchSubmitIcon = styled.img`
   height: 20px;
 `;
 
+export const ListContent = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  border-bottom: 1px solid #ddd;
+  background: #fff;
+`;
+
+export const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const ContentTitle = styled.h2`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--main-color);
+`;
+
+export const ContentInfo = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+  color: var(--sub-text-color);
+`;
+export const ContentNumber = styled.p`
+  font-size: 15px;
+  color: var(--sub-text-color);
+`;
+
+export const ContentNumberBold = styled.span`
+  padding-right: 7px;
+`;
+
+export const Location = styled.img`
+  width: 32px;
+  object-fit: cover;
+  cursor: pointer;
+  margin-left: 50px;
+`;
+
 export const StyledReactPaginate = styled(ReactPaginate)`
   display: flex;
   justify-content: center;
@@ -126,7 +126,6 @@ export const StyledReactPaginate = styled(ReactPaginate)`
     margin: 0 5px;
     cursor: pointer;
     border-radius: 5px;
-    padding: 5px 8px;
   }
 
   a {
@@ -135,6 +134,7 @@ export const StyledReactPaginate = styled(ReactPaginate)`
     align-items: center;
     width: 100%;
     height: 100%;
+    padding: 5px 8px;
   }
 
   .active {

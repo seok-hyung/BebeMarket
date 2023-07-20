@@ -3,7 +3,7 @@ import React from 'react';
 import BasicProfileImg from '../../assets/images/Ellipse-1.png';
 import TopUploadNav from '../../components/common/topNav/TopUploadNav.jsx';
 import * as S from './UploadPost.style';
-
+import imageCompression from 'browser-image-compression';
 import { uploadImagesAPI } from '../../api/uploadImg/uploadImagesAPI';
 import { uploadPostAPI } from '../../api/post/uploadPostAPI';
 import { getMyInfoAPI } from '../../api/user/getMyInfoAPI';
@@ -61,19 +61,28 @@ export default function UploadPost() {
     },
   };
 
-  const handleImageSelect = (event) => {
+  const handleImageSelect = async (event) => {
     const file = event.target.files[0];
+
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 440,
+      initialQuality: 0.7,
+    };
+    const compressedBlob = await imageCompression(file, options); //blob이기 떄문에 file로 바꿔줘야함.
+    const compressedFile = new File([compressedBlob], file.name, {
+      type: file.type,
+    });
+
     const formData = new FormData();
 
-    formData.append('image', file);
+    formData.append('image', compressedFile);
     if (selectedImages.length >= 3) {
       alert('이미지는 최대 3장까지 선택할 수 있습니다.');
     } else {
       uploadImagesAPI(formData).then((data) => {
         setSelectedImages([...selectedImages, `${apiURL}${data[0].filename}`]);
       });
-      //상태 업데이트 함수인 setSelectedImages는 비동기적으로 동작하기 때문에,
-      //console.log 문이 실행되는 시점에서는 상태가 아직 업데이트되지 않은 상태입니다.
     }
   };
 
@@ -96,7 +105,6 @@ export default function UploadPost() {
     try {
       const data = await uploadPostAPI(sendData, token);
       setPostData(data.post.id);
-      console.log(data, 'hi');
     } catch (error) {
       console.error(error);
     }
@@ -120,7 +128,6 @@ export default function UploadPost() {
   // 이 useEffect 안에서만 변경사항을 확인할 수 있습니다.
   useEffect(() => {
     if (postData) {
-      //console.log(postData); postId입니다.
       navigate(`/post/${postData}`);
     }
   }, [postData]);

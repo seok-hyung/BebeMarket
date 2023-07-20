@@ -37,8 +37,7 @@ function Home() {
           ? null
           : item.content.match(regex),
       );
-      console.log(TaggeddArr);
-      console.log('태그게시글불러오기');
+
       setFeedData(TaggeddArr);
     }
   };
@@ -66,7 +65,7 @@ function Home() {
     const data = await getPostFeedAPI(userToken, skip, 4);
     if (data) {
       setFeedData((prevState) => [...prevState, ...data]);
-      //console.log(feedData, '팔로잉게시글');
+
       if (data.length < 4) {
         setHasMore(false);
       } else {

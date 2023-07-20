@@ -1,14 +1,14 @@
 import React from 'react';
 import * as S from './Product.style';
 
-function Product() {
+function Product({ product }) {
   return (
     <S.Product>
       <S.Wrapper>
         <S.ProductContent>
-          <S.ProductImage />
-          <S.ProductTitle>애월읍 노지 감귤</S.ProductTitle>
-          <S.ProductPrice>35,000원</S.ProductPrice>
+          <S.ProductImage src={product.itemImage} />
+          <S.ProductTitle>{product.itemName}</S.ProductTitle>
+          <S.ProductPrice>{product.price}</S.ProductPrice>
         </S.ProductContent>
       </S.Wrapper>
     </S.Product>

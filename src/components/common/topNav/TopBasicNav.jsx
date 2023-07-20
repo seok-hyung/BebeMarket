@@ -12,7 +12,7 @@ export default function TopBasicNav() {
     setisModalOpen(true);
   };
   return (
-    <>
+    <S.Div>
       <S.Nav>
         <S.arrowButton onClick={() => navigate(-1)}>
           <img src={arrowLeft} alt="뒤로가기" />
@@ -22,6 +22,6 @@ export default function TopBasicNav() {
         </S.verticalButton>
       </S.Nav>
       {isModalOpen ? <ProfileModal setisModalOpen={setisModalOpen} /> : null}
-    </>
+    </S.Div>
   );
 }

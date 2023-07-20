@@ -6,10 +6,22 @@ import {
   CancelButton,
   DeleteButton,
 } from '../styled';
+import { deleteProductAPI } from '../../../api/product/deleteProductAPI';
+import { useRecoilValue } from 'recoil';
+import { userTokenState } from '../../../atoms/Atoms';
 
-export default function ProductAlert({ setIsAlertOpen }) {
+export default function ProductAlert({
+  setIsAlertOpen,
+  productId,
+  setisModalOpen,
+}) {
+  const token = useRecoilValue(userTokenState);
   const deleteProduct = () => {
-    console.log('상품삭제하셈');
+    deleteProductAPI(productId, token).then((data) => {
+      console.log(data, '삭제됨');
+      setIsAlertOpen(false);
+      setisModalOpen(false);
+    });
   };
   return (
     <AlertContainer>

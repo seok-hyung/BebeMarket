@@ -1,39 +1,55 @@
-import React from 'react';
-import * as S from './JoinProfile.style';
-
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import * as S from './JoinProfile.style';
 import { CustomNextButton } from './SignUp.style';
 
 import InputBox from '../../components/common/input/InputBox';
-import JoinProfileIamge from '../../assets/images/basic-profile-img.svg';
 import DefaultProfileImage from '../../assets/images/basic-profile-img.svg';
 
 // API
-import { accountnameValidAPI, joinAPI } from '../../api/API';
-import { useEffect } from 'react';
-
-function JoinProfile(props) {
+import { accountnameValidAPI } from '../../api/user/accountnameValidAPI';
+import { uploadImageAPI } from '../../api/uploadImg/uploadImageAPI';
+import { joinAPI } from '../../api/user/joinAPI';
+import imageCompression from 'browser-image-compression';
+function JoinProfile() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [image, setIamge] = useState(DefaultProfileImage);
-  const [username, setUsername] = useState('');
-  const [isUsernameValid, setIsUsernameValid] = useState(true);
-  const [userId, setUserId] = useState('');
-  const [introduction, setIntroduction] = useState('');
   const userEmail = location.state?.email;
   const userPassword = location.state?.password;
-  const [isButtonActive, setIsButtonActive] = useState('');
 
-  const [isUserIdValid, setIsUserIdValid] = useState('');
+  const [image, setImage] = useState(DefaultProfileImage);
+  const [username, setUsername] = useState('');
+  const [userId, setUserId] = useState('');
+  const [introduction, setIntroduction] = useState('');
+
+  const [isUsernameValid, setIsUsernameValid] = useState(false);
+  const [isUserIdValid, setIsUserIdValid] = useState(false);
+  const [isButtonActive, setIsButtonActive] = useState(false);
+
   const [userIdErrorMessage, setUserIdErrorMessage] = useState('');
   const [usernameErrorMessage, setUsernameErrorMessage] = useState('');
-  const [show, setShow] = useState(false);
 
-  // 이미지 업로드
-  const uploadImage = (e) => {
-    console.log(e.target.value);
+  // 이미지 업로드 & 최적화
+  const uploadImage = async (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const image = e.target.files[0]; //File
+
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 440,
+        initialQuality: 0.7,
+      };
+      const compressedBlob = await imageCompression(image, options); //blob이기 떄문에 file로 바꿔줘야함.
+      const compressedFile = new File([compressedBlob], image.name, {
+        type: image.type,
+      });
+
+      uploadImageAPI(compressedFile).then((img) => {
+        setImage(img);
+      });
+    }
   };
+
   // username 유효성 검사
   const handleUserNameValid = (e) => {
     const currentUsername = e.target.value;
@@ -58,10 +74,8 @@ function JoinProfile(props) {
     const regex = /^[_A-Za-z0-9.]*$/;
     if (currentUserId === '') {
       setIsUserIdValid(false);
-      // setUserIdErrorMessage('* 계정ID를 입력해주세요');
     } else if (regex.test(currentUserId)) {
       setIsUserIdValid(true);
-      // setUserId(currentUserId);
       setUserIdErrorMessage('');
     } else {
       setIsUserIdValid(false);
@@ -78,9 +92,13 @@ function JoinProfile(props) {
       setIsUserIdValid(false);
       setUserIdErrorMessage('* 이미 사용 중인 ID입니다.');
     } else {
-      setShow(false);
       setIsUserIdValid(true);
     }
+  };
+
+  // handle introduction
+  const handleUserIntroduction = (e) => {
+    setIntroduction(e.target.value);
   };
 
   // 버튼 활성화
@@ -95,7 +113,7 @@ function JoinProfile(props) {
   // 회원가입
   const handleJoin = async (e) => {
     e.preventDefault();
-    const a = await joinAPI(
+    await joinAPI(
       username,
       userEmail,
       userPassword,
@@ -103,7 +121,7 @@ function JoinProfile(props) {
       introduction,
       image,
     );
-    console.log(a);
+    navigate('/sociallogin');
   };
   return (
     <S.JoinContainer>
@@ -111,17 +129,14 @@ function JoinProfile(props) {
       <S.JoinDescription>나중에 언제든지 변경할 수 있습니다.</S.JoinDescription>
       <form onSubmit={handleJoin}>
         <S.JoinDiv>
-          <S.ProfileImage
-            html
-            src={JoinProfileIamge}
-            alt="회원가입 유저 프로필 이미지"
-          />
+          <S.ProfileImage src={image} alt="회원가입 유저 프로필 이미지" />
           <S.UploadInputLabel htmlFor="uploadInput" />
           <S.UploadInput
             type="file"
             id="uploadInput"
             alt="회원가입 프로필 업로드 이미지"
-            onInput={uploadImage}
+            accept="image/"
+            onChange={uploadImage}
           />
         </S.JoinDiv>
 
@@ -153,6 +168,8 @@ function JoinProfile(props) {
           label="소개"
           id="userIntroduction"
           placeholder="자신과 판매할 상품에 대해 소개해 주세요!"
+          value={introduction}
+          onChange={handleUserIntroduction}
         />
         <CustomNextButton type="submit" active={isButtonActive}>
           베베마켓 시작하기

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import uploadImg from '../../assets/images/upload-file.svg';
 import removeImg from '../../assets/icon/x.svg';
 export const Container = styled.div`
@@ -14,6 +14,8 @@ export const ImgProfile = styled.img`
   width: 42px;
   height: 42px;
   margin-right: 13px;
+  border-radius: 70%;
+  overflow: hidden;
 `;
 
 export const Article = styled.article`
@@ -26,6 +28,7 @@ export const TextArea = styled.textarea`
   outline: none;
   font-family: 'SUITE-Regular';
   font-size: 14px;
+  margin-top: 14px;
 `;
 
 export const TextLengthWrap = styled.div`
@@ -113,4 +116,27 @@ export const MultipleImg = styled.img`
   border: 0.5px solid var(--main-disabled-color);
   border-radius: 10px;
   object-fit: cover;
+`;
+
+// tagList
+export const TagWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap; //태그들이 화면 가로 크기를 초과하면 자연스럽게 2줄이 되도록 설정
+  padding: 20px 16px 0px 16px;
+`;
+
+export const TagList = styled.button`
+  padding: 10px 15px;
+  border: 1px solid #d9d9d9;
+  border-radius: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  ${({ clicked }) =>
+    clicked && 'background-color: var(--main-color); color:white;'}
+  @media screen and (max-width: 497px) {
+    &:nth-child(5) {
+      margin-right: 0;
+    }
+  }
 `;

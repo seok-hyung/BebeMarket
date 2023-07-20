@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 
-export const UserBox = styled.div`
+export const UserBox = styled.li`
   display: flex;
-  width: 358px;
-  height: 50px;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 16px;
 `;
 export const ProfileImage = styled.img`
   width: 50px;
   height: 50px;
   margin-right: 12px;
+  border-radius: 50%;
 `;
 export const RightBox = styled.div`
   padding: 6px 0;

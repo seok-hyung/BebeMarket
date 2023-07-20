@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import userImage from '../../../assets/images/basic-profile.svg';
 import moreButton from '../../../assets/icon/s-icon-more-vertical.svg';
-import contentImages from '../../../assets/images/post-img-example.png';
+//import contentImages from '../../../assets/images/post-img-example.png';
 import likeIcon from '../../../assets/icon/icon-heart.svg';
 import commentIcon from '../../../assets/icon/icon-message-circle-1.svg';
 
 export const Wrapper = styled.section`
   max-width: 400px;
   /* padding: 16px; */
-  margin: auto;
+  margin: 0 auto;
 `;
 
 export const Article = styled.article`
@@ -16,8 +16,15 @@ export const Article = styled.article`
   padding: 16px;
 `;
 
-export const UserImage = styled.div`
-  background-image: url(${userImage});
+export const UserImage = styled.img`
+  object-fit: cover;
+  width: 42px;
+  height: 42px;
+  margin-right: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+
+  /* background-image: url(${userImage});
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
@@ -25,7 +32,7 @@ export const UserImage = styled.div`
   width: 42px;
   height: 42px;
   margin-right: 12px;
-  cursor: pointer;
+  cursor: pointer; */
 `;
 
 export const PostWapper = styled.div`
@@ -77,8 +84,33 @@ export const Content = styled.p`
   word-break: break-all;
 `;
 
-export const ContentImage = styled.div`
-  background-image: url(${contentImages});
+export const MultipleImgUl = styled.ul`
+  display: flex;
+  gap: 8px;
+  width: 304px;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+    border-radius: 6px;
+  }
+`;
+export const ContentImageWrapper = styled.li`
+  position: relative;
+`;
+
+export const ContentImage = styled.img`
+  object-fit: cover;
+  width: 304px;
+  height: 228px;
+  aspect-ratio: auto 304/228;
+  vertical-align: top;
+  margin-top: 16px;
+  border-radius: 10px;
+
+  /* 
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
@@ -86,7 +118,7 @@ export const ContentImage = styled.div`
   width: 100%;
   aspect-ratio: auto 304/228;
   vertical-align: top;
-  margin-top: 16px;
+  margin-top: 16px; */
 `;
 
 export const PostIconWrapper = styled.div`
@@ -101,13 +133,13 @@ export const Like = styled.div`
   gap: 8px;
 `;
 
-export const LikeIcon = styled.div`
-  background-image: url(${likeIcon});
+export const LikeIcon = styled.img`
+  /* background-image: url(${likeIcon});
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: contain;
+  background-size: contain; */
   object-fit: cover;
-  width: 18px;
+  width: 20px;
   height: 18px;
   cursor: pointer;
 `;
@@ -145,4 +177,14 @@ export const PostDate = styled.span`
   font-size: 10px;
   line-height: 12px;
   color: var(--sub-text-color);
+`;
+
+export const Tag = styled.button`
+  padding: 8px 10px;
+  font-size: 10px;
+  border: 1px solid #d9d9d9;
+  //color: var(--main-color);
+  border-radius: 20px;
+  margin-bottom: 16px;
+  margin-right: 10px;
 `;

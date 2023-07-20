@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import * as S from './SignUp.style';
 import { useNavigate } from 'react-router-dom';
 import InputBox from '../../components/common/input/InputBox';
-import { emailValidAPI } from '../../api/API';
+import { emailValidAPI } from '../../api/user/emailValidAPI';
 
-function SignUp(props) {
+function SignUp() {
   let navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Login.style';
 
@@ -16,93 +16,90 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [emailValid, setEmailValid] = useState(false);
   const [passwordError, setPasswordError] = useState('');
-  const [passwordValid, setPasswordValid] = useState(false);
-  const [isEmailRed, setIsEmailRed] = useState(false);
-  const [isPasswordRed, setIsPasswordRed] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const setUserToken = useSetRecoilState(userTokenState); // 로그인 성공시 토큰 저장
-  const setIsLoginState = useSetRecoilState(isLoginState); // 로그인 상태 관리
-  const setAccountNameData = useSetRecoilState(accountNameState); // 로그인 성공시 계정ID 저장
+  const setUserToken = useSetRecoilState(userTokenState); // 사용자 토큰 상태 설정
+  const setIsLoginState = useSetRecoilState(isLoginState); // 로그인 상태 설정
+  const setAccountNameData = useSetRecoilState(accountNameState); // 계정 이름 상태 설정
 
-  // 이메일 입력 시 유효성 검사
-  const handleEmailChange = (e) => {
+  // 입력 변경시 이메일 유효성 검사
+  const handleEmailChange = useCallback((e) => {
     const emailValue = e.target.value;
     setEmail(emailValue);
     const emailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if (emailValue === '') {
-      setEmailValid(false);
-    } else if (!emailReg.test(emailValue)) {
-      setIsEmailRed(true);
-      setEmailValid(false);
-      setEmailError('* 올바른 이메일 형식이 아닙니다');
-    } else {
-      setIsEmailRed(false);
-      setEmailValid(true);
-      setEmailError('');
-    }
-  };
+    setEmailError(
+      emailValue === '' || emailReg.test(emailValue)
+        ? ''
+        : '* 올바른 이메일 형식이 아닙니다',
+    );
+  }, []);
 
-  // 비밀번호 입력 시 유효성 검사
-  const handlePasswordChange = (e) => {
+  // 입력 변경시 비밀번호 유효성 검사
+  const handlePasswordChange = useCallback((e) => {
     const passwordValue = e.target.value;
     setPassword(passwordValue);
-    if (passwordValue.length < 6) {
-      setPasswordValid(false);
-      setPasswordError('비밀번호는 6자 이상이어야 합니다.');
-      setIsPasswordRed(true);
-    } else {
-      setPasswordValid(true);
-      setPasswordError('');
-      setIsPasswordRed(false);
-    }
-  };
+    setPasswordError(
+      passwordValue.length < 6 ? '비밀번호는 6자 이상이어야 합니다.' : '',
+    );
+  }, []);
 
-  // 이메일,비밀번호 유효성이 확인됐을 때 로그인 버튼 활성화
+  // 에러와 입력값을 통해 버튼 활성화 여부 결정
   useEffect(() => {
-    if (emailValid && passwordValid) {
+    if (
+      emailError === '' &&
+      passwordError === '' &&
+      email !== '' &&
+      password !== ''
+    ) {
       setIsButtonDisabled(false);
     } else {
       setIsButtonDisabled(true);
     }
-  }, [emailValid, passwordValid]);
+  }, [emailError, passwordError, email, password]);
 
-  // 로그인 버튼 클릭 시 서버에 로그인 요청
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  // 로그인 처리
+  const handleLogin = useCallback(
+    async (e) => {
+      e.preventDefault();
 
-    if (!isButtonDisabled) {
-      const data = await emailLoginAPI(email, password);
+      if (!isButtonDisabled) {
+        const data = await emailLoginAPI(email, password);
 
-      // 로그인 성공 시 토큰 및 사용자 정보 저장
-      if (!data || !data.user || !data.user.token) {
-        setIsPasswordRed(true);
-        setPasswordError('*이메일 또는 비밀번호가 일치하지 않습니다.');
-      } else {
-        setIsLoginState(true);
-        setUserToken(data.user.token);
-        setAccountNameData(data.user.accountname);
-        navigate('/home');
+        if (!data || !data.user || !data.user.token) {
+          setPasswordError('*이메일 또는 비밀번호가 일치하지 않습니다.');
+        } else {
+          setIsLoginState(true);
+          setUserToken(data.user.token);
+          setAccountNameData(data.user.accountname);
+          navigate('/home');
+        }
       }
-    }
-  };
+    },
+    [
+      isButtonDisabled,
+      email,
+      password,
+      navigate,
+      setIsLoginState,
+      setUserToken,
+      setAccountNameData,
+    ],
+  );
 
   return (
     <>
       <S.LoginMain>
         <S.Title>로그인</S.Title>
         <S.LoginForm onSubmit={handleLogin}>
-          {/* InputBox 컴포넌트 사용 */}
           <InputBox
             label="이메일"
             id="userEmail"
             type="email"
             onChange={handleEmailChange}
             value={email}
-            borderBottomColor={isEmailRed ? 'on' : null}
-            show={isEmailRed ? 'on' : null}
+            borderBottomColor={emailError ? 'on' : null}
+            show={emailError ? 'on' : null}
             errorMessage={emailError}
           />
           <InputBox
@@ -111,17 +108,14 @@ function Login() {
             type="password"
             onChange={handlePasswordChange}
             value={password}
-            borderBottomColor={isPasswordRed ? 'on' : null}
-            show={isPasswordRed ? 'on' : null}
+            borderBottomColor={passwordError ? 'on' : null}
+            show={passwordError ? 'on' : null}
             errorMessage={passwordError}
           />
         </S.LoginForm>
-        {
-          <S.CustomNextButton onClick={handleLogin} active={isButtonDisabled}>
-            로그인
-          </S.CustomNextButton>
-        }
-
+        <S.CustomNextButton onClick={handleLogin} active={isButtonDisabled}>
+          로그인
+        </S.CustomNextButton>
         <S.JoinEmail onClick={() => navigate('/join/signup')}>
           이메일로 회원가입
         </S.JoinEmail>
@@ -130,4 +124,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default React.memo(Login);

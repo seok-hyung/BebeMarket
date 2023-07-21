@@ -13,9 +13,20 @@ export default function Search() {
   // searchUserAPI
   const [searchUserData, setSearchUserData] = useState([]);
   const userToken = useRecoilValue(userTokenState);
+  // 검색어에 디바운스
+  const [debounceValue, setDebounceValue] = useState(searchValue);
 
   useEffect(() => {
-    if (searchValue) {
+    const timer = setTimeout(() => {
+      setDebounceValue(searchValue);
+    }, 500);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchValue]);
+
+  useEffect(() => {
+    if (debounceValue.length > 0) {
       const getSearchUserAPIDatas = async () => {
         const searchUserAPIData = await searchUserAPI(userToken, searchValue);
         setSearchUserData(searchUserAPIData);
@@ -24,7 +35,7 @@ export default function Search() {
     } else {
       setSearchUserData([]);
     }
-  }, [searchValue, userToken]);
+  }, [debounceValue, userToken]);
 
   const searchInputChange = (e) => {
     setSearchValue(e.target.value);

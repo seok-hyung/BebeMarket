@@ -32,6 +32,7 @@ export const JoinDiv = styled.div`
 export const ProfileImage = styled.img`
   width: 110px;
   height: 110px;
+  border-radius: 50%;
 `;
 
 export const UploadInputLabel = styled.label`

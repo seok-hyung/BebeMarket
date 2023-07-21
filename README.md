@@ -11,7 +11,7 @@
  
 배포 URL : https://bebemarket.netlify.app <br>
 ```
-Test ID : test100@test.co.kr
+Test ID : img5@test.com
 Test PW : 123123
 ```
 <br>

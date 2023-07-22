@@ -16,7 +16,12 @@ function PreschoolList({ list, onLocationChange, handleSearchChange }) {
   // 위치 아이콘 클릭 시 실행되는 함수
   const handleLocationClick = (STCODE, LA, LO) => {
     if (LA && LO) {
-      onLocationChange(STCODE);
+      // 모바일 화면에서 지도 레벨을 항상 1로 설정
+      if (window.innerWidth <= 768) {
+        onLocationChange(STCODE, 1); // 레벨 1 추가
+      } else {
+        onLocationChange(STCODE);
+      }
     } else {
       alert('정보가 없습니다.');
     }

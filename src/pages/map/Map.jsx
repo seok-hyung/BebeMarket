@@ -2,7 +2,7 @@ import React, { useEffect, useState, lazy, Suspense } from 'react';
 import TopFollowNav from '../../components/common/topNav/TopFollowNav';
 import TabMenu from '../../components/common/tab/TabMenu';
 
-// 레이지 로딩을 사용하여 PreschoolMap 및 PreschoolList 컴포넌트를 동적으로 가져옴
+// 레이지 로딩을 사용하여 PreschoolMap 및 PreschoolList 컴포넌트를 동적으로 가져온다
 const PreschoolMap = lazy(() =>
   import('../../components/mapInfo/PreschoolMap'),
 );
@@ -31,7 +31,7 @@ function Map() {
   }, []);
 
   // 선택한 유치원의 위치를 처리하는 함수
-  const handleMapLocation = (STCODE) => {
+  const handleMapLocation = (STCODE, level = 3) => {
     // 검색값이 포함된 유치원 목록에서 STCODE와 일치하는 항목 찾기
     const selectedPreschool = preschoolList
       .filter((preschool) => preschool.CRNAME.includes(searchValue))
@@ -49,7 +49,7 @@ function Map() {
 
       // 일치하는 마커가 있다면 지도 이동 및 확대
       if (selectedMarker) {
-        map.setLevel(3);
+        map.setLevel(level);
         map.setCenter(coordinates);
       } else {
         // 일치하는 마커가 없으면 기다린 후 다시 시도

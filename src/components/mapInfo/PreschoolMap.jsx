@@ -13,6 +13,7 @@ function PreschoolMap({
   setMarkers,
   map,
   setMap,
+  markers,
 }) {
   const [selectedLocationId, setSelectedLocationId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
@@ -55,7 +56,7 @@ function PreschoolMap({
               const container = document.getElementById('map');
               const options = {
                 center: new kakao.maps.LatLng(37.566824, 126.978652),
-                level: 8,
+                level: window.innerWidth <= 768 ? 1 : 3, // 기본 레벨을 모바일 크기에 따라 설정
               };
               const map = new kakao.maps.Map(container, options);
 
@@ -108,7 +109,11 @@ function PreschoolMap({
           const zoomLevel = map.getLevel();
           const position = marker.getPosition();
 
-          if (zoomLevel !== 3) {
+          if (window.innerWidth <= 768 && zoomLevel === 1) {
+            openModalHandler(
+              list.find((preschool) => preschool.STCODE === marker.STCODE),
+            );
+          } else if (zoomLevel !== 3) {
             map.setLevel(3);
             map.setCenter(position);
           } else {
@@ -158,6 +163,8 @@ function PreschoolMap({
     handleLocationChange(displayPreschoolByLocationId);
   }, [map, handleLocationChange, list, searchValue, setSelectedLocationId]);
 
+  const minLevel = 1; // 지도 축소 시 핀을 표시할 최소 레벨
+
   // 선택된 위치가 변경될 때 처리
   useEffect(() => {
     if (!selectedLocationId || !map || !list) return;
@@ -173,16 +180,19 @@ function PreschoolMap({
         selectedPreschool.LO,
       );
 
-      if (
-        map.getLevel() === 3 &&
-        map.getCenter().toString() === coordinates.toString()
-      ) {
-        map.setLevel(8);
-        map.setCenter(new kakao.maps.LatLng(37.566824, 126.978652));
+      if (window.innerWidth <= 768) {
+        if (
+          map.getLevel() === minLevel &&
+          map.getCenter().toString() === coordinates.toString()
+        ) {
+          map.setLevel(3);
+        } else {
+          map.setLevel(minLevel);
+        }
       } else {
         map.setLevel(3);
-        map.setCenter(coordinates); // 확대할 위치 설정
       }
+      map.setCenter(coordinates); // 확대할 위치 설정
     }
   }, [selectedLocationId, map, list, searchValue]);
 
@@ -194,6 +204,47 @@ function PreschoolMap({
     map.setLevel(8);
     map.setCenter(new kakao.maps.LatLng(37.566824, 126.978652));
   }, [searchValue]);
+
+  useEffect(() => {
+    if (!map) return;
+
+    // Zoom level에 따라 핀 표시 또는 숨기기
+    const updateMarkersVisibility = () => {
+      const zoomLevel = map.getLevel();
+      markers.forEach((marker) => {
+        if (window.innerWidth <= 768 && zoomLevel <= minLevel) {
+          const bounds = map.getBounds();
+          const isVisible = bounds.contain(marker.getPosition());
+
+          marker.setMap(isVisible ? map : null); // 현재 영역에 있는 핀만 표시
+        } else {
+          marker.setMap(map);
+        }
+      });
+    };
+
+    // Zoom level 변경 시 핀 표시 여부 업데이트 이벤트 리스너 등록
+    kakao.maps.event.addListener(map, 'zoom_changed', updateMarkersVisibility);
+    kakao.maps.event.addListener(
+      map,
+      'center_changed',
+      updateMarkersVisibility,
+    );
+
+    return () => {
+      // 컴포넌트 해제 시 이벤트 리스너 제거
+      kakao.maps.event.removeListener(
+        map,
+        'zoom_changed',
+        updateMarkersVisibility,
+      );
+      kakao.maps.event.removeListener(
+        map,
+        'center_changed',
+        updateMarkersVisibility,
+      );
+    };
+  }, [map, markers]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useRecoilValue } from 'recoil';
 import { accountNameState, userTokenState } from '../../atoms/Atoms';
@@ -98,7 +98,7 @@ export default function Profile() {
     }
   }, [isMyProfile, accountname, token]);
 
-  const handleFollow = () => {
+  const handleFollow = useCallback(() => {
     if (isFollowed) {
       // 이미 팔로우한 경우
       unfollowAPI(accountname, token).then((data) => {
@@ -116,25 +116,29 @@ export default function Profile() {
       console.log(isFollowed);
       setFollowersCount(followersCount + 1);
     }
-  };
-  const handleEditProfile = () => {
+  }, [isFollowed, accountname, token, followersCount]);
+
+  const handleEditProfile = useCallback(() => {
     navigate(`/profile/${myAccountname}/edit`);
-  };
+  }, [navigate, myAccountname]);
 
-  const handleUploadProduct = () => {
+  const handleUploadProduct = useCallback(() => {
     navigate('/product');
-  };
+  }, [navigate]);
 
-  const handleProductClick = (e, product_Id, product_Link) => {
-    if (isMyProfile) {
-      e.preventDefault();
-      showModal();
-      setProductId(product_Id);
-      setProductLink(product_Link);
-    } else {
-      e.stopPropagation();
-    }
-  };
+  const handleProductClick = useCallback(
+    (e, product_Id, product_Link) => {
+      if (isMyProfile) {
+        e.preventDefault();
+        showModal();
+        setProductId(product_Id);
+        setProductLink(product_Link);
+      } else {
+        e.stopPropagation();
+      }
+    },
+    [isMyProfile],
+  );
 
   const numberWithCommas = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');

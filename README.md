@@ -198,7 +198,7 @@ Test PW : 123123
 
 | 홈 피드 | 검색 | 
 | ------ | ------ |
-| ![홈피드](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/91ccb32e-5881-4c5a-ac6b-6b016da5e3a1) | ![검색](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/2d82fa1c-0083-4b8e-b7b9-cd243e95642e)
+|![홈피드](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/115439373/1212d37a-2818-4315-9253-2fb2e3a7d583) | ![검색](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/2d82fa1c-0083-4b8e-b7b9-cd243e95642e)
   
 
 | 채팅 | 404 페이지 |
@@ -210,7 +210,9 @@ Test PW : 123123
 
 | 게시글 작성 | 게시글 수정 | 게시글 삭제 |
 |------------|------------|------------|
-| ![게시글작성1](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/2609aa76-ec34-4534-88fa-c74cacfc9e3e) | ![게시글수정](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/95a664c4-e4dc-42a8-8177-5a908f3ddc25) | ![게시글삭제](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/97f2477b-09af-4250-a2c0-1eedc79db67a) |
+| ![게시글작성태그](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/115439373/a86f5731-c5ca-45ab-a038-e97cbfb4d6b2)
+ | ![게시글수정](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/115439373/aceeae04-1b5c-4545-b7f6-9313d09101bb)
+ | ![게시글삭제](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/97f2477b-09af-4250-a2c0-1eedc79db67a) |
 
 
 | 게시글 상세 및 댓글 | 댓글 삭제 | 댓글 신고 |

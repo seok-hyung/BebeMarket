@@ -210,9 +210,7 @@ Test PW : 123123
 
 | 게시글 작성 | 게시글 수정 | 게시글 삭제 |
 |------------|------------|------------|
-| ![게시글작성태그](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/115439373/a86f5731-c5ca-45ab-a038-e97cbfb4d6b2)
- | ![게시글수정](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/115439373/aceeae04-1b5c-4545-b7f6-9313d09101bb)
- | ![게시글삭제](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/97f2477b-09af-4250-a2c0-1eedc79db67a) |
+| ![게시글작성태그](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/115439373/a86f5731-c5ca-45ab-a038-e97cbfb4d6b2)| ![게시글수정](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/115439373/aceeae04-1b5c-4545-b7f6-9313d09101bb) | ![게시글삭제](https://github.com/FRONTENDSCHOOL5/final-20-BebeMarket/assets/99380780/97f2477b-09af-4250-a2c0-1eedc79db67a) |
 
 
 | 게시글 상세 및 댓글 | 댓글 삭제 | 댓글 신고 |

@@ -11,7 +11,7 @@ export const SocialLogin = () => {
   };
 
   return (
-    <div>
+    <>
       <S.SocialLoginContainer>
         <S.SymbolLogoImage src={SymbolLogo} alt="아기얼굴 심볼" />
         <S.LoginAccountContainer>
@@ -47,8 +47,9 @@ export const SocialLogin = () => {
             </S.LoginSigninButton>
           </S.LoginSigninContainer>
         </S.LoginAccountContainer>
+        {/* <Carousel /> */}
       </S.SocialLoginContainer>
-    </div>
+    </>
   );
 };
 
